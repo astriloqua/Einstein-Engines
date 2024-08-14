@@ -6,10 +6,30 @@
   showInVote: true # secret # DeltaV - Me when the survival. Used for periapsis.
   description: survival-description
   rules:
+    - MeteorSwarmScheduler
     - RampingStationEventScheduler
     - BasicRoundstartVariation
     - SubGamemodesRule
     - LavalandStormScheduler # Lavaland Change
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+
+- type: gamePreset
+  id: KesslerSyndrome
+  alias:
+    - kessler
+    - junk
+    - meteorhell
+  name: kessler-syndrome-title
+  showInVote: false # secret
+  description: kessler-syndrome-description
+  rules:
+    # - KesslerSyndromeScheduler # Goobstation - nuh uh
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
+
 
 - type: gamePreset
   id: SurvivalHellshift
@@ -48,6 +68,8 @@
 
 - type: gamePreset
   id: AllAtOnce
+  alias:
+  - all
   name: all-at-once-title
   description: all-at-once-description
   showInVote: false
@@ -60,6 +82,36 @@
     - BloodCult
     - RampingStationEventScheduler
     - LavalandStormScheduler # Lavaland Change
+    # - KesslerSyndromeScheduler # Goobstation nuh uh
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: AllerAtOnce
+  alias:
+  - allall
+  - aller
+  - badidea
+  - punishment
+  name: aller-at-once-title
+  description: all-at-once-description
+  showInVote: false #Please god dont do this
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Zombie
+    - BasicStationEventScheduler
+    - Changeling
+    - BloodCult
+    # - KesslerSyndromeScheduler # Goobstation - nuh uh
+    # - MeteorSwarmMildScheduler # Goob Edit
+    # - MeteorSwarmScheduler # Goob Edit
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Extended
@@ -71,6 +123,8 @@
   description: extended-description
   rules:
   - BasicStationEventScheduler
+  # - MeteorSwarmScheduler # Goobstation - nuh uh
+  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - SubGamemodesRule
   - LavalandStormScheduler # Lavaland Change
@@ -85,6 +139,8 @@
   description: greenshift-description
   rules:
   - LavalandStormScheduler # Lavaland Change
+  - SpaceTrafficControlFriendlyEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Secret
@@ -109,6 +165,9 @@
   rules:
     - BasicStationEventScheduler
     - LavalandStormScheduler # Lavaland Change
+    # - MeteorSwarmScheduler # Goobstation - nuh uh
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
@@ -119,6 +178,8 @@
   description: secret-description
   rules:
   - LavalandStormScheduler # Lavaland Change
+  - SpaceTrafficControlFriendlyEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Sandbox
@@ -136,6 +197,7 @@
   id: Traitor
   alias:
     - traitor
+    - tator
   name: traitor-title
   description: traitor-description
   showInVote: true
@@ -143,6 +205,8 @@
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
+    # - MeteorSwarmScheduler # Goobstation - nuh uh
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -170,6 +234,8 @@
     - Nukeops
     - SubGamemodesRule
     - BasicStationEventScheduler
+    # - MeteorSwarmScheduler # Goobstation - nuh uh
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -186,6 +252,8 @@
     - Revolutionary
     - SubGamemodesRule
     - BasicStationEventScheduler
+    # - MeteorSwarmScheduler # Goobstation - nuh uh
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -203,6 +271,25 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
+  # - MeteorSwarmScheduler # Goobstation - Nuh uh
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
+
+- type: gamePreset
+  id: Zombieteors
+  alias:
+  - zombieteors
+  - zombombies
+  - meteombies
+  name: zombieteors-title
+  description: zombieteors-description
+  showInVote: false
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - KesslerSyndromeScheduler
+  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change
 
