@@ -30,7 +30,7 @@ public sealed partial class TraitorRuleComponent : Component
     public ProtoId<DatasetPrototype> CodewordVerbs = "verbs";
 
     [DataField]
-    public ProtoId<DatasetPrototype> ObjectiveIssuers = "TraitorCorporations";
+    public ProtoId<DatasetPrototype> ObjectiveIssuers = "TraitorFlavor"; // goob edit
 
     /// <summary>
     /// Give this traitor an Uplink on spawn.
@@ -52,6 +52,7 @@ public sealed partial class TraitorRuleComponent : Component
 
     public int TotalTraitors => TraitorMinds.Count;
     public string[] Codewords = new string[3];
+    public string ObjectiveIssuer = string.Empty; // goob edit
 
     public enum SelectionState
     {

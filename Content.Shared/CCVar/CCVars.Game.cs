@@ -1,4 +1,4 @@
-﻿using Content.Shared.Roles;
+using Content.Shared.Roles;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
@@ -401,4 +401,11 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> UseDynamicHostname =
         CVarDef.Create("game.use_dynamic_hostname", false, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Goobstation - indicates how much players are required for the round to be considered lowpop.
+    ///     Used for dynamic gamemode.
+    /// </summary>
+    public static readonly CVarDef<float> LowpopThreshold =
+        CVarDef.Create("game.players.lowpop_threshold", 20f, CVar.SERVERONLY);
 }

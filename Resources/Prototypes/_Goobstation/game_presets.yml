@@ -94,39 +94,8 @@
     - BasicStationEventScheduler
     #- MeteorSwarmScheduler Goobstation - nuh uh
     - BasicRoundstartVariation
-    - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
-- type: gamePreset
-  id: Blob
-  alias:
-  - blab
-  name: blob-title
-  description: blob-description
-  showInVote: false
-  rules:
-  - BlobGameMode
-  - BasicStationEventScheduler
-  - AntagStationEventScheduler
-  - BasicRoundstartVariation
-  - SubGamemodesRule
-  - LavalandStormScheduler # Lavaland Change
-
-- type: gamePreset
-  id: Honkops
-  alias:
-    - honkops
-  name: honkops-title
-  description: honkops-description
-  showInVote: false
-  rules:
-    - Honkops
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-  #  - MeteorSwarmScheduler Goobstation - nuh uh
-    - SpaceTrafficControlEventScheduler
-    - BasicRoundstartVariation
-    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: TheSleeper
@@ -140,6 +109,7 @@
   rules:
     - CalmDynamic
     - LavalandStormScheduler # Lavaland Change
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: TheGuide
@@ -153,3 +123,5 @@
   rules:
     - CombatDynamic
     - LavalandStormScheduler # Lavaland Change
+    # - MeteorSwarmScheduler # Goobstation - nuh uh
+    - BasicRoundstartVariation

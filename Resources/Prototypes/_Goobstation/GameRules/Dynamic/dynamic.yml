@@ -4,17 +4,18 @@
 # - all the other major gamerules are cancelled out (roundstart)
 
 # add all roundstart antags here
-- type: dataset # Funky station unfucked dynamic
+- type: dataset
   id: DynamicRoundstartGamerules
   values:
   - TraitorDynamic # traitors
-  - ThiefDynamic # thieves (spy wyci)
+  - ThiefDynamic # thieves (spy todo)
   - ChangelingDynamic # changelings
+  - HereticDynamic # heretics
   - RevolutionDynamic # revs (M)
   - NukeopsDynamic # nukies (M)
-  - WizardDynamic # wizard (M)
-  # cult wyci (M)
-  # clock cult wyci (M)
+  # cult todo (M)
+  # clock cult todo (M)
+  # wizard todo (M)
 
 # add all antag related events here
 - type: dataset
@@ -22,6 +23,7 @@
   values:
   - TraitorDynamicMidround # sleeper agents
   - ChangelingDynamicMidround # sleeper lings
+  # - HereticDynamicMidround # sleeper heretics
   - SkeletonDynamicMidround # skeleton spawn
   - RevolutionDynamicMidround # sleeper revs (M)
   - NukeopsDynamicMidround # lone operative spawn (M)
@@ -31,6 +33,7 @@
   - RevenantDynamicMidround # revenant spawn (M)
   - ZombiesDynamicMidround # zombie outbreak (M)
   # - WizardDynamicMidround # wizard spawn (M)
+  # blob todo (M)
   # spider infestation todo (M)
   # xenos todo (M)
   # improved kudzu todo (M)
@@ -40,6 +43,9 @@
   id: Dynamic
   components:
   - type: GameRule
+    delay:
+      min: 5
+      max: 10
   - type: DynamicRule
     roundstartRulesPool: DynamicRoundstartGamerules
 

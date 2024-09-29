@@ -31,6 +31,8 @@ using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Store.Components;
+using Content.Server.Station.Systems;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -43,6 +45,10 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    // goob edit
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    // goob edit end
 
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
@@ -308,6 +314,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
     private void OnShuttleCallAttempt(ref CommunicationConsoleCallShuttleAttemptEvent ev)
     {
+        var operatives = EntityQuery<NukeOperativeComponent, MobStateComponent, TransformComponent>(true);
+
         var query = QueryActiveRules();
         while (query.MoveNext(out _, out _, out var nukeops, out _))
         {
@@ -322,6 +330,24 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                     ev.Reason = Loc.GetString("war-ops-shuttle-call-unavailable");
                     return;
                 }
+
+                // goob edit - can't call evac while nukies are present on the station
+                if (operatives.Any(op => _stationSystem.GetOwningStation(op.Item1.Owner) != null))
+                {
+                    ev.Cancelled = true;
+                    ev.Reason = Loc.GetString("shuttle-call-warops-nukies-present");
+                    return;
+                }
+            }
+
+            // goob edit - can't call evac while nukies are present on the station
+            // during stealth ops this might become a problem
+            // but an error in the shuttle call must mean something bad is coming so it's probably a sign to go witch hunting
+            if (operatives.Any(op => _stationSystem.GetOwningStation(op.Item1.Owner) != null))
+            {
+                ev.Cancelled = true;
+                ev.Reason = Loc.GetString("shuttle-call-error");
+                return;
             }
         }
     }
@@ -471,6 +497,11 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             nukeops.RoundEndTextSender,
             nukeops.RoundEndTextShuttleCall,
             nukeops.RoundEndTextAnnouncement);
+
+        // goob edit - no more roundend behavior, just announcement // EE: I'm just gonna keep the announcement too
+        _chat.DispatchGlobalAnnouncement(
+            Loc.GetString(nukeops.RoundEndTextAnnouncement),
+            Loc.GetString(nukeops.RoundEndTextSender));
 
         // prevent it called multiple times
         nukeops.RoundEndBehavior = RoundEndBehavior.Nothing;

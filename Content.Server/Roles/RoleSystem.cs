@@ -11,6 +11,26 @@ public sealed class RoleSystem : SharedRoleSystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
+    public override void Initialize()
+    {
+        // TODO make roles entities
+        base.Initialize();
+
+        SubscribeAntagEvents<DragonRoleComponent>();
+        SubscribeAntagEvents<InitialInfectedRoleComponent>();
+        SubscribeAntagEvents<NinjaRoleComponent>();
+        SubscribeAntagEvents<NukeopsRoleComponent>();
+        SubscribeAntagEvents<RevolutionaryRoleComponent>();
+        SubscribeAntagEvents<SubvertedSiliconRoleComponent>();
+        SubscribeAntagEvents<TraitorRoleComponent>();
+        SubscribeAntagEvents<ZombieRoleComponent>();
+        SubscribeAntagEvents<ThiefRoleComponent>();
+        SubscribeAntagEvents<ChangelingRoleComponent>(); // goobstation - changelings
+        // SubscribeAntagEvents<HereticRoleComponent>(); // goobstation - heretics
+        // SubscribeAntagEvents<GhoulRoleComponent>(); // heretics
+        // SubscribeAntagEvents<MindcontrolledRoleComponent>(); // goob edit - mindslave implant
+    }
+
     public string? MindGetBriefing(EntityUid? mindId)
     {
         if (mindId == null)

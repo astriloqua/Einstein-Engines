@@ -23,6 +23,12 @@ using Content.Shared.Mood;
 
 namespace Content.Server.GameTicking.Rules;
 
+/// <summary>
+///     Heavily edited.
+///     If you wanna upstream something think twice.
+///     Piras this is directed to you :trollface:
+///     regards.
+/// </summary>
 public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
 {
     private static readonly Color TraitorCodewordColor = Color.FromHex("#cc3b3b");
@@ -80,6 +86,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
             briefing = Loc.GetString("traitor-role-codewords-short", ("codewords", string.Join(", ", component.Codewords)));
 
         var issuer = _random.Pick(_prototypeManager.Index(component.ObjectiveIssuers).Values);
+        component.ObjectiveIssuer = issuer;
 
         Note[]? code = null;
 
@@ -104,7 +111,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
                 Loc.GetString("traitor-role-uplink-code-short", ("code", string.Join("-", code).Replace("sharp", "#"))));
         }
 
-        _antag.SendBriefing(traitor, GenerateBriefing(component.Codewords, code, issuer), null, component.GreetSoundNotification);
+        _antag.SendBriefing(traitor, GenerateBriefing(component.Codewords, code, issuer), Color.Crimson, component.GreetSoundNotification);
 
         component.TraitorMinds.Add(mindId);
 
@@ -176,7 +183,6 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
             sb.AppendLine(Loc.GetString("traitor-role-uplink-code", ("code", string.Join("-", uplinkCode).Replace("sharp", "#"))));
         else
             sb.AppendLine(Loc.GetString("traitor-role-uplink-implant"));
-
 
         return sb.ToString();
     }

@@ -1,3 +1,6 @@
+# goob edit - separated antag and basic event schedulers
+# if you see a AntagStationEventScheduler it's from goobstation
+
 - type: gamePreset
   id: Survival
   alias:
