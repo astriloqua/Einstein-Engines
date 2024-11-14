@@ -1,23 +1,22 @@
 - type: entity
-  id: BorgChassisGeneric
+  id: BorgChassisSelectable
   parent: BaseBorgChassisNT
   components:
   - type: Sprite
     layers:
     - state: robot
+      map: ["enum.BorgVisualLayers.Body", "movement"]
     - state: robot_e_r
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
       visible: false
     - state: robot_l
       shader: unshaded
-      map: ["light"]
+      map: ["light","enum.BorgVisualLayers.LightStatus"]
       visible: false
   - type: BorgChassis
-    maxModules: 6
-    moduleWhitelist:
-      tags:
-      - BorgModuleGeneric
+    # Default borg can take no modules until selected type.
+    maxModules: 0
     hasMindState: robot_e
     noMindState: robot_e_r
   - type: BorgTransponder
@@ -29,10 +28,26 @@
     node: cyborg
   - type: Speech
     speechVerb: Robotic
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Common
+    - Binary
+
+- type: entity
+  id: BorgChassisGeneric
+  parent: BorgChassisSelectable
+  name: generic cyborg
+  suffix: type picked
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: generic
 
 - type: entity
   id: BorgChassisMining
-  parent: BaseBorgChassisNT
+  parent: BorgChassisSelectable
   name: salvage cyborg
   components:
   - type: Sprite
@@ -85,10 +100,12 @@
     access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+  - type: BorgSwitchableType
+    selectedBorgType: mining
 
 - type: entity
   id: BorgChassisEngineer
-  parent: BaseBorgChassisNT
+  parent: BorgChassisSelectable
   name: engineer cyborg
   components:
   - type: Sprite
@@ -135,10 +152,12 @@
     templateId: borgShort
   - type: SiliconLawProvider # Delta-V - Adds custom lawset for Engineering Cyborg
     laws: Engineer
+  - type: BorgSwitchableType
+    selectedBorgType: engineering
 
 - type: entity
   id: BorgChassisJanitor
-  parent: BaseBorgChassisNT
+  parent: BorgChassisSelectable
   name: janitor cyborg
   components:
   - type: Sprite
@@ -266,10 +285,20 @@
     interactFailureString: petting-failure-medical-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: BorgSwitchableType
+    selectedBorgType: janitor
+
+- type: entity
+  id: BorgChassisMedical
+  parent: BorgChassisSelectable
+  name: medical cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: medical
 
 - type: entity
   id: BorgChassisService
-  parent: BaseBorgChassisNT
+  parent: BorgChassisSelectable
   name: service cyborg
   components:
   - type: Sprite
@@ -314,6 +343,8 @@
     access: [["Service"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+  - type: BorgSwitchableType
+    selectedBorgType: service
 
 - type: entity
   id: BorgChassisSyndicateAssault
@@ -345,6 +376,11 @@
       noMindState: synd_sec
     - type: Construction
       node: syndicateassault
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
 
 - type: entity
   id: BorgChassisSyndicateMedical
@@ -374,6 +410,18 @@
       noMindState: synd_medical
     - type: Construction
       node: syndicatemedical
+    - type: ShowHealthBars
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: SolutionScanner
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHoverBorg
+        params:
+          volume: -6
 
 - type: entity
   id: BorgChassisSyndicateSaboteur
@@ -403,3 +451,12 @@
       noMindState: synd_engi
     - type: Construction
       node: syndicatesaboteur
+    - type: ShowHealthBars
+      damageContainers:
+      - Inorganic
+      - Silicon
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg

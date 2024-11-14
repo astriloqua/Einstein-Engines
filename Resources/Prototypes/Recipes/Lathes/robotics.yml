@@ -331,6 +331,8 @@
     Steel: 500
     Glass: 200
 
+# Parts
+
 - type: latheRecipe
   id: MMI
   result: MMI
@@ -438,6 +440,8 @@
     Plastic: 250
     Gold: 50
 
+# Engineering Modules
+
 - type: latheRecipe
   id: BorgModuleAdvancedTool
   result: BorgModuleAdvancedTool
@@ -502,6 +506,10 @@
     Plastic: 250
 
 - type: latheRecipe
+# Janitor Modules
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedCleaning
   result: BorgModuleAdvancedCleaning
   category: Robotics
@@ -533,6 +541,7 @@
     Plastic: 250
 
 - type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedTreatment
   result: BorgModuleAdvancedTreatment
   category: Robotics
@@ -595,6 +604,7 @@
     Plastic: 250
 
 - type: latheRecipe
+  parent: BaseBorgModuleRecipe
   id: BorgModuleGardening
   result: BorgModuleGardening
   category: Robotics

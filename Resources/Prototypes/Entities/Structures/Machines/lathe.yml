@@ -687,6 +687,7 @@
     - RightLegBorg
     - LightHeadBorg
     - TorsoBorg
+    # Class Specific Parts were removed on wizden, gonna experiment keeping them in
     - LeftArmBorgEngineer
     - RightArmBorgEngineer
     - LeftLegBorgEngineer
@@ -721,10 +722,7 @@
     - PowerCageSmall # Goobstation - Powercell to exosuit fab
     dynamicRecipes:
     - ProximitySensor
-    - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
-    - BorgModuleMining
-    - BorgModuleGrapplingGun
     - BorgModuleAdvancedTool
     - BorgModuleGPS
     - BorgModuleRCD
@@ -735,9 +733,6 @@
     - BorgModuleAnomaly
     - BorgModuleGardening
     - BorgModuleHarvesting
-    - BorgModuleMusique
-    - BorgModuleClowning
-    - BorgModuleDiagnosis
     - BorgModuleDefibrillator
     - BorgModuleAdvancedTreatment
     - BorgModuleAdvancedSurgery

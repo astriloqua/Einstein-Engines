@@ -51,6 +51,45 @@
   - DawInstrumentMachineCircuitboard
   - MassMediaCircuitboard
   - JukeboxCircuitBoard
+
+- type: technology
+  id: AdvancedEntertainment
+  name: research-technology-advanced-entertainment
+  icon:
+    sprite: Structures/Machines/computers.rsi
+    state: television
+  discipline: CivilianServices
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+    - ComputerTelevisionCircuitboard
+    - SynthesizerInstrument
+    - DawInstrumentMachineCircuitboard
+    - MassMediaCircuitboard
+    - JukeboxCircuitBoard
+
+- type: technology
+  id: RoboticCleanliness
+  name: research-technology-robotic-cleanliness
+  icon:
+    sprite: Mobs/Silicon/chassis.rsi
+    state: janitor
+  discipline: CivilianServices
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedCleaning
+
+- type: technology
+  id: MeatManipulation
+  name: research-technology-meat-manipulation
+  icon:
+    sprite: Structures/Machines/fat_sucker.rsi
+    state: display
+  discipline: CivilianServices
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard

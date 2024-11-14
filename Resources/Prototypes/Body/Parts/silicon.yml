@@ -35,9 +35,9 @@
   # Shitmed Change End
 
 - type: entity
-  id: BaseBorgArmLeft
+  id: LeftArmBorg
   parent: PartSilicon
-  name: left cyborg arm
+  name: cyborg left arm
   abstract: true
   components:
   - type: BodyPart
@@ -48,15 +48,20 @@
       left hand:
         id: "left hand"
         type: Hand
+  - type: Sprite
+    state: borg_l_arm
+  - type: Icon
+    state: borg_l_arm
   - type: Tag
     tags:
     - Trash
     - BorgArm
+    - BorgLArm
 
 - type: entity
-  id: BaseBorgArmRight
+  id: RightArmBorg
   parent: PartSilicon
-  name: right cyborg arm
+  name: cyborg right arm
   abstract: true
   components:
   - type: BodyPart
@@ -67,15 +72,20 @@
       right hand:
         id: "right hand"
         type: Hand
+  - type: Sprite
+    state: borg_r_arm
+  - type: Icon
+    state: borg_r_arm
   - type: Tag
     tags:
     - Trash
     - BorgArm
+    - BorgRArm
 
 - type: entity
-  id: BaseBorgLegLeft
+  id: LeftLegBorg
   parent: PartSilicon
-  name: left cyborg leg
+  name: cyborg left leg
   abstract: true
   components:
   - type: BodyPart
@@ -86,16 +96,21 @@
       left foot:
         id: "left foot"
         type: Foot
+  - type: Sprite
+    state: borg_l_leg
+  - type: Icon
+    state: borg_l_leg
   - type: Tag
     tags:
     - Trash
     - BorgLeg
   - type: MovementBodyPart
+    - BorgLLeg
 
 - type: entity
-  id: BaseBorgLegRight
+  id: RightLegBorg
   parent: PartSilicon
-  name: right cyborg leg
+  name: cyborg right leg
   abstract: true
   components:
   - type: BodyPart
@@ -106,35 +121,47 @@
       right foot:
         id: "right foot"
         type: Foot
+  - type: Sprite
+    state: borg_r_leg
+  - type: Icon
+    state: borg_r_leg
   - type: Tag
     tags:
     - Trash
     - BorgLeg
   - type: MovementBodyPart
+    - BorgRLeg
 
 - type: entity
-  id: BaseBorgHead
+  id: LightHeadBorg
   parent: PartSilicon
   name: cyborg head
-  abstract: true
   components:
   - type: BodyPart
     partType: Head
     toolName: "a head" # Shitmed Change
+  - type: Sprite
+    state: borg_head
+  - type: Icon
+    state: borg_head
   - type: Tag
     tags:
     - Trash
     - BorgHead
 
 - type: entity
-  id: BaseBorgTorso
+  id: TorsoBorg
   parent: PartSilicon
   name: cyborg torso
-  abstract: true
   components:
   - type: BodyPart
     partType: Torso
     toolName: "a torso" # Shitmed Change
+  - type: Sprite
+    state: borg_chest
+  - type: Icon
+    state: borg_chest
   - type: Tag
     tags:
     - Trash
+    - BorgTorso

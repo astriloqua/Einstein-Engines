@@ -55,6 +55,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         base.Initialize();
 
         SubscribeLocalEvent<ClothingComponent, GetEquipmentVisualsEvent>(OnGetVisuals);
+        SubscribeLocalEvent<ClothingComponent, InventoryTemplateUpdated>(OnInventoryTemplateUpdated);
 
         SubscribeLocalEvent<InventoryComponent, VisualsChangedEvent>(OnVisualsChanged);
         SubscribeLocalEvent<SpriteComponent, DidUnequipEvent>(OnDidUnequip);
@@ -73,12 +74,30 @@ public sealed class ClientClothingSystem : ClothingSystem
             SetGenderedMask(uid, args.Sprite, clothing);
             return;
         }
+        UpdateAllSlots(uid, component);
 
         // No clothing equipped -> make sure the layer is hidden, though this should already be handled by on-unequip.
         if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.StencilMask, out var layer))
         {
             DebugTools.Assert(!args.Sprite[layer].Visible);
             args.Sprite.LayerSetVisible(layer, false);
+        }
+    }
+
+    private void OnInventoryTemplateUpdated(Entity<ClothingComponent> ent, ref InventoryTemplateUpdated args)
+    {
+        UpdateAllSlots(ent.Owner, clothing: ent.Comp);
+    }
+
+    private void UpdateAllSlots(
+        EntityUid uid,
+        InventoryComponent? inventoryComponent = null,
+        ClothingComponent? clothing = null)
+    {
+        var enumerator = _inventorySystem.GetSlotEnumerator((uid, inventoryComponent));
+        while (enumerator.NextItem(out var item, out var slot))
+        {
+            RenderEquipment(uid, item, slot.Name, inventoryComponent, clothingComponent: clothing);
         }
     }
 
