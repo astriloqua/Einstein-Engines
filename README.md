@@ -1,4 +1,4 @@
-# Einstein Engines
+# Einstein Enginesa
 
 <p align="center"><img src="https://raw.githubusercontent.com/Simple-Station/Einstein-Engines/master/Resources/Textures/Logo/splashlogo.png" width="512px" /></p>
 
