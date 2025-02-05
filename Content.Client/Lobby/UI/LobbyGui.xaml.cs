@@ -60,6 +60,8 @@ namespace Content.Client.Lobby.UI
             Default,
             /// The character setup state.
             CharacterSetup,
+            /// EE: Job preference setup state.
+            JobPreferences,
         }
     }
 }
