@@ -76,6 +76,8 @@
   - type: StationEvent
     weight: 8
     duration: 35
+    chaos: # Goobstation
+      Anomaly: 100
   - type: AnomalySpawnRule
 
 - type: entity
@@ -86,6 +88,8 @@
   - type: StationEvent
     weight: 8
     duration: 35
+    chaos: # Goobstation
+      Anomaly: 40
   - type: BluespaceArtifactRule
 
 - type: entity
@@ -98,6 +102,8 @@
     reoccurrenceDelay: 5
     earliestStart: 1
     duration: 1
+    chaos: # Goobstation
+      Anomaly: 40
   - type: BluespaceLockerRule
 
 - type: entity
@@ -109,6 +115,8 @@
     weight: 7
     duration: 1
     minimumPlayers: 15
+    chaos: # Goobstation
+      Power: 100
   - type: BreakerFlipRule
 
 - type: entity
@@ -158,6 +166,12 @@
     reoccurrenceDelay: 20
     minimumPlayers: 20
     duration: null
+    chaos: # Goobstation
+      Hostile: 20
+      Friend: 20
+      Combat: 40
+      Death: 100
+      Medical: 100
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -188,6 +202,12 @@
     earliestStart: 30
     reoccurrenceDelay: 20
     minimumPlayers: 30
+    chaos: # Goobstation
+      Hostile: 20
+      Friend: 20
+      Combat: 40
+      Death: 40
+      Medical: 40
   - type: SpaceSpawnRule
   - type: AntagLoadProfileRule
   - type: AntagObjectives
@@ -235,6 +255,12 @@
     duration: 1
     earliestStart: 45
     minimumPlayers: 20
+    chaos: # Goobstation
+      Hostile: 20
+      Friend: 20
+      Combat: 40
+      Death: 100
+      Medical: 100
   - type: RandomSpawnRule
     prototype: MobRevenant
 
@@ -259,6 +285,9 @@
     endAnnouncement: true
     weight: 8
     startDelay: 20
+    chaos:
+      Atmos: 100
+      Medical: 50
   - type: GasLeakRule
 
 - type: entity
@@ -272,6 +301,10 @@
     weight: 7
     startDelay: 50
     duration: 240
+    chaos:
+      Hostile: 20
+      Friend: 20
+      Medical: 100
   - type: KudzuGrowthRule
 
 - type: entity
@@ -411,6 +444,8 @@
     endAnnouncement: true
     duration: 120
     maxDuration: 240
+    chaos: # Goobstation
+      Friend: 20
   - type: SolarFlareRule
     onlyJamHeadsets: true
     affectedChannels:
@@ -439,6 +474,8 @@
     weight: 5
     startDelay: 50
     duration: 60
+    chaos: # Goobstation
+      Mess: 200
   - type: VentClogRule
 
 - type: entity
@@ -451,8 +488,12 @@
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15
-    weight: 3
-    duration: 60
+    weight: 3 # 5 on Goob
+    duration: 60 # 30 on Goob, used as a delay now it says
+    chaos: # Goobstation
+      Hostile: 10
+      Friend: 10
+      Medical: 50
   - type: VentCrittersRule
     entries:
     - id: MobAdultSlimesBlueAngry
@@ -506,6 +547,11 @@
     minimumPlayers: 40
     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
     duration: 1
+    chaos: # Goobstation
+      Hostile: 40
+      Friend: 60
+      Medical: 200
+      Death: 200
   - type: ZombieRule
   - type: AntagSelection
     definitions:
@@ -540,6 +586,11 @@
     weight: 5.5
     minimumPlayers: 20
     duration: 1
+    chaos: # Goobstation
+      Hostile: 20
+      Friend: 40
+      Medical: 200
+      Death: 100
   - type: RuleGrids
   - type: LoadMapRule
     preloadedGrid: ShuttleStriker

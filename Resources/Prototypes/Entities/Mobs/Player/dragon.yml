@@ -150,6 +150,8 @@
     deactivateSound: null
   - type: Puller
     needsHands: false
+  - type: CombatPower # Goobstation
+    factor: 4 # times more dangerous than a crew-member
 
 - type: entity
   parent: BaseMobDragon

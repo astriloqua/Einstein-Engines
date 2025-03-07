@@ -112,3 +112,5 @@
     price: 150
   - type: FloatingVisuals
   - type: Speech
+  - type: CombatPower # Goobstation
+    factor: 0.5 # As dangerous as half a crew-member

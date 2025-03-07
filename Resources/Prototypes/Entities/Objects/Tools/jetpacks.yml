@@ -64,6 +64,9 @@
       difficulty: 3
       recipes:
         - JetpackBlue
+    - type: Tag # Goobstation
+      tags:
+      - Jetpack
 
 - type: entity
   id: ActionToggleJetpack

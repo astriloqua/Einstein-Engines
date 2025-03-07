@@ -384,6 +384,9 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: Tag # Goobstation
+    tags:
+    - Rifle
 
 - type: entity
   name: pulse rifle
@@ -411,6 +414,9 @@
   - type: Battery
     maxCharge: 40000
     startingCharge: 40000
+  - type: Tag # Goobstation
+    tags:
+    - Rifle
 
 - type: entity
   name: laser cannon
@@ -446,7 +452,9 @@
     bluntStaminaDamageFactor: 1.3333
   - type: DamageOtherOnHit
     staminaCost: 9.5
-
+  - type: Tag # Goobstation
+    tags:
+    - Rifle
 
 - type: entity
   name: portable particle decelerator
@@ -494,6 +502,14 @@
       wideAnimationRotation: 270
     - type: DamageOtherOnHit
       staminaCost: 48
+    - type: PhysicalComposition #Goobstation - Recycle update
+      materialComposition:
+        Steel: 187
+        Plasma: 37
+        Uranium: 37
+    - type: Tag # Goobstation
+      tags:
+      - Rifle
 
 - type: entity
   name: x-ray cannon
@@ -522,6 +538,9 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+  - type: Tag # Goobstation
+    tags:
+    - Rifle
 
 - type: entity
   name: civilian disabler
