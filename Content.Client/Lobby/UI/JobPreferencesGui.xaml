@@ -4,6 +4,7 @@
          xmlns:style="clr-namespace:Content.Client.Stylesheets"
     VerticalExpand="True">
     <Control>
+        <PanelContainer Name="BackgroundPanel" />
         <BoxContainer Orientation="Vertical">
             <BoxContainer Orientation="Horizontal" MinSize="0 40">
                 <Label Text="Set-loc SAVE"

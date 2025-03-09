@@ -32,6 +32,7 @@ namespace Content.Client.Lobby.UI
         {
             DefaultState.Visible = false;
             CharacterSetupState.Visible = false;
+            JobPreferencesState.Visible = false;
 
             switch (state)
             {
@@ -50,6 +51,9 @@ namespace Content.Client.Lobby.UI
 
                     UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 
+                    break;
+                case LobbyGuiState.JobPreferences:
+                    JobPreferencesState.Visible = true;
                     break;
             }
         }

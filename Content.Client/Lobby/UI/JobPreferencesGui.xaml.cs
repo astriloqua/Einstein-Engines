@@ -20,7 +20,7 @@ namespace Content.Client.Lobby.UI
         public JobPreferencesGui()
         {
             RobustXamlLoader.Load(this);
-            IoCManager.InjectDependencies(this);
+            //IoCManager.InjectDependencies(this);
         }
     }
 }
