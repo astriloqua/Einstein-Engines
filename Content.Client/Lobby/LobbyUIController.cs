@@ -48,6 +48,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [UISystemDependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     private CharacterSetupGui? _characterSetup;
+    private JobPreferencesGui? _jobPreferences;
     private HumanoidProfileEditor? _profileEditor;
 
     /// This is the character preview panel in the chat. This should only update if their character updates
@@ -145,6 +146,16 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         profileEditor.SetProfile(
             (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
             _preferencesManager.Preferences?.SelectedCharacterIndex);
+    }
+
+    /// EE: Reloads job preferences
+    public void ReloadJobPreferences()
+    {
+        if (_jobPreferences != null)
+            return;
+        _jobPreferences = new JobPreferencesGui(_resourceCache);
+        if (_stateManager.CurrentState is LobbyState lobby)
+            lobby.Lobby?.JobPreferencesState.AddChild(_jobPreferences);
     }
 
     /// Refreshes the character preview in the lobby chat

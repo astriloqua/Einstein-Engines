@@ -10,8 +10,6 @@
                 <Label Text="Set-loc SAVE"
                     Margin="8 0 0 0" VAlign="Center"
                     StyleClasses="LabelHeadingBigger" />
-                <Label Text="Set-loc CLOSE"
-                    StyleClasses="ButtonBig" />
             </BoxContainer>
         </BoxContainer>
     </Control>

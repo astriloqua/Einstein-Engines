@@ -52,8 +52,9 @@ namespace Content.Client.Lobby.UI
                     UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 
                     break;
-                case LobbyGuiState.JobPreferences:
+                case LobbyGuiState.JobPreferences: // EE
                     JobPreferencesState.Visible = true;
+                    UserInterfaceManager.GetUIController<LobbyUIController>().ReloadJobPreferences();
                     break;
             }
         }
