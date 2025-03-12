@@ -48,8 +48,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [UISystemDependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     private CharacterSetupGui? _characterSetup;
-    private JobPreferencesGui? _jobPreferences;
     private HumanoidProfileEditor? _profileEditor;
+    private JobPreferencesGui? _jobPreferences; // EE
+    private JobPreferenceEditor? _jobEditor; // EE
 
     /// This is the character preview panel in the chat. This should only update if their character updates
     private LobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
@@ -87,6 +88,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _profileEditor?.Dispose();
         _characterSetup = null;
         _profileEditor = null;
+        _jobPreferences = null; // EE
+        _jobEditor = null; // EE
     }
 
 
@@ -151,12 +154,15 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     /// EE: Reloads job preferences
     public void ReloadJobPreferences()
     {
-        if (_jobPreferences != null)
+        if (_jobPreferences != null && _jobEditor != null)
         {
             _jobPreferences.Visible = true;
+            _jobEditor.Visible = true;
             return;
         }
-        _jobPreferences = new JobPreferencesGui(EntityManager, _prototypeManager, _resourceCache);
+
+        _jobEditor = new JobPreferenceEditor(EntityManager, _prototypeManager);
+        _jobPreferences = new JobPreferencesGui(EntityManager, _prototypeManager, _resourceCache, _jobEditor);
 
         _jobPreferences.CloseButton.OnPressed += _ =>
         {
