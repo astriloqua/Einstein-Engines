@@ -152,8 +152,21 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     public void ReloadJobPreferences()
     {
         if (_jobPreferences != null)
+        {
+            _jobPreferences.Visible = true;
             return;
-        _jobPreferences = new JobPreferencesGui(_resourceCache);
+        }
+        _jobPreferences = new JobPreferencesGui(EntityManager, _prototypeManager, _resourceCache);
+
+        _jobPreferences.CloseButton.OnPressed += _ =>
+        {
+            _jobPreferences.Visible = false;
+            if (_stateManager.CurrentState is LobbyState lobbyGui)
+            {
+                lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+            }
+        };
+
         if (_stateManager.CurrentState is LobbyState lobby)
             lobby.Lobby?.JobPreferencesState.AddChild(_jobPreferences);
     }

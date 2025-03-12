@@ -1,3 +1,4 @@
+using Content.Client.Info;
 using Content.Client.Info.PlaytimeStats;
 using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
@@ -12,14 +13,18 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI
 {
+    // EE: Job Preferences
     [GenerateTypedNameReferences]
     public sealed partial class JobPreferencesGui : Control
     {
-        [Dependency] private readonly IEntityManager _entManager = default!;
+        private readonly IEntityManager _entManager;
+        private readonly IPrototypeManager _protomanager;
 
-        public JobPreferencesGui(IResourceCache resourceCache)
+        public JobPreferencesGui(IEntityManager entManager, IPrototypeManager protoManager,IResourceCache resourceCache)
         {
             RobustXamlLoader.Load(this);
+            _entManager = entManager;
+            _protomanager = protoManager;
 
             var panelTex = resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
             var back = new StyleBoxTexture
@@ -31,6 +36,9 @@ namespace Content.Client.Lobby.UI
 
             BackgroundPanel.PanelOverride = back;
 
+            RulesButton.OnPressed += _ => new RulesAndInfoWindow().Open();
+
+            StatsButton.OnPressed += _ => new PlaytimeStatsWindow().OpenCentered();
             //IoCManager.InjectDependencies(this);
         }
     }
