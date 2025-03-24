@@ -505,7 +505,6 @@
     Glass: 250
     Plastic: 250
 
-- type: latheRecipe
 # Janitor Modules
 
 - type: latheRecipe
