@@ -15,7 +15,7 @@
   - BorgModuleMining
   - BorgModuleGrapplingGun
   - MechEquipmentDrill # Goobstation
-  - MineralScannerEmpty
+  # - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
   - SalvageExpeditionsComputerCircuitboard
