@@ -38,7 +38,7 @@
   id: LeftArmBorg
   parent: PartSilicon
   name: cyborg left arm
-  abstract: true
+  # abstract: true
   components:
   - type: BodyPart
     partType: Arm # Shitmed Change
@@ -62,7 +62,7 @@
   id: RightArmBorg
   parent: PartSilicon
   name: cyborg right arm
-  abstract: true
+  # abstract: true
   components:
   - type: BodyPart
     partType: Arm # Shitmed Change
@@ -86,7 +86,7 @@
   id: LeftLegBorg
   parent: PartSilicon
   name: cyborg left leg
-  abstract: true
+  # abstract: true
   components:
   - type: BodyPart
     partType: Leg
@@ -104,14 +104,14 @@
     tags:
     - Trash
     - BorgLeg
-  - type: MovementBodyPart
     - BorgLLeg
+  - type: MovementBodyPart
 
 - type: entity
   id: RightLegBorg
   parent: PartSilicon
   name: cyborg right leg
-  abstract: true
+  # abstract: true
   components:
   - type: BodyPart
     partType: Leg
@@ -129,8 +129,8 @@
     tags:
     - Trash
     - BorgLeg
-  - type: MovementBodyPart
     - BorgRLeg
+  - type: MovementBodyPart
 
 - type: entity
   id: LightHeadBorg
