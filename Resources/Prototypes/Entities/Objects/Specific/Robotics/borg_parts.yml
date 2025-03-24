@@ -1,0 +1,419 @@
+# engineer parts
+- type: entity
+  id: LeftArmBorgEngineer
+  parent: LeftArmBorg
+  name: engineer cyborg left arm
+  components:
+  - type: Sprite
+    state: engineer_l_arm
+  - type: Icon
+    state: engineer_l_arm
+  - type: Tag
+    tags:
+    - Trash
+    - BorgArm
+    - BorgEngineerLArm
+
+- type: entity
+  id: RightArmBorgEngineer
+  parent: RightArmBorg
+  name: engineer cyborg right arm
+  components:
+  - type: Sprite
+    state: engineer_r_arm
+  - type: Icon
+    state: engineer_r_arm
+  - type: Tag
+    tags:
+    - Trash
+    - BorgArm
+    - BorgEngineerRArm
+
+- type: entity
+  id: LeftLegBorgEngineer
+  parent: LeftLegBorg
+  name: engineer cyborg left leg
+  components:
+  - type: Sprite
+    state: engineer_l_leg
+  - type: Icon
+    state: engineer_l_leg
+  - type: Tag
+    tags:
+    - Trash
+    - BorgLeg
+    - BorgEngineerLLeg
+
+- type: entity
+  id: RightLegBorgEngineer
+  parent: RightLegBorg
+  name: engineer cyborg right leg
+  components:
+  - type: Sprite
+    state: engineer_r_leg
+  - type: Icon
+    state: engineer_r_leg
+  - type: Tag
+    tags:
+    - Trash
+    - BorgLeg
+    - BorgEngineerRLeg
+
+- type: entity
+  id: HeadBorgEngineer
+  parent: LightHeadBorg
+  name: engineer cyborg head
+  components:
+  - type: Sprite
+    state: engineer_head
+  - type: Icon
+    state: engineer_head
+  - type: Tag
+    tags:
+    - Trash
+    - BorgHead
+    - BorgEngineerHead
+
+- type: entity
+  id: TorsoBorgEngineer
+  parent: TorsoBorg
+  name: engineer cyborg torso
+  components:
+  - type: Sprite
+    state: engineer_chest
+  - type: Icon
+    state: engineer_chest
+  - type: Tag
+    tags:
+    - Trash
+    - BorgEngineerTorso
+
+# janitor parts
+- type: entity
+  id: LeftLegBorgJanitor
+  parent: LeftLegBorg
+  name: janitor cyborg left leg
+  components:
+    - type: Sprite
+      state: janitor_l_leg
+    - type: Icon
+      state: janitor_l_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgJanitorLLeg
+
+- type: entity
+  id: RightLegBorgJanitor
+  parent: RightLegBorg
+  name: janitor cyborg right leg
+  components:
+    - type: Sprite
+      state: janitor_r_leg
+    - type: Icon
+      state: janitor_r_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgJanitorRLeg
+
+- type: entity
+  id: HeadBorgJanitor
+  parent: LightHeadBorg
+  name: janitor cyborg head
+  components:
+    - type: Sprite
+      state: janitor_head
+    - type: Icon
+      state: janitor_head
+    - type: Tag
+      tags:
+        - Trash
+        - BorgHead
+        - BorgJanitorHead
+
+- type: entity
+  id: TorsoBorgJanitor
+  parent: TorsoBorg
+  name: janitor cyborg torso
+  components:
+    - type: Sprite
+      state: janitor_chest
+    - type: Icon
+      state: janitor_chest
+    - type: Tag
+      tags:
+        - Trash
+        - BorgJanitorTorso
+
+# medical parts
+- type: entity
+  id: LeftArmBorgMedical
+  parent: LeftArmBorg
+  name: medical cyborg left arm
+  components:
+    - type: Sprite
+      state: medical_l_arm
+    - type: Icon
+      state: medical_l_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgMedicalLArm
+
+- type: entity
+  id: RightArmBorgMedical
+  parent: RightArmBorg
+  name: medical cyborg right arm
+  components:
+    - type: Sprite
+      state: medical_r_arm
+    - type: Icon
+      state: medical_r_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgMedicalRArm
+
+- type: entity
+  id: LeftLegBorgMedical
+  parent: LeftLegBorg
+  name: medical cyborg left leg
+  components:
+    - type: Sprite
+      state: medical_l_leg
+    - type: Icon
+      state: medical_l_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgMedicalLLeg
+
+- type: entity
+  id: RightLegBorgMedical
+  parent: RightLegBorg
+  name: medical cyborg right leg
+  components:
+    - type: Sprite
+      state: medical_r_leg
+    - type: Icon
+      state: medical_r_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgMedicalRLeg
+
+- type: entity
+  id: HeadBorgMedical
+  parent: LightHeadBorg
+  name: medical cyborg head
+  components:
+    - type: Sprite
+      state: medical_head
+    - type: Icon
+      state: medical_head
+    - type: Tag
+      tags:
+        - Trash
+        - BorgHead
+        - BorgMedicalHead
+
+- type: entity
+  id: TorsoBorgMedical
+  parent: TorsoBorg
+  name: medical cyborg torso
+  components:
+    - type: Sprite
+      state: medical_chest
+    - type: Icon
+      state: medical_chest
+    - type: Tag
+      tags:
+        - Trash
+        - BorgMedicalTorso
+
+# mining parts
+- type: entity
+  id: LeftArmBorgMining
+  parent: LeftArmBorg
+  name: mining cyborg left arm
+  components:
+    - type: Sprite
+      state: mining_l_arm
+    - type: Icon
+      state: mining_l_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgMiningLArm
+
+- type: entity
+  id: RightArmBorgMining
+  parent: RightArmBorg
+  name: mining cyborg right arm
+  components:
+    - type: Sprite
+      state: mining_r_arm
+    - type: Icon
+      state: mining_r_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgMiningRArm
+
+- type: entity
+  id: LeftLegBorgMining
+  parent: LeftLegBorg
+  name: mining cyborg left leg
+  components:
+    - type: Sprite
+      state: mining_l_leg
+    - type: Icon
+      state: mining_l_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgMiningLLeg
+
+- type: entity
+  id: RightLegBorgMining
+  parent: RightLegBorg
+  name: mining cyborg right leg
+  components:
+    - type: Sprite
+      state: mining_r_leg
+    - type: Icon
+      state: mining_r_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgMiningRLeg
+
+- type: entity
+  id: HeadBorgMining
+  parent: LightHeadBorg
+  name: mining cyborg head
+  components:
+    - type: Sprite
+      state: mining_head
+    - type: Icon
+      state: mining_head
+    - type: Tag
+      tags:
+        - Trash
+        - BorgHead
+        - BorgMiningHead
+
+- type: entity
+  id: TorsoBorgMining
+  parent: TorsoBorg
+  name: mining cyborg torso
+  components:
+    - type: Sprite
+      state: mining_chest
+    - type: Icon
+      state: mining_chest
+    - type: Tag
+      tags:
+        - Trash
+        - BorgMiningTorso
+
+# service parts
+- type: entity
+  id: LeftArmBorgService
+  parent: LeftArmBorg
+  name: service cyborg left arm
+  components:
+  - type: Sprite
+    state: service_l_arm
+  - type: Icon
+    state: service_l_arm
+  - type: Tag
+    tags:
+    - Trash
+    - BorgArm
+    - BorgServiceLArm
+
+- type: entity
+  id: RightArmBorgService
+  parent: RightArmBorg
+  name: service cyborg right arm
+  components:
+  - type: Sprite
+    state: service_r_arm
+  - type: Icon
+    state: service_r_arm
+  - type: Tag
+    tags:
+    - Trash
+    - BorgArm
+    - BorgServiceRArm
+
+- type: entity
+  id: LeftLegBorgService
+  parent: LeftLegBorg
+  name: service cyborg left leg
+  components:
+  - type: Sprite
+    state: service_l_leg
+  - type: Icon
+    state: service_l_leg
+  - type: Tag
+    tags:
+    - Trash
+    - BorgLeg
+    - BorgServiceLLeg
+
+- type: entity
+  id: RightLegBorgService
+  parent: RightLegBorg
+  name: service cyborg right leg
+  components:
+  - type: Sprite
+    state: service_r_leg
+  - type: Icon
+    state: service_r_leg
+  - type: Tag
+    tags:
+    - Trash
+    - BorgLeg
+    - BorgServiceRLeg
+
+- type: entity
+  id: HeadBorgService
+  parent: LightHeadBorg
+  name: service cyborg head
+  components:
+  - type: Sprite
+    state: service_head
+  - type: Icon
+    state: service_head
+  - type: Tag
+    tags:
+    - Trash
+    - BorgHead
+    - BorgServiceHead
+
+- type: entity
+  id: TorsoBorgService
+  parent: TorsoBorg
+  name: service cyborg torso
+  components:
+  - type: Sprite
+    state: service_chest
+  - type: Icon
+    state: service_chest
+  - type: Tag
+    tags:
+    - Trash
+    - BorgServiceTorso
