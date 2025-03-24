@@ -212,6 +212,8 @@
     templateId: borgShort
   - type: SiliconLawProvider # Delta-V Adds custom lawset for Janitor Cyborg
     laws: Janitor
+  - type: BorgSwitchableType
+    selectedBorgType: janitor
 
 - type: entity
   id: BorgChassisMedical
@@ -285,14 +287,6 @@
     interactFailureString: petting-failure-medical-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: BorgSwitchableType
-    selectedBorgType: janitor
-
-- type: entity
-  id: BorgChassisMedical
-  parent: BorgChassisSelectable
-  name: medical cyborg
-  components:
   - type: BorgSwitchableType
     selectedBorgType: medical
 
