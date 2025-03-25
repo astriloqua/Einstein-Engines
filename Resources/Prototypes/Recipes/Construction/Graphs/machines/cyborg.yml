@@ -179,7 +179,7 @@
         doAfter: 0.5
 
   - node: cyborg
-    entity: BorgChassisSelectable
+    entity: BorgChassisGenericBare
 
   - node: engineer
     entity: BorgChassisEngineerBare

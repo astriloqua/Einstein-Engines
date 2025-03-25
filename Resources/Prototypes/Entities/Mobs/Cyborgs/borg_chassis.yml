@@ -217,7 +217,7 @@
 
 - type: entity
   id: BorgChassisMedical
-  parent: BaseBorgChassisNT
+  parent: BorgChassisSelectable
   name: medical cyborg
   components:
   - type: Sprite
@@ -277,7 +277,7 @@
     actions:
     - ActionFabricateLollipop
     - ActionFabricateGumball
-  - type: SiliconLawProvider
+  - type: SiliconLawProvider # Delta-V Adds custom lawset for Medical Cyborg
     laws: Medical
   - type: SurgeryTarget # Shitmed
   - type: Sanitized # Shitmed
@@ -716,7 +716,7 @@
     actions:
     - ActionFabricateLollipop
     - ActionFabricateGumball
-  - type: SiliconLawProvider
+  - type: SiliconLawProvider # Delta-V Adds custom lawset for Medical Cyborg
     laws: Medical
   - type: SurgeryTarget # Shitmed
   - type: Sanitized # Shitmed
@@ -775,3 +775,8 @@
   - type: Inventory
     templateId: borgTall
 
+- type: entity
+  id: BorgChassisGenericBare
+  parent: BorgChassisBare
+  name: generic cyborg
+  suffix: type picked
