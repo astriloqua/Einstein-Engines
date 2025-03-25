@@ -133,6 +133,20 @@
   - type: MovementBodyPart
 
 - type: entity
+  id: BaseBorgHead
+  parent: PartSilicon
+  name: cyborg head
+  abstract: true
+  components:
+  - type: BodyPart
+    partType: Head
+    toolName: "a head" # Shitmed Change
+  - type: Tag
+    tags:
+    - Trash
+    - BorgHead
+
+- type: entity
   id: LightHeadBorg
   parent: PartSilicon
   name: cyborg head

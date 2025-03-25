@@ -61,7 +61,7 @@
 
 - type: entity
   id: HeadBorgEngineer
-  parent: LightHeadBorg
+  parent: BaseBorgHead
   name: engineer cyborg head
   components:
   - type: Sprite
@@ -71,7 +71,7 @@
   - type: Tag
     tags:
     - Trash
-    - BorgHead
+    # - BorgHead
     - BorgEngineerHead
 
 - type: entity
@@ -121,7 +121,7 @@
 
 - type: entity
   id: HeadBorgJanitor
-  parent: LightHeadBorg
+  parent: BaseBorgHead
   name: janitor cyborg head
   components:
     - type: Sprite
@@ -131,7 +131,7 @@
     - type: Tag
       tags:
         - Trash
-        - BorgHead
+        # - BorgHead
         - BorgJanitorHead
 
 - type: entity
@@ -211,7 +211,7 @@
 
 - type: entity
   id: HeadBorgMedical
-  parent: LightHeadBorg
+  parent: BaseBorgHead
   name: medical cyborg head
   components:
     - type: Sprite
@@ -221,7 +221,7 @@
     - type: Tag
       tags:
         - Trash
-        - BorgHead
+        # - BorgHead
         - BorgMedicalHead
 
 - type: entity
@@ -301,7 +301,7 @@
 
 - type: entity
   id: HeadBorgMining
-  parent: LightHeadBorg
+  parent: BaseBorgHead
   name: mining cyborg head
   components:
     - type: Sprite
@@ -311,7 +311,7 @@
     - type: Tag
       tags:
         - Trash
-        - BorgHead
+        # - BorgHead
         - BorgMiningHead
 
 - type: entity
@@ -391,7 +391,7 @@
 
 - type: entity
   id: HeadBorgService
-  parent: LightHeadBorg
+  parent: BaseBorgHead
   name: service cyborg head
   components:
   - type: Sprite
@@ -401,7 +401,7 @@
   - type: Tag
     tags:
     - Trash
-    - BorgHead
+    # - BorgHead
     - BorgServiceHead
 
 - type: entity
