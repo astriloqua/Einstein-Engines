@@ -17,7 +17,7 @@
   radioChannels:
   - Science
 
-  laws: Augustine
+  laws: Asimov
 
   # Visual
   inventoryTemplateId: borgShort
@@ -92,7 +92,7 @@
   - Supply
   - Science
 
-  laws: Augustine
+  laws: Asimov
 
   # Visual
   inventoryTemplateId: borgTall
@@ -216,7 +216,7 @@
   - Science
   - Service
 
-  laws: Augustine
+  laws: Asimov
 
   # Visual
   inventoryTemplateId: borgTall
