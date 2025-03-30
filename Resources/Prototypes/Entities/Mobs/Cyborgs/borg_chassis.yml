@@ -1,5 +1,5 @@
 - type: entity
-  id: BorgChassisSelectable
+  id: BorgChassisBare
   parent: BaseBorgChassisNT
   components:
   - type: Sprite
@@ -27,6 +27,11 @@
   - type: InteractionPopup
     interactSuccessString: petting-success-generic-cyborg
     interactFailureString: petting-failure-generic-cyborg
+
+- type: entity
+  id: BorgChassisSelectable
+  parent: BorgChassisBare
+  components:
   - type: BorgSwitchableType
     inherentRadioChannels:
     - Common
@@ -43,7 +48,7 @@
 
 - type: entity
   id: BorgChassisMining
-  parent: BorgChassisSelectable
+  parent: BorgChassisMiningBare
   name: salvage cyborg
   components:
   - type: BorgSwitchableType
@@ -51,7 +56,7 @@
 
 - type: entity
   id: BorgChassisEngineer
-  parent: BorgChassisSelectable
+  parent: BorgChassisEngineerBare
   name: engineer cyborg
   components:
   - type: BorgSwitchableType
@@ -59,7 +64,7 @@
 
 - type: entity
   id: BorgChassisJanitor
-  parent: BorgChassisSelectable
+  parent: BorgChassisJanitorBare
   name: janitor cyborg
   components:
   - type: BorgSwitchableType
@@ -67,25 +72,27 @@
 
 - type: entity
   id: BorgChassisService
-  parent: BorgChassisSelectable
+  parent: BorgChassisServiceBare
   name: service cyborg
   components:
   - type: BorgSwitchableType
     selectedBorgType: service
+  - type: SiliconLawProvider
+    laws: Asimov
 
 - type: entity
   id: BorgChassisMedical
-  parent: BorgChassisSelectable
+  parent: BorgChassisMedicalBare
   name: medical cyborg
   components:
   - type: BorgSwitchableType
     selectedBorgType: medical
 
-# Robotics Made
+# Bare Versions
 
 - type: entity
   id: BorgChassisGenericBare
-  parent: BaseBorgChassisNT
+  parent: BorgChassisBare
   components:
   - type: Sprite
     layers:
@@ -114,10 +121,12 @@
     node: cyborg
   - type: Speech
     speechVerb: Robotic
+  - type: SiliconLawProvider
+    laws: Asimov
 
 - type: entity
   id: BorgChassisMiningBare
-  parent: BaseBorgChassisNT
+  parent: BorgChassisBare
   name: salvage cyborg
   components:
   - type: Sprite
@@ -170,10 +179,12 @@
     access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+  - type: SiliconLawProvider
+    laws: Asimov
 
 - type: entity
   id: BorgChassisEngineerBare
-  parent: BaseBorgChassisNT
+  parent: BorgChassisBare
   name: engineer cyborg
   components:
   - type: Sprite
@@ -223,7 +234,7 @@
 
 - type: entity
   id: BorgChassisJanitorBare
-  parent: BaseBorgChassisNT
+  parent: BorgChassisBare
   name: janitor cyborg
   components:
   - type: Sprite
@@ -281,7 +292,7 @@
 
 - type: entity
   id: BorgChassisMedicalBare
-  parent: BaseBorgChassisNT
+  parent: BorgChassisBare
   name: medical cyborg
   components:
   - type: Sprite
@@ -360,7 +371,7 @@
 
 - type: entity
   id: BorgChassisServiceBare
-  parent: BorgChassisSelectable
+  parent: BorgChassisBare
   name: service cyborg
   components:
   - type: Sprite
@@ -405,6 +416,10 @@
     access: [["Service"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+  - type: SiliconLawProvider
+    laws: Asimov
+
+# Syndicate Cyborgs
 
 - type: entity
   id: BorgChassisSyndicateAssault
