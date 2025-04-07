@@ -14,6 +14,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
+using Pow3r;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -59,6 +60,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
     /// This is the modified profile currently being edited
     private HumanoidCharacterProfile? EditedProfile => _profileEditor?.Profile;
+
+    /// EE: Job Preferences
+    private List<HumanoidCharacterProfile> Profiles = new List<HumanoidCharacterProfile>();
     private int? EditedSlot => _profileEditor?.CharacterSlot;
 
 
@@ -75,6 +79,16 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _configurationManager.OnValueChanged(CCVars.GameRoleWhitelist, _ => RefreshProfileEditor());
 
         _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
+
+        _preferencesManager.Preferences?.Characters.Values
+            .ForEach(
+                profile =>
+            {
+                if (profile is not HumanoidCharacterProfile humanoid)
+                    return;
+
+                Profiles.Add(humanoid);
+            });
     }
 
     public void OnStateEntered(LobbyState state)
@@ -163,7 +177,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             return;
         }
 
-        _jobEditor = new JobPreferenceEditor(EntityManager, _prototypeManager);
+        _jobEditor = new JobPreferenceEditor(_configurationManager, _preferencesManager,
+            EntityManager, _prototypeManager, _requirements);
+        _jobEditor.Save += SaveProfiles;
         _jobPreferences = new JobPreferencesGui(EntityManager, _prototypeManager, _resourceCache, _jobEditor);
 
         _jobPreferences.CloseButton.OnPressed += _ =>
@@ -177,6 +193,16 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         if (_stateManager.CurrentState is LobbyState lobby)
             lobby.Lobby?.JobPreferencesState.AddChild(_jobPreferences);
+
+        _jobEditor.RefreshJobs();
+    }
+
+    private void SaveProfiles()
+    {
+        foreach (var profile in Profiles)
+        {
+            _preferencesManager.UpdateCharacter(profile, _profileEditor);
+        }
     }
 
     /// Refreshes the character preview in the lobby chat
