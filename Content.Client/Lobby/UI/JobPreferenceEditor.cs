@@ -15,6 +15,7 @@ using Content.Shared.Clothing.Loadouts.Systems;
 using Content.Shared.Customization.Systems;
 using Content.Shared.Dataset;
 using Content.Shared.GameTicking;
+using Content.Shared.Guidebook;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -30,6 +31,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.Utility;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -44,26 +46,263 @@ namespace Content.Client.Lobby.UI
     [GenerateTypedNameReferences]
     public sealed partial class JobPreferenceEditor : BoxContainer
     {
+        private readonly IConfigurationManager _cfgManager;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _protomanager;
         private readonly LobbyUIController _controller;
+        private readonly IClientPreferencesManager _preferencesManager;
+        private readonly CharacterRequirementsSystem _characterRequirementsSystem;
+        private readonly JobRequirementsManager _requirements;
 
+        public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
+
+        /// The work in progress profile being edited
+        public HumanoidCharacterProfile? Profile;
+        // List of all humanoid characters
+        public IReadOnlyDictionary<int, ICharacterProfile> Profiles;
         public event Action? Save;
+        private bool _isDirty;
 
         private List<(string, RequirementsSelector)> _jobPriorities = new();
         private readonly Dictionary<string, BoxContainer> _jobCategories;
-        public JobPreferenceEditor(IEntityManager entManager, IPrototypeManager protoManager)
+        public JobPreferenceEditor(IConfigurationManager cfgManager, IClientPreferencesManager preferencesManager,
+            IEntityManager entManager, IPrototypeManager protoManager, JobRequirementsManager requirements)
         {
             RobustXamlLoader.Load(this);
+            _cfgManager = cfgManager;
+            _preferencesManager = preferencesManager;
             _entManager = entManager;
             _protomanager = protoManager;
+            _requirements = requirements;
 
+            _characterRequirementsSystem = _entManager.System<CharacterRequirementsSystem>();
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
 
+            Profiles = _preferencesManager.Preferences!.Characters;
+
+            SaveButton.OnPressed += args => { Save?.Invoke(); };
+            /*ResetButton.OnPressed += args =>
+            {
+                SetProfile(
+                    (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
+                    _preferencesManager.Preferences?.SelectedCharacterIndex);
+            };*/
+
             Jobs.Orphan();
-            CTabContainer.AddTab(Jobs, "Hi");
+            CTabContainer.AddTab(Jobs, Loc.GetString("humanoid-profile-editor-jobs-tab"));
+
+            PreferenceUnavailableButton.AddItem(
+                Loc.GetString(
+                    "humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
+                (int) PreferenceUnavailableMode.StayInLobby);
+            PreferenceUnavailableButton.AddItem(
+                Loc.GetString(
+                    "humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
+                    ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
+                (int) PreferenceUnavailableMode.SpawnAsOverflow);
+
+            PreferenceUnavailableButton.OnItemSelected += args =>
+            {
+                PreferenceUnavailableButton.SelectId(args.Id);
+
+                Profile = Profile?.WithPreferenceUnavailable((PreferenceUnavailableMode) args.Id);
+                IsDirty = true;
+            };
 
             _jobCategories = new Dictionary<string, BoxContainer>();
+        }
+
+        public void RefreshJobs()
+        {
+            JobList.DisposeAllChildren();
+            _jobCategories.Clear();
+            _jobPriorities.Clear();
+            var firstCategory = true;
+
+            // Get all displayed departments
+            var departments = new List<DepartmentPrototype>();
+            foreach (var department in _protomanager.EnumeratePrototypes<DepartmentPrototype>())
+            {
+                if (department.EditorHidden)
+                    continue;
+
+                departments.Add(department);
+            }
+
+            departments.Sort(DepartmentUIComparer.Instance);
+
+            var items = new[]
+            {
+                ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
+                ("humanoid-profile-editor-job-priority-low-button", (int) JobPriority.Low),
+                ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
+                ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
+            };
+
+            foreach (var department in departments)
+            {
+                var departmentName = Loc.GetString($"department-{department.ID}");
+
+                if (!_jobCategories.TryGetValue(department.ID, out var category))
+                {
+                    category = new BoxContainer
+                    {
+                        Orientation = LayoutOrientation.Vertical,
+                        Name = department.ID,
+                        ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
+                            ("departmentName", departmentName))
+                    };
+
+                    if (firstCategory)
+                        firstCategory = false;
+                    else
+                        category.AddChild(new Control { MinSize = new Vector2(0, 23) });
+
+                    category.AddChild(new PanelContainer
+                    {
+                        PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
+                        Children =
+                        {
+                            new Label
+                            {
+                                Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
+                                    ("departmentName", departmentName)),
+                                Margin = new Thickness(5f, 0, 0, 0),
+                            },
+                        },
+                    });
+
+                    _jobCategories[department.ID] = category;
+                    JobList.AddChild(category);
+                }
+
+                var jobs = department.Roles.Select(jobId => _protomanager.Index<JobPrototype>(jobId))
+                    .Where(job => job.SetPreference)
+                    .ToArray();
+
+                Array.Sort(jobs, JobUIComparer.Instance);
+
+                foreach (var job in jobs)
+                {
+                    var jobContainer = new BoxContainer { Orientation = LayoutOrientation.Horizontal, };
+                    var selector = new RequirementsSelector { Margin = new(3f, 3f, 3f, 0f) };
+                    selector.OnOpenGuidebook += OnOpenGuidebook;
+
+                    var icon = new TextureRect
+                    {
+                        TextureScale = new(2, 2),
+                        VerticalAlignment = VAlignment.Center
+                    };
+                    var jobIcon = _protomanager.Index<JobIconPrototype>(job.Icon);
+                    icon.Texture = jobIcon.Icon.Frame0();
+                    selector.SetupWithCharacter(items, job.LocalizedName, 200, job.LocalizedDescription, Profiles, icon, job.Guides);
+                    var selectedProfile = selector.selectedProfile;
+                    var profile = Profile;
+                    if (selectedProfile is HumanoidCharacterProfile charProfile)
+                    {
+                        profile = charProfile;
+                    }
+
+                    if (!_requirements.CheckJobWhitelist(job, out var reason))
+                        selector.LockRequirements(reason);
+                    else if (!_characterRequirementsSystem.CheckRequirementsValid(
+                         job.Requirements ?? new(),
+                         job,
+                         profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
+                         _requirements.GetRawPlayTimeTrackers(),
+                         _requirements.IsWhitelisted(),
+                         job,
+                         _entManager,
+                         _protomanager,
+                         _cfgManager,
+                         out var reasons))
+                        selector.LockRequirements(_characterRequirementsSystem.GetRequirementsText(reasons));
+                    else
+                        selector.UnlockRequirements();
+
+                    selector.OnSelected += selectedPrio =>
+                    {
+                        var selectedJobPrio = (JobPriority) selectedPrio;
+                        Profile = profile?.WithJobPriority(job.ID, selectedJobPrio);
+
+                        foreach (var (jobId, other) in _jobPriorities)
+                        {
+                            // Sync other selectors with the same job in case of multiple department jobs
+                            if (jobId == job.ID)
+                                other.Select(selectedPrio);
+                            else if (selectedJobPrio == JobPriority.High &&
+                                     (JobPriority) other.Selected == JobPriority.High)
+                            {
+                                // Lower any other high priorities to medium.
+                                other.Select((int) JobPriority.Medium);
+                                Profile = profile?.WithJobPriority(jobId, JobPriority.Medium);
+                            }
+                        }
+
+                        // TODO: Only reload on high change (either to or from).
+                        //ReloadPreview();
+                        //`UpdateJobPriorities();
+                        SetDirty();
+                    };
+
+                    _jobPriorities.Add((job.ID, selector));
+                    jobContainer.AddChild(selector);
+                    category.AddChild(jobContainer);
+                }
+            }
+
+            //UpdateJobPriorities();
+        }
+        private bool IsDirty
+        {
+            get => _isDirty;
+            set
+            {
+                if (_isDirty == value)
+                    return;
+
+                _isDirty = value;
+                UpdateSaveButton();
+            }
+        }
+
+        private void SetDirty()
+        {
+            // If it equals default then reset the button.
+            if (Profile == null && Profiles.Count == 0)
+            {
+                IsDirty = false;
+                return;
+            }
+
+            //TODO: Check if profile matches default
+            IsDirty = true;
+        }
+        private void UpdateSaveButton()
+        {
+            SaveButton.Disabled = Profile is null && Profiles.Count == 0 || !IsDirty;
+            ResetButton.Disabled = Profile is null && Profiles.Count == 0 || !IsDirty;
+        }
+
+        private void UpdateJobPriorities()
+        {
+            foreach (var (jobId, prioritySelector) in _jobPriorities)
+            {
+                JobPriority highestPrio = JobPriority.Never;
+                foreach (var (index, prof) in Profiles)
+                {
+                    if (prof is HumanoidCharacterProfile charProfile)
+                    {
+                        var prio = charProfile?.JobPriorities.GetValueOrDefault(jobId, JobPriority.Never) ??
+                            JobPriority.Never;
+                        if (prio > highestPrio)
+                            highestPrio = prio;
+                    }
+                }
+
+                var priority = Profile?.JobPriorities.GetValueOrDefault(jobId, JobPriority.Never) ?? JobPriority.Never;
+                prioritySelector.Select((int) highestPrio);
+            }
         }
     }
 }

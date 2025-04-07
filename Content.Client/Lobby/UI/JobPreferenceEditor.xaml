@@ -10,6 +10,10 @@
             <BoxContainer Name="Jobs" HorizontalExpand="True">
                 <ScrollContainer HorizontalExpand="True" HScrollEnabled="True" VerticalExpand="True" VScrollEnabled="True">
                     <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+                        <BoxContainer Orientation="Horizontal">
+                            <Button Name="SaveButton" Text="{Loc 'humanoid-profile-editor-save-button'}" />
+                            <Button Name="ResetButton" Disabled="True" Text="{Loc 'humanoid-profile-editor-reset-button'}"/>
+                        </BoxContainer>
                         <OptionButton Name="PreferenceUnavailableButton" StyleClasses="OpenBoth" />
                         <BoxContainer Name="JobList" Orientation="Vertical" />
                     </BoxContainer>
