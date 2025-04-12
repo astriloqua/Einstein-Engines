@@ -148,7 +148,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             return;
         }
 
-        _jobPreferences = new JobPreferences(EntityManager, _prototypeManager);
+        _jobPreferences = new JobPreferences(EntityManager, _prototypeManager, _resourceCache);
 
         if (_stateManager.CurrentState is LobbyState lobby)
             lobby.Lobby?.JobPreferencesState.AddChild(_jobPreferences);
