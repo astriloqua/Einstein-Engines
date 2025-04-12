@@ -50,6 +50,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
+    private JobPreferences? _jobPreferences; // EE: Job Preferences
 
     /// This is the character preview panel in the chat. This should only update if their character updates
     private LobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
@@ -85,7 +86,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         PreviewPanel?.SetLoaded(false);
         _characterSetup?.Dispose();
         _profileEditor?.Dispose();
+        _jobPreferences?.Dispose(); // EE: Job Preferences
         _characterSetup = null;
+        _jobPreferences = null; // EE: Job Preferences
         _profileEditor = null;
     }
 
@@ -136,6 +139,20 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _profileEditor.UpdateLoadouts(null, true);
     }
 
+    // EE: Job Preferences
+    public void ReloadJobPreferences()
+    {
+        if (_jobPreferences != null)
+        {
+            _jobPreferences.Visible = true;
+            return;
+        }
+
+        _jobPreferences = new JobPreferences(EntityManager, _prototypeManager);
+
+        if (_stateManager.CurrentState is LobbyState lobby)
+            lobby.Lobby?.JobPreferencesState.AddChild(_jobPreferences);
+    }
 
     /// Reloads every single character setup control
     public void ReloadCharacterSetup()

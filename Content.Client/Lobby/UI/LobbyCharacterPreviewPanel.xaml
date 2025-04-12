@@ -11,9 +11,14 @@
             <BoxContainer Name="ViewBox" Orientation="Horizontal" HorizontalAlignment="Center">
 
             </BoxContainer>
-            <controls:VSpacer/>
-            <Button Name="CharacterSetup" Text="{Loc 'lobby-character-preview-panel-character-setup-button'}"
-                HorizontalAlignment="Center" Margin="0 5 0 0"/>
+            <BoxContainer HorizontalAlignment="Center">
+                <controls:VSpacer/>
+                <Button Name="CharacterSetup" Text="{Loc 'lobby-character-preview-panel-character-setup-button'}"
+                    Margin="0 5 0 0"/>
+                <!-- EE: Job Preferences -->
+                <Button Name="JobPreferences" Text="{Loc 'lobby-character-preview-panel-job-preferences-button'}"
+                    Margin="0 5 0 0"/>
+            </BoxContainer>
         </BoxContainer>
         <Label Name="Unloaded" Text="{Loc 'lobby-character-preview-panel-unloaded-preferences-label'}"/>
     </BoxContainer>
