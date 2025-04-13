@@ -2,30 +2,36 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:style="clr-namespace:Content.Client.Stylesheets"
-         xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-         xmlns:prefUi="clr-namespace:Content.Client.Lobby.UI"
-         xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
          VerticalExpand="True">
-    <Control>
+    <Control HorizontalExpand="True" VerticalExpand="True">
         <PanelContainer Name="BackgroundPanel" />
-        <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Vertical" SeparationOverride="0" HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer Orientation="Horizontal" MinSize="0 40">
                 <Label Text="{Loc job-preferences-gui-label}" StyleClasses="LabelHeadingBigger"
-                       Margin="8 0 0 0"/>
-                <Button Name="SaveButton" Text="{Loc job-preferences-gui-save-button}"
+                    Margin="8 0 0 0"/>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Name="SaveButton" Text="{Loc job-preferences-gui-save-button}"
                         Margin="8 0 0 0" HorizontalAlignment="Right"
                         StyleClasses="ButtonBig"/>
-                <Button Name="CloseButton" Text="{Loc job-preferences-gui-close-button}"
+                    <Button Name="CloseButton" Text="{Loc job-preferences-gui-close-button}"
                         StyleClasses="ButtonBig" Access="Public"/>
+                </BoxContainer>
             </BoxContainer>
             <PanelContainer>
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
                 </PanelContainer.PanelOverride>
             </PanelContainer>
-            <ScrollContainer VerticalExpand="True" VScrollEnabled="True">
-                <BoxContainer Name="JobList"></BoxContainer>
-            </ScrollContainer>
+            <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                <ScrollContainer Name="JobScroll" Access="Public" VerticalExpand="True" HorizontalExpand="True" VScrollEnabled="True" HScrollEnabled="True">
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                        <Control HorizontalExpand="True" VerticalExpand="True">
+                            <BoxContainer Name="JobList" Orientation="Vertical" />
+                        </Control>
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
         </BoxContainer>
     </Control>
 </Control>

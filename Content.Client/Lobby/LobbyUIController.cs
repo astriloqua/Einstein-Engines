@@ -148,7 +148,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             return;
         }
 
-        _jobPreferences = new JobPreferences(EntityManager, _prototypeManager, _resourceCache);
+        _jobPreferences = new JobPreferences(EntityManager, _prototypeManager, _jobRequirements, _configurationManager, _preferencesManager, _resourceCache);
 
         _jobPreferences.CloseButton.OnPressed += _ =>
         {
@@ -161,6 +161,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         if (_stateManager.CurrentState is LobbyState lobby)
             lobby.Lobby?.JobPreferencesState.AddChild(_jobPreferences);
+
+        _jobPreferences.RefreshJobs();
     }
 
     /// Reloads every single character setup control
