@@ -10,7 +10,6 @@
   - TraitorDynamic # traitors
   - ThiefDynamic # thieves (spy wyci)
   - ChangelingDynamic # changelings
-  - HereticDynamic # heretics
   - RevolutionDynamic # revs (M)
   - NukeopsDynamic # nukies (M)
   - WizardDynamic # wizard (M)
@@ -23,7 +22,6 @@
   values:
   - TraitorDynamicMidround # sleeper agents
   - ChangelingDynamicMidround # sleeper lings
-  - HereticDynamicMidround # sleeper heretics
   - SkeletonDynamicMidround # skeleton spawn
   - RevolutionDynamicMidround # sleeper revs (M)
   - NukeopsDynamicMidround # lone operative spawn (M)
@@ -32,7 +30,6 @@
   - DragonDynamicMidround # space dragon spawn (M)
   - RevenantDynamicMidround # revenant spawn (M)
   - ZombiesDynamicMidround # zombie outbreak (M)
-  - BlobDynamicMidround # blob mouse spawn(M)
   # - WizardDynamicMidround # wizard spawn (M)
   # spider infestation todo (M)
   # xenos todo (M)
