@@ -1,5 +1,5 @@
 ﻿using Content.Server._Goobstation.StationEvents.Metric.Components;
-using Content.Shared._EinsteinEngines.Silicon.Components;
+using Content.Shared.Silicon.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;

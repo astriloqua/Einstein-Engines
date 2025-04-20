@@ -1,7 +1,7 @@
 ﻿using Content.Server.StationEvents.Events;
 using Content.Shared.FixedPoint;
 using Content.Shared.Nutrition.Components;
-using Content.Shared._EinsteinEngines.Silicon.Components;
+using Content.Shared.Silicon.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 
 namespace Content.Server._Goobstation.StationEvents.Metric.Components;
