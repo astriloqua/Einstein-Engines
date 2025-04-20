@@ -424,9 +424,9 @@
   id: WeaponLaserCannon
   description: A heavy duty, high powered laser weapon.
   components:
-  - type: Tag
-    tags:
-    - TurretCompatibleWeapon
+  #- type: Tag
+  #  tags:
+  #  - TurretCompatibleWeapon
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     layers:
