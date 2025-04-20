@@ -137,9 +137,6 @@ public sealed class GameDirectorSystem : GameRuleSystem<GameDirectorComponent>
             if (!proto.TryGetComponent<StationEventComponent>(out var stationEvent, _factory))
                 continue;
 
-            if (proto.HasComponent<DynamicRulesetComponent>()) // Block john shitcode moment
-                continue;
-
             // Gate here on players, but not on round runtime. The story will probably last long enough for the
             // event to be ready to run again, we'll check CanRun again before we actually launch the event.
             if (!_event.CanRun(proto, stationEvent, count.Players, TimeSpan.MaxValue))
@@ -162,8 +159,6 @@ public sealed class GameDirectorSystem : GameRuleSystem<GameDirectorComponent>
             var proto = entry.Key;
             var stationEvent = entry.Value;
             LogMessage(proto.ID);
-            if (proto.HasComponent<DynamicRulesetComponent>()) // Block john shitcode moment
-                continue;
             scheduler.PossibleEvents.Add(new PossibleEvent(proto.ID, stationEvent.Chaos));
         }
     }
@@ -247,8 +242,8 @@ public sealed class GameDirectorSystem : GameRuleSystem<GameDirectorComponent>
                 if (gameRuleComp.MinPlayers > count)
                     continue;
 
-                if (proto.HasComponent<DynamicRulesetComponent>())
-                    continue;
+                /*if (proto.HasComponent<DynamicRulesetComponent>())
+                    continue;*/
 
                 if (_tag.HasTag(tag, "MidroundAntag"))
                     continue;
