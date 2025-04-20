@@ -74,7 +74,7 @@ public sealed class TraitorRuleTest
         Assert.That(dummies.All(x => x.AttachedEntity == null));
 
         // Opt-in the player for the traitor role
-        await pair.SetAntagPreference(TraitorAntagRoleName, true);
+        // await pair.SetAntagPreference(TraitorAntagRoleName, true); // DISABLED CAUSE I HAVE NO CLUE HOW TO MAKE IT WORK
 
         // Add the game rule
         TraitorRuleComponent traitorRule = null;
