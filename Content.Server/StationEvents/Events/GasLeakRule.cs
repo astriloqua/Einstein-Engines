@@ -34,7 +34,6 @@ namespace Content.Server.StationEvents.Events
                 component.LeakGas = RobustRandom.Pick(component.LeakableGases);
                 // Was 50-50 on using normal distribution.
                 var totalGas = RobustRandom.Next(component.MinimumGas, component.MaximumGas);
-                var startAfter = stationEvent.StartDelay;
                 component.MolesPerSecond = RobustRandom.Next(component.MinimumMolesPerSecond, component.MaximumMolesPerSecond);
                 // Goobstation start
                 if (gameRule.Delay is { } startAfter)
