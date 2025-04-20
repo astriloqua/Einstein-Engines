@@ -70,7 +70,7 @@
   components:
   - type: GameRule
   - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 300 # 5 min 
+    minimumTimeUntilFirstEvent: 300 # 5 min
     minMaxEventTiming:
       min: 750 # 12.5 min
       max: 930 # 17.5 min
@@ -97,7 +97,7 @@
   - type: StationEvent
     earliestStart: 12
     minimumPlayers: 25
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -107,7 +107,7 @@
     weight: 44
     earliestStart: 2
     minimumPlayers: 0
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
     announcement: null
     announcementSound: null
     nonDirectional: true
@@ -127,7 +127,7 @@
   - type: StationEvent
     weight: 22
     minimumPlayers: 0
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
     announcement: station-event-space-dust-start-announcement
     announcementSound: /Audio/Announcements/attention.ogg
     nonDirectional: true
@@ -147,7 +147,7 @@
   - type: StationEvent
     weight: 18
     minimumPlayers: 15
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
     meteors:
       MeteorSmall: 7
       MeteorMedium: 3
@@ -158,7 +158,7 @@
   components:
   - type: StationEvent
     weight: 10
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
     meteors:
       MeteorSmall: 3
       MeteorMedium: 6
@@ -170,7 +170,7 @@
   components:
   - type: StationEvent
     weight: 5
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
     meteors:
       MeteorSmall: 2
       MeteorMedium: 4
@@ -182,7 +182,7 @@
   components:
   - type: StationEvent
     weight: 0.05
-  - type: MeteorSwarm
+  - type: MeteorSwarmRule
     announcement: station-event-meteor-urist-start-announcement
     announcementSound: /Audio/Announcements/attention.ogg
     meteors:
