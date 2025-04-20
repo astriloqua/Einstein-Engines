@@ -149,9 +149,6 @@
   id: WizardHat
 
 - type: Tag
-  id: HudMedicalSecurity
-
-- type: Tag
   id: HudDiagnostic
 
 - type: Tag
