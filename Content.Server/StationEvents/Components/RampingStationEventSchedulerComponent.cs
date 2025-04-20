@@ -56,8 +56,6 @@ public sealed partial class RampingStationEventSchedulerComponent : Component
     [DataField]
     public float AverageEndTime = 40f;
 
-    [DataField]
-
     /// <summary>
     /// The gamerules that the scheduler can choose from
     /// </summary>
