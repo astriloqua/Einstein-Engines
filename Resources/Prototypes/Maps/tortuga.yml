@@ -25,8 +25,8 @@
 #             Captain: [ 1, 1 ]
 #             BlueshieldOfficer: [ 1, 1]
 #             NanotrasenRepresentative: [ 1, 1 ]
-#             Magistrate: [ 1, 1 ]
-#             AdministrativeAssistant: [ 1, 1 ]
+#             # Magistrate: [ 1, 1 ] # EE: Disabled
+#             # AdministrativeAssistant: [ 1, 1 ] # EE: Disabled
 #           #engineering
 #             AtmosphericTechnician: [ 2, 3 ]
 #             ChiefEngineer: [ 1, 1 ]
@@ -44,14 +44,14 @@
 #             Detective: [ 1, 1 ]
 #             HeadOfSecurity: [ 1, 1 ]
 #             Prisoner: [ 2, 3 ]
-#             PrisonGuard: [ 1, 1 ]
+#             # PrisonGuard: [ 1, 1 ] # EE: Disabled
 #             SecurityOfficer: [ 6, 9 ]
 #             SecurityCadet: [ 1, 1 ]
 #             Warden: [ 1, 1 ]
 #           #service
 #             Bartender: [ 2, 2 ]
 #             Botanist: [ 2, 3 ]
-#             Boxer: [ 2, 2 ]
+#             # Boxer: [ 2, 2 ] # EE: Disabled
 #             Chef: [ 3, 4 ]
 #             Clown: [ 1, 2 ]
 #             HeadOfPersonnel: [ 1, 1 ]
