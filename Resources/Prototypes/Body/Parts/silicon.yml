@@ -146,8 +146,8 @@
     - BorgHead
 
 - type: entity
-  id: BaseBorgTorso
-  parent: PartSilicon
+  parent: [ PartSiliconBase, BaseChestInorganic ]
+  id: TorsoBorg
   name: cyborg torso
   components:
   - type: BodyPart
@@ -161,3 +161,22 @@
     tags:
     - Trash
     - BorgTorso
+  - type: Item
+    heldPrefix: borg-chest
+  - type: BodyPart
+    children:
+      right arm:
+        id: right arm
+        type: Arm
+      left arm:
+        id: left arm
+        type: Arm
+      head:
+        id: head
+        type: Head
+      right leg:
+        id: right leg
+        type: Leg
+      left leg:
+        id: left leg
+        type: Leg

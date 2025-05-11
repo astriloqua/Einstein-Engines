@@ -52,7 +52,7 @@ public abstract class SharedGodmodeSystem : EntitySystem
         }
 
         // Rejuv to cover other stuff
-        
+
         RaiseLocalEvent(uid, new RejuvenateEvent());
         foreach (var (id, _) in _bodySystem.GetBodyChildren(uid)) // Shitmed Change
             EnableGodmode(id);

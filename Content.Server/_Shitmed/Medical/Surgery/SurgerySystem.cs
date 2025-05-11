@@ -11,7 +11,9 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
@@ -24,6 +26,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Verbs;
+using Content.Shared._Shitmed.CCVar;
+using Content.Shared.Weapons.Melee.Events;
+using System.Linq;
 
 namespace Content.Server._Shitmed.Medical.Surgery;
 
@@ -35,10 +40,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly RottingSystem _rot = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -47,7 +50,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryStepDamageEvent>(OnSurgeryStepDamage);
         // You might be wondering "why aren't we using StepEvent for these two?" reason being that StepEvent fires off regardless of success on the previous functions
         // so this would heal entities even if you had a used or incorrect organ.
-        SubscribeLocalEvent<SurgerySpecialDamageChangeEffectComponent, SurgeryStepDamageChangeEvent>(OnSurgerySpecialDamageChange);
         SubscribeLocalEvent<SurgeryDamageChangeEffectComponent, SurgeryStepDamageChangeEvent>(OnSurgeryDamageChange);
         SubscribeLocalEvent<SurgeryStepEmoteEffectComponent, SurgeryStepEvent>(OnStepScreamComplete);
         SubscribeLocalEvent<SurgeryStepSpawnEffectComponent, SurgeryStepEvent>(OnStepSpawnComplete);
@@ -81,6 +83,12 @@ public sealed class SurgerySystem : SharedSurgerySystem
         */
         _ui.ServerSendUiMessage(body, SurgeryUIKey.Key, new SurgeryBuiRefreshMessage());
     }
+
+    private DamageGroupPrototype? GetDamageGroupByType(string id)
+    {
+        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group).FirstOrDefault();
+    }
+
     private void SetDamage(EntityUid body,
         DamageSpecifier damage,
         float partMultiplier,
@@ -90,13 +98,18 @@ public sealed class SurgerySystem : SharedSurgerySystem
         if (!TryComp<BodyPartComponent>(part, out var partComp))
             return;
 
-        _damageable.TryChangeDamage(body,
-            damage,
-            true,
-            origin: user,
-            canSever: false,
-            partMultiplier: partMultiplier,
-            targetPart: _body.GetTargetBodyPart(partComp));
+        // kinda funky but still works
+        if (damage.GetTotal() < 0)
+        {
+            foreach (var (type, amount) in damage.DamageDict.ToList())
+            {
+                // TODO: Also the scar treating surgery too, fuck. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
+                _wounds.TryHaltAllBleeding(part, force: true);
+                _wounds.TryHealWoundsOnWoundable(part, -amount, type, out _, ignoreMultipliers: true);
+            }
+        }
+
+        _damageable.TryChangeDamage(part, damage, true, origin: user, partMultiplier: partMultiplier, targetPart: _body.GetTargetBodyPart(partComp));
     }
 
     private void AttemptStartSurgery(Entity<SurgeryToolComponent> ent, EntityUid user, EntityUid target)
@@ -147,18 +160,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         SetDamage(args.Body, damageChange, 0.5f, args.User, args.Part);
     }
-
-    private void OnSurgerySpecialDamageChange(Entity<SurgerySpecialDamageChangeEffectComponent> ent, ref SurgeryStepDamageChangeEvent args)
-    {
-        // Im killing this shit soon too, inshallah.
-        if (ent.Comp.DamageType == "Rot")
-            _rot.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(2147483648)); // BEHOLD, SHITCODE THAT I JUST COPY PASTED. I'll redo it at some point, pinky swear :)
-        /*else if (ent.Comp.DamageType == "Eye"
-            && TryComp(ent, out BlindableComponent? blindComp)
-            && blindComp.EyeDamage > 0)
-            _blindableSystem.AdjustEyeDamage((args.Body, blindComp), -blindComp!.EyeDamage);*/
-    }
-
     private void OnStepScreamComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (HasComp<ForcedSleepingComponent>(args.Body) || HasComp<NoScreamComponent>(args.Body))

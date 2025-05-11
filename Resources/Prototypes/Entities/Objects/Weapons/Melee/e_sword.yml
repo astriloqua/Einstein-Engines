@@ -61,7 +61,7 @@
     range: 1.6
     damage:
       types:
-        Blunt: 2.5
+        Blunt: 3.5
     clickPartDamageMultiplier: 3
     heavyPartDamageMultiplier: 2.5
   - type: DamageOtherOnHit
@@ -114,6 +114,67 @@
        - "#00CCFF"
     - type: StealTarget
       stealGroup: HoSAntiqueWeapon
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+      params:
+        volume: -3
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+      params:
+        volume: -3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: -3
+        variation: 0.250
+    activatedDamage:
+        types:
+            Slash: 10
+            Heat: 10
+    deactivatedSecret: true
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+      params:
+        volume: -3
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.4
+    - type: Execution
+      doAfterDuration: 4.0
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: MeleeWeapon
+    animationRotation: 135 # WWDP
+    heavyStaminaCost: 1 # goob edit
+    wideAnimationRotation: 145
+    attackRate: 1
+    hidden: true
+    damage:
+      types:
+        Blunt: 1
+  - type: Item
+    size: Tiny
+    sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 1.5
+    color: white
+    netsync: false
+  - type: Reflect # Goob edit
+    reflectProb: .25
 
 - type: entity
   name: pen
@@ -202,6 +263,14 @@
       right:
       - state: inhand-right-blade
         shader: unshaded
+  - type: MeleeWeapon
+    heavyStaminaCost: 1 # goob edit
+    wideAnimationRotation: 145
+    attackRate: 1
+    hidden: true
+    damage:
+      types:
+        Blunt: 1
   - type: Tag
     tags:
     - Write

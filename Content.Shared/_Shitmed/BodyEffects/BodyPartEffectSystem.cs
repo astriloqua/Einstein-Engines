@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 using System.Linq;
 
 namespace Content.Shared._Shitmed.BodyEffects;
-public partial class BodyPartEffectSystem : EntitySystem
+public sealed partial class BodyPartEffectSystem : EntitySystem
 {
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -14,7 +14,8 @@ public partial class BodyPartEffectSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BodyPartComponent, BodyPartComponentsModifyEvent>(OnPartComponentsModify);
+        SubscribeLocalEvent<BodyPartComponent, BodyPartAddedEvent>(OnPartAttached);
+        SubscribeLocalEvent<BodyPartComponent, BodyPartRemovedEvent>(OnPartDetached);
     }
 
     // While I would love to kill this function, problem is that if we happen to have two parts that add the same
@@ -35,26 +36,30 @@ public partial class BodyPartEffectSystem : EntitySystem
         }
     }
 
-    private void OnPartComponentsModify(Entity<BodyPartComponent> partEnt,
-        ref BodyPartComponentsModifyEvent ev)
+    private void OnPartAttached(EntityUid uid, BodyPartComponent part, ref BodyPartAddedEvent args)
     {
-        if (partEnt.Comp.OnAdd != null)
-        {
-            if (ev.Add)
-                AddComponents(ev.Body, partEnt, partEnt.Comp.OnAdd);
-            else
-                RemoveComponents(ev.Body, partEnt, partEnt.Comp.OnAdd);
-        }
+        if (part.Body is null)
+            return;
 
-        if (partEnt.Comp.OnRemove != null)
-        {
-            if (ev.Add)
-                AddComponents(ev.Body, partEnt, partEnt.Comp.OnRemove);
-            else
-                RemoveComponents(ev.Body, partEnt, partEnt.Comp.OnRemove);
-        }
+        if (part.OnAdd != null)
+            AddComponents(part.Body.Value, uid, part.OnAdd);
+        else if (part.OnRemove != null)
+            RemoveComponents(part.Body.Value, uid, part.OnRemove);
 
-        Dirty(partEnt, partEnt.Comp);
+        Dirty(uid, part);
+    }
+
+    private void OnPartDetached(EntityUid uid, BodyPartComponent part, ref BodyPartRemovedEvent args)
+    {
+        if (part.Body is null)
+            return;
+
+        if (part.OnAdd != null)
+            RemoveComponents(part.Body.Value, uid, part.OnAdd);
+        else if (part.OnRemove != null)
+            AddComponents(part.Body.Value, uid, part.OnRemove);
+
+        Dirty(uid, part);
     }
 
     private void AddComponents(EntityUid body,

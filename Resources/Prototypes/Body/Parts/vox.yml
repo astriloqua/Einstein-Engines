@@ -1,4 +1,4 @@
-﻿# TODO: Add descriptions (many)
+# TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
   id: PartVox
@@ -68,12 +68,50 @@
   name: "vox torso"
   parent: PartVox
   components:
+  - type: Sprite
+    sprite: Mobs/Species/Vox/parts.rsi
+  - type: Icon
+    sprite: Mobs/Species/Vox/parts.rsi
+  - type: BodyPart # Shitmed Change
+    species: Vox
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#7a8bf2"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+
+- type: entity
+  parent: [ PartVoxBase, BaseChest ]
+  id: ChestVox
+  name: "vox chest"
+  components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
-      state: "torso"
+      state: "chest_m"
     - type: Icon
       sprite: Mobs/Species/Vox/parts.rsi
-      state: "torso"
+      state: "chest_m"
+    - type: Extractable
+      juiceSolution:
+        reagents:
+        - ReagentId: Fat
+          Quantity: 3
+        - ReagentId: Blood
+          Quantity: 10
+
+- type: entity
+  parent: [ PartVoxBase, BaseGroin ]
+  id: GroinVox
+  name: "vox groin"
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Vox/parts.rsi
+      state: "groin_m"
+    - type: Icon
+      sprite: Mobs/Species/Vox/parts.rsi
+      state: "groin_m"
     - type: Extractable
       juiceSolution:
         reagents:

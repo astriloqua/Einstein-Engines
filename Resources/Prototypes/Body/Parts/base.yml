@@ -12,6 +12,11 @@
     containers:
       bodypart: !type:Container
         ents: []
+      Wounds: !type:Container # Shitmed Change
+        ents: []
+      Bone: !type:Container # Shitmed Change
+        ents: []
+  - type: Appearance
   - type: StaticPrice
     price: 100
   - type: Tag
@@ -55,19 +60,37 @@
   # Shitmed Change End
 
 - type: entity
-  id: BaseTorso
-  name: "torso"
-  parent: BasePart
   abstract: true
+  id: BaseChestInorganic
+  name: "chest"
   components:
+  - type: Sprite
+    state: "chest_m"
+  - type: Icon
+    state: "chest_m"
   - type: BodyPart
-    partType: Torso
+    partType: Chest
     # Shitmed Change Start
-    toolName: "a torso"
-    containerName: "torso_slot"
-  - type: ContainerContainer
-    containers:
-      torso_slot: !type:ContainerSlot {}
+    toolName: "a chest"
+    containerName: "chest_slot"
+    children:
+      groin:
+        id: groin
+        type: Groin
+      right arm:
+        id: right arm
+        type: Arm
+      left arm:
+        id: left arm
+        type: Arm
+      head:
+        id: head
+        type: Head
+    organs:
+      heart:
+        id: heart
+      lungs:
+        id: lungs
   - type: Destructible
     thresholds:
     - trigger:
@@ -97,7 +120,36 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-    # Shitmed Change End
+  - type: Woundable
+    damageContainer: Inorganic
+    integrity: 200
+    integrityCap: 200
+    thresholds:
+      Minor: 180
+      Moderate: 120
+      Severe: 60
+      Critical: 30
+      Loss: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: Chest
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: ConsciousnessRequired
+    identifier: "chest"
+    causesDeath: true
+  - type: ContainerContainer
+    containers:
+      chest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container # Shitmed Change
+        ents: []
+      Bone: !type:Container # Shitmed Change
+        ents: []
   - type: DamageOtherOnHit
     damage:
       types:
@@ -105,15 +157,84 @@
     staminaCost: 12
 
 - type: entity
+  abstract: true
+  id: BaseGroinInorganic
+  name: "groin"
+  components:
+  - type: Sprite
+    state: "groin_m"
+  - type: Icon
+    state: "groin_m"
+  - type: BodyPart
+    partType: Groin
+    # Shitmed Change Start
+    toolName: "a groin"
+    containerName: "groin_slot"
+    children:
+      right leg:
+        id: right leg
+        type: Leg
+      left leg:
+        id: left leg
+        type: Leg
+    organs:
+      stomach:
+        id: stomach
+      liver:
+        id: liver
+      kidneys:
+        id: kidneys
+  - type: Woundable
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 84
+      Moderate: 70
+      Severe: 55
+      Critical: 30
+      Loss: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: Groin
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: ConsciousnessRequired
+    identifier: "groin"
+    causesDeath: false
+  - type: ContainerContainer
+    containers:
+      groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container # Shitmed Change
+        ents: []
+      Bone: !type:Container # Shitmed Change
+        ents: []
+
+- type: entity
   id: BaseHead
   name: "head"
   parent: BasePart
   abstract: true
   components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: Sprite
+    state: "head_m"
+  - type: Icon
+    state: "head_m"
   - type: BodyPart
     partType: Head
     toolName: "a head" # Shitmed Change
     vital: true
+    organs: # Shitmed Change
+      brain:
+        id: brain
+      eyes:
+        id: eyes
   - type: Input
     context: "ghost"
   - type: Tag
@@ -124,6 +245,41 @@
       types:
         Blunt: 5
     staminaCost: 5
+  - type: Woundable
+    boneEntity: BoneNeck
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 50
+      Moderate: 35
+      Severe: 20
+      Critical: 10
+      Loss: 0
+    damageOnAmputate: # This seemingly arbitrary spread is the result of the default head health (65) subtracted to 200 (death threshold).
+      types:
+        Bloodloss: 45
+        Asphyxiation: 45
+        Slash: 45
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: Head
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: ConsciousnessRequired
+    identifier: "head"
+    causesDeath: true
+  - type: ContainerContainer
+    containers:
+      mouth_slot: !type:ContainerSlot {}
+      Wounds: !type:Container # Shitmed Change
+        ents: []
+      Bone: !type:Container # Shitmed Change
+        ents: []
 
 - type: entity
   id: BaseLeftArm
@@ -140,6 +296,29 @@
       types:
         Blunt: 7
     staminaCost: 7
+    children: # Shitmed Change
+      left hand:
+        id: left hand
+        type: Hand
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: LArm
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: Woundable
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 50
+      Moderate: 35
+      Severe: 20
+      Critical: 10
+      Loss: 0
 
 - type: entity
   id: BaseRightArm
@@ -156,6 +335,29 @@
       types:
         Blunt: 7
     staminaCost: 7
+    children: # Shitmed Change
+      right hand:
+        id: right hand
+        type: Hand
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: RArm
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: Woundable
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 50
+      Moderate: 35
+      Severe: 20
+      Critical: 10
+      Loss: 0
 
 - type: entity
   id: BaseLeftHand
@@ -171,6 +373,25 @@
     damage:
       types:
         Blunt: 3
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: LHand
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: null
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0
 
 - type: entity
   id: BaseRightHand
@@ -186,6 +407,25 @@
     damage:
       types:
         Blunt: 3
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: RHand
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: null
 
 - type: entity
   id: BaseLeftLeg
@@ -203,6 +443,25 @@
       types:
         Blunt: 8
     staminaCost: 9
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: LLeg
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: Woundable
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 50
+      Moderate: 35
+      Severe: 20
+      Critical: 10
+      Loss: 0
 
 - type: entity
   id: BaseRightLeg
@@ -220,6 +479,25 @@
       types:
         Blunt: 8
     staminaCost: 9
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: RLeg
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: Woundable
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 50
+      Moderate: 35
+      Severe: 20
+      Critical: 10
+      Loss: 0
 
 - type: entity
   id: BaseLeftFoot
@@ -235,6 +513,25 @@
     damage:
       types:
         Blunt: 4
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: LFoot
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: null
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0
 
 - type: entity
   id: BaseRightFoot
@@ -250,3 +547,22 @@
     damage:
       types:
         Blunt: 4
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: RFoot
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: null
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0

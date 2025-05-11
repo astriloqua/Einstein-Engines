@@ -1,3 +1,41 @@
+// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
+// SPDX-FileCopyrightText: 2024 Armok <155400926+ARMOKS@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Fishbait <Fishbait@git.ml>
+// SPDX-FileCopyrightText: 2024 TGRCDev <tgrc@tgrc.dev>
+// SPDX-FileCopyrightText: 2024 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
+// SPDX-FileCopyrightText: 2024 yglop <95057024+yglop@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
+// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
+// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
+// SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Marcus F <marcus2008stoke@gmail.com>
+// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
+// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2025 Rinary <72972221+Rinary1@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+// SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
+// SPDX-FileCopyrightText: 2025 thebiggestbruh <199992874+thebiggestbruh@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 thebiggestbruh <marcus2008stoke@gmail.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Goobstation.Shared.Atmos.Components;
+using Content.Goobstation.Shared.Body.Components;
+using Content.Goobstation.Common.Changeling;
+using Content.Goobstation.Server.Changeling.Objectives.Components;
+using Content.Goobstation.Shared.Changeling.Actions;
+using Content.Goobstation.Shared.Changeling.Components;
+using Content.Goobstation.Shared.Temperature.Components;
 using Content.Server.Light.Components;
 using Content.Server.Nutrition.Components;
 using Content.Server.Objectives.Components;
@@ -25,6 +63,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Overlays.Switchable;
 using Robust.Shared.Utility;
 using Robust.Shared.Physics.Components;
+using Content.Shared._Shitmed.Targeting; // Shitmed Change
 
 namespace Content.Server.Changeling;
 
@@ -159,12 +198,14 @@ public sealed partial class ChangelingSystem
             return;
         }
 
-        var dmg = new DamageSpecifier(damageProto, deadThreshold!.Value.Int());
-        var dmgTotal = _damage.TryChangeDamage(target, dmg, false, damageable: damageable, origin: uid);
-        if (dmgTotal is null || !dmgTotal.AnyPositive())
-            return;
+        //var dmgTotal = _damage.TryChangeDamage(target, dmg, false, damageable: damageable, origin: uid);
 
         _blood.ChangeBloodReagent(target, comp.AbsorbedBloodReagent);
+        var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), deadThreshold!.Value.Int());
+        var dmgTotal = _damage.TryChangeDamage(target, dmg, false, false, targetPart: TargetBodyPart.All); // Shitmed Change
+        if (dmgTotal is null || !dmgTotal.AnyPositive())
+            return;
+        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
         _blood.SpillAllSolutions(target);
         PlayMeatySound(args.User, comp);
         UpdateBiomass(uid, comp, comp.MaxBiomass - comp.TotalAbsorbedEntities);
@@ -693,7 +734,10 @@ public sealed partial class ChangelingSystem
         eggComp.AugmentedEyesightPurchased = HasComp<ThermalVisionComponent>(uid);
 
         EnsureComp<AbsorbedComponent>(target);
-        _blood.ChangeBloodReagent(target, comp.AbsorbedBloodReagent);
+        //_blood.ChangeBloodReagent(target, comp.AbsorbedBloodReagent);
+        var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 200);
+        _damage.TryChangeDamage(target, dmg, false, false, targetPart: TargetBodyPart.All); // Shitmed Change
+        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
         _blood.SpillAllSolutions(target);
 
         PlayMeatySound(uid, comp);

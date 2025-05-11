@@ -137,9 +137,17 @@
     - type: GuideHelp
       guides:
       - Cyborgs
+      - Robotics
     - type: Organ # Estacao Pirata - IPCs
       slotId: posibrain
     - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks: [RobotTalk]
       understands: [RobotTalk]
+    - type: ChangeVoiceInContainer
+      whitelist:
+        components:
+        - SecretStash
+    - type: NerveSystem # backmen: wounding
+    - type: ConsciousnessRequired
+      identifier: "nerveSystem"
