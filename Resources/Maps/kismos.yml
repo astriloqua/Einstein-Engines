@@ -13861,20 +13861,6 @@ entities:
     - type: Transform
       pos: -15.5,10.5
       parent: 2
-- proto: StationGoalPaper
-  entities:
-  - uid: 1116
-    components:
-    - type: Transform
-      pos: 0.53247046,-4.4769936
-      parent: 2
-    - type: Paper
-      content: >+
-        D& N$T SL33P
-
-
-        1 R3P%%T, D^ N@T SL
-
 - proto: StationMap
   entities:
   - uid: 275
