@@ -5,7 +5,7 @@
   minPlayers: 0
   maxPlayers: 30
   stations:
-    kismos:
+    Kismos:
       stationProto: StandardNanotrasenStationCargoOnly
       components:
         - type: StationNameSetup
