@@ -37,7 +37,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: kismos
+      name: Kismos
     - type: Transform
       pos: -0.88336706,-0.4202125
       parent: 1
@@ -112,6 +112,8 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
     - type: GridPathfinding
+    - type: BecomesStation
+      id: Kismos
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg

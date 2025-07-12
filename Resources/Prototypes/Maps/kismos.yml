@@ -1,6 +1,6 @@
 - type: gameMap
-  id: kismos
-  mapName: 'kismos'
+  id: Kismos
+  mapName: 'Kismos'
   mapPath: /Maps/kismos.yml
   minPlayers: 0
   maxPlayers: 30
@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStationCargoOnly
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} kismos {1}'
+          mapNameTemplate: '{0} Kismos {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
