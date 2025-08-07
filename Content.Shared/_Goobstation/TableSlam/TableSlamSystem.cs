@@ -78,7 +78,7 @@ public sealed class TableSlamSystem : EntitySystem
         if (TryComp<GlassTableComponent>(tableUid, out var glassTableComponent))
         {
             _damageableSystem.TryChangeDamage(tableUid, glassTableComponent.TableDamage, origin: ent);
-            _damageableSystem.TryChangeDamage(ent, glassTableComponent.ClimberDamage, origin: ent, targetPart: TargetBodyPart.Torso);
+            _damageableSystem.TryChangeDamage(ent, glassTableComponent.ClimberDamage, origin: ent, targetPart: TargetBodyPart.Chest);
             _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(3), false);
         }
         else
@@ -88,7 +88,7 @@ public sealed class TableSlamSystem : EntitySystem
                 {
                     DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", ent.Comp.TabledDamage } },
                 },
-                targetPart: TargetBodyPart.Torso);
+                targetPart: TargetBodyPart.Chest);
             _damageableSystem.TryChangeDamage(ent,
                 new DamageSpecifier()
                 {
