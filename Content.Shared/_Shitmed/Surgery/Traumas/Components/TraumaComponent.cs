@@ -1,7 +1,8 @@
-using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Content.Shared.Body.Part;
+using Content.Shared.FixedPoint;
+
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 

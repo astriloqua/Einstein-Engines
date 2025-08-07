@@ -1,6 +1,6 @@
-﻿using Content.Goobstation.Maths.FixedPoint;
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;

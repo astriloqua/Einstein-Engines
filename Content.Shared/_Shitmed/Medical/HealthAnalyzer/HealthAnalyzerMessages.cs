@@ -2,9 +2,11 @@ using Content.Shared._Shitmed.Medical.Surgery.Traumas;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds;
 using Content.Shared.Body.Part;
-using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared.Serialization;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.FixedPoint;
+
+
 namespace Content.Shared._Shitmed.Medical.HealthAnalyzer;
 
 // Base message that contains common data for all Modes

@@ -12,7 +12,6 @@
 
 using Content.Shared.Traits.Assorted.Components;
 using Content.Shared._Shitmed.Body.Events;
-using Content.Goobstation.Common.Traits;
 using Content.Shared._Shitmed.Body.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;

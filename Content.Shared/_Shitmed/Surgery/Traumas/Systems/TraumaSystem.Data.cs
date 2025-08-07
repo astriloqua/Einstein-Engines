@@ -1,5 +1,6 @@
 ﻿using Content.Shared._Shitmed.Medical.Surgery.Wounds;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
+
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 

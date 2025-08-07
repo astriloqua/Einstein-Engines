@@ -11,10 +11,11 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Common.CCVar;
-using Content.Goobstation.Common.Standing;
-using Content.Shared._Goobstation.Wizard.TimeStop;
-using Content.Shared._Goobstation.Wizard.Traps;
+//using Content.Goobstation.Common.CCVar;
+using Content.Shared.CCVar;
+//using Content.Goobstation.Common.Standing;
+//using Content.Shared._Goobstation.Wizard.TimeStop;
+//using Content.Shared._Goobstation.Wizard.Traps;
 using Content.Shared._Shitmed.Body.Organ;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
@@ -76,9 +77,9 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         var uid = args.SenderSession.AttachedEntity.Value;
 
-        if (HasComp<IceCubeComponent>(uid) || HasComp<FrozenComponent>(uid) ||
+        /*if (HasComp<IceCubeComponent>(uid) || HasComp<FrozenComponent>(uid) ||
             HasComp<AdminFrozenComponent>(uid)) // Goob edit
-            return;
+            return; // EE: We don't have wiz from goob yet*/
 
         if (!TryComp(uid, out StandingStateComponent? standing) ||
             !TryComp(uid, out LayingDownComponent? layingDown))
@@ -174,17 +175,17 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     private void OnCheckAutoGetUp(Entity<LayingDownComponent> ent, ref CheckAutoGetUpEvent args)
     {
-        if (HasComp<IceCubeComponent>(ent) || HasComp<FrozenComponent>(ent) || HasComp<AdminFrozenComponent>(ent))
+        /*if (HasComp<IceCubeComponent>(ent) || HasComp<FrozenComponent>(ent) || HasComp<AdminFrozenComponent>(ent))
         {
             ent.Comp.AutoGetUp = false;
             Dirty(ent);
             return;
-        }
+        } // EE: Wiz not yet ported*/
 
         if (!TryComp(ent, out ActorComponent? actor))
             return;
 
-        ent.Comp.AutoGetUp = _cfg.GetClientCVar(actor.PlayerSession.Channel, GoobCVars.AutoGetUp);
+        ent.Comp.AutoGetUp = _cfg.GetClientCVar(actor.PlayerSession.Channel, CCVars.AutoGetUp);
         Dirty(ent);
     }
 

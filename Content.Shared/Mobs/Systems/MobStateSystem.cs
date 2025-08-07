@@ -25,6 +25,8 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared._Shitmed.Medical.Surgery.Consciousness.Systems;
+using Content.Shared.Damage;
+
 
 namespace Content.Shared.Mobs.Systems;
 

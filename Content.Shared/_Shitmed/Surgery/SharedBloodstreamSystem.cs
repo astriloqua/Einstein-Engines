@@ -4,7 +4,6 @@ using Content.Shared._Shitmed.Medical.Surgery.Wounds;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared.Body.Part;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
@@ -13,6 +12,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
+using Content.Shared.FixedPoint;
+
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 

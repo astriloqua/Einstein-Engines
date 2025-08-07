@@ -23,12 +23,12 @@ using Content.Shared.Traits;
 using Robust.Shared.GameStates;
 
 // Shitmed Change
-using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared.Prototypes;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Tools;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.Body.Organ;

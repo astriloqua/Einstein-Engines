@@ -120,7 +120,7 @@ public sealed partial class MeleeWeaponComponent : Component
     public FixedPoint2 ClickDamageModifier = FixedPoint2.New(1);
 
     /// <summary>
-    ///     Part damage is multiplied by this amount for single-target attacks
+    ///     Shitmed Change: Part damage is multiplied by this amount for single-target attacks
     /// </summary>
     [DataField, AutoNetworkedField]
     public float ClickPartDamageMultiplier = 1.00f;
@@ -157,10 +157,10 @@ public sealed partial class MeleeWeaponComponent : Component
     public float HeavyDamageBaseModifier = 1.2f;
 
     /// <summary>
-    ///     Part damage is multiplied by this amount for heavy swings
+    ///     Shitmed Change: Part damage is multiplied by this amount for heavy swings
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float HeavyPartDamageMultiplier = 0.5f;
+    public float HeavyPartDamageMultiplier = 0.75f;
 
     /// <summary>
     /// Total width of the angle for wide attacks.
@@ -232,22 +232,6 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool MustBeEquippedToUse = false;
-
-    // Shitmed Change Start
-
-    /// <summary>
-    ///     Shitmed Change: Part damage is multiplied by this amount for single-target attacks
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float ClickPartDamageMultiplier = 1.00f;
-
-    /// <summary>
-    ///     Shitmed Change: Part damage is multiplied by this amount for heavy swings
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float HeavyPartDamageMultiplier = 0.75f;
-
-    // Shitmed Change End
 
     // Goobstation
     [DataField, AutoNetworkedField]

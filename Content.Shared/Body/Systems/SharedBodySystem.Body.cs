@@ -66,7 +66,8 @@ using Robust.Shared.Network;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Pulling.Events;
+
 
 namespace Content.Shared.Body.Systems;
 
@@ -109,8 +110,6 @@ public partial class SharedBodySystem
 
         // Shitmed Change: to prevent people from falling immediately as rejuvenated
         SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
-    }
-
     }
 
     private void OnBodyInserted(Entity<BodyComponent> ent, ref EntInsertedIntoContainerMessage args)

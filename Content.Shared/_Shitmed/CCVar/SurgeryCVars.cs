@@ -1,4 +1,3 @@
-using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 

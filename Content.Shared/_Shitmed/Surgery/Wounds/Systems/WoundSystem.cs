@@ -7,7 +7,6 @@ using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
@@ -23,6 +22,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Threading;
 using System.Linq;
+using Content.Shared.FixedPoint;
+
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 

@@ -5,7 +5,6 @@ using Content.Shared._Shitmed.Weapons.Melee.Events;
 using Content.Shared._Shitmed.Weapons.Ranged.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
@@ -14,6 +13,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.FixedPoint;
+
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 
