@@ -112,6 +112,20 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
+    private void OnAttemptStopPulling(Entity<BodyComponent> ent, ref AttemptStopPullingEvent args) // Goobstation
+    {
+        if (args.User == null || !Exists(args.User.Value))
+            return;
+
+        if (args.User.Value != ent.Owner)
+            return;
+
+        if (ent.Comp.LegEntities.Count > 0 || ent.Comp.RequiredLegs == 0)
+            return;
+
+        args.Cancelled = true;
+    }
+
     private void OnBodyInserted(Entity<BodyComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         // Root body part?
