@@ -34,7 +34,4 @@ public sealed partial class LayingDownComponent : Component
 public sealed class ChangeLayingDownEvent : CancellableEntityEventArgs;
 
 [Serializable, NetSerializable]
-public sealed class CheckAutoGetUpEvent(NetEntity user) : CancellableEntityEventArgs
-{
-    public NetEntity User = user;
-}
+public sealed class CheckAutoGetUpEvent() : CancellableEntityEventArgs;

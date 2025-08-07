@@ -55,7 +55,10 @@ public sealed class StandingStateSystem : EntitySystem
         // We do this BEFORE downing because something like buckle may be blocking downing but we want to drop hand items anyway
         // and ultimately this is just to avoid boilerplate in Down callers + keep their behavior consistent.
         if (dropHeldItems && hands != null)
-            RaiseLocalEvent(uid, new DropHandItemsEvent(), false);
+        {
+            var ev = new DropHandItemsEvent();
+            RaiseLocalEvent(uid, ref ev, false);
+        }
 
         if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled)
             return false;
@@ -163,8 +166,8 @@ public sealed class StandingStateSystem : EntitySystem
     }
 }
 
-
-public sealed class DropHandItemsEvent : EventArgs { }
+[ByRefEvent]
+public sealed class DropHandItemsEvent { }
 
 /// <summary>
 ///     Subscribe if you can potentially block a down attempt.
