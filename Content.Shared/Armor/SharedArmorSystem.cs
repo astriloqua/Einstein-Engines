@@ -62,7 +62,7 @@ public abstract class SharedArmorSystem : EntitySystem
 
         if (component.ArmorCoverage.Contains(partType))
             args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage,
-            DamageSpecifier.PenetrateArmor(component.Modifiers, args.ArmorPenetration));
+            DamageSpecifier.PenetrateArmor(component.Modifiers, args.Damage.ArmorPenetration));
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public abstract class SharedArmorSystem : EntitySystem
 
         if (component.ArmorCoverage.Contains(partType))
             args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage,
-            DamageSpecifier.PenetrateArmor(component.Modifiers, args.Args.ArmorPenetration));
+            DamageSpecifier.PenetrateArmor(component.Modifiers, args.Args.Damage.ArmorPenetration));
     }
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
