@@ -13,6 +13,9 @@ public sealed partial class LayingDownComponent : Component
     public float LyingSpeedModifier = 0.35f,
                  CrawlingUnderSpeedModifier = 0.5f;
 
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public float SpeedModify { get; set; } = .3f;
+
     [DataField, AutoNetworkedField]
     public bool AutoGetUp;
 
