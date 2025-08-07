@@ -42,7 +42,7 @@ public sealed class GenerateChildPartSystem : EntitySystem
                 return;
 
             var slotName = _bodySystem.GetSlotFromBodyPart(childPartComp);
-            _bodySystem.TryCreatePartSlot(uid, slotName, childPartComp.PartType, out var _);
+            _bodySystem.TryCreatePartSlot(uid, slotName, childPartComp.PartType, childPartComp.Symmetry, out var _);
             _bodySystem.AttachPart(uid, slotName, childPart, partComp, childPartComp);
             component.ChildPart = childPart;
             component.Active = true;
