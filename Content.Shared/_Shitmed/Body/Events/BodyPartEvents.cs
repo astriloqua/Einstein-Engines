@@ -21,6 +21,10 @@ namespace Content.Shared._Shitmed.Body.Events;
 [ByRefEvent]
 public readonly record struct BodyPartDroppedEvent(Entity<BodyPartComponent> Part);
 
+// Kind of a clone of BodyPartAddedEvent for surgical reattachment specifically.
+[ByRefEvent]
+public readonly record struct BodyPartAttachedEvent(Entity<BodyPartComponent> Part);
+
 [ByRefEvent]
 public readonly record struct BodyPartEnableChangedEvent(bool Enabled);
 
