@@ -27,10 +27,11 @@ namespace Content.Shared.Chat
         public string? AudioPath;
         public float AudioVolume;
         public bool IgnoreChatStack;
+        public bool CanCoalesce; // Goobstation Edit
         [NonSerialized]
         public bool Read;
 
-        public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0, bool ignoreChatStack = false)
+        public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0, bool ignoreChatStack = false, bool canCoalesce = true)
         {
             Channel = channel;
             Message = message;
@@ -42,6 +43,7 @@ namespace Content.Shared.Chat
             AudioPath = audioPath;
             AudioVolume = audioVolume;
             IgnoreChatStack = ignoreChatStack;
+            CanCoalesce = canCoalesce; // Goobstation Edit
         }
     }
 
