@@ -87,13 +87,13 @@ public sealed class XelthiaSystem : EntitySystem
             bodySystem.AttachPart(root.Value.Entity, "right arm", newLimb, root.Value.BodyPart, limbComp);
         var newerLimb = _entityManager.SpawnAtPosition("RightHandXelthia", xform.Coordinates); // Spawns the hand
         Enum.TryParse<BodyPartType>("Hand", out var partType);
-        bodySystem.TryCreatePartSlotAndAttach(newLimb, "right hand", newerLimb, partType);
+        bodySystem.TryCreatePartSlotAndAttach(newLimb, "right hand", newerLimb, partType, BodyPartSymmetry.Right);
         // Left Side
         newLimb = _entityManager.SpawnAtPosition("LeftArmXelthia", xform.Coordinates); // Copy-Pasted Code for arm spawning
         if (_entityManager.TryGetComponent(newLimb, out BodyPartComponent? limbComp2))
             bodySystem.AttachPart(root.Value.Entity, "left arm", newLimb, root.Value.BodyPart, limbComp2);
         newerLimb = _entityManager.SpawnAtPosition("LeftHandXelthia", xform.Coordinates); // Spawns the hand
-        bodySystem.TryCreatePartSlotAndAttach(newLimb, "left hand", newerLimb, partType);
+        bodySystem.TryCreatePartSlotAndAttach(newLimb, "left hand", newerLimb, partType, BodyPartSymmetry.Left);
         _entityManager.EntitySysManager.GetEntitySystem<SharedAudioSystem>()
             .PlayPvs("/Audio/_EE/Voice/Xelthia/regrow.ogg", uid, null);
 

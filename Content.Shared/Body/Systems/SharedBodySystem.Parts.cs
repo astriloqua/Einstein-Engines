@@ -425,6 +425,21 @@ public partial class SharedBodySystem
         return false;
     }
 
+    /// <summary>
+    /// Returns the root part of this body if it exists.
+    /// </summary>
+    public (EntityUid Entity, BodyPartComponent BodyPart)? GetRootPartOrNull(EntityUid bodyId, BodyComponent? body = null)
+    {
+        if (!Resolve(bodyId, ref body)
+            || body.RootContainer.ContainedEntity is null)
+        {
+            return null;
+        }
+
+        return (body.RootContainer.ContainedEntity.Value,
+            Comp<BodyPartComponent>(body.RootContainer.ContainedEntity.Value));
+    }
+
     #region Slots
 
     /// <summary>

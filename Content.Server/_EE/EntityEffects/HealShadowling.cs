@@ -50,7 +50,7 @@ public sealed partial class HealShadowling : EntityEffect
                 IgnoreResistances,
                 interruptsDoAfters: false,
                 targetPart: TargetBodyPart.All,
-                partMultiplier: 0.5f,
-                canSever: false);
+                partMultiplier: 0.5f
+                /*canSever: false*/);
     }
 }

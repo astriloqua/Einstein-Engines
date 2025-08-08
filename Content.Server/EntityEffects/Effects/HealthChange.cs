@@ -10,6 +10,8 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Text.Json.Serialization;
+using Content.Shared._Shitmed.EntityEffects.Effects;
+
 
 namespace Content.Server.EntityEffects.Effects
 {
@@ -36,6 +38,13 @@ namespace Content.Server.EntityEffects.Effects
         [DataField]
         [JsonPropertyName("scaleByQuantity")]
         public bool ScaleByQuantity;
+
+        /// <summary>
+        ///     Scales the effect based on the temperature of the entity.
+        /// </summary>
+        [DataField]
+        [JsonPropertyName("scaleByTemperature")]
+        public TemperatureScaling? ScaleByTemperature;
 
         [DataField]
         [JsonPropertyName("ignoreResistances")]
@@ -149,6 +158,7 @@ namespace Content.Server.EntityEffects.Effects
         public override void Effect(EntityEffectBaseArgs args)
         {
             var scale = FixedPoint2.New(1);
+            var damageSpec = new DamageSpecifier(Damage);
 
             if (args is EntityEffectReagentArgs reagentArgs)
             {
