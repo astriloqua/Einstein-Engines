@@ -1,4 +1,4 @@
-﻿# generic parts
+# generic parts
   - type: entity
     id: LeftArmBorg
     parent: BaseBorgLeftArm
@@ -71,7 +71,7 @@
 
   - type: entity
     id: TorsoBorg
-    parent: BaseBorgTorso
+    parent: [ PartSiliconBase, BaseChestInorganic ]
     components:
     - type: Sprite
       state: borg_chest

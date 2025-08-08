@@ -15,6 +15,13 @@
   - type: ExplosionResistance
     damageCoefficient: 0.50
   - type: Armor # Good armour resistance across the board, comparable to the standard security hardsuit.
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -28,7 +35,15 @@
     sprintModifier: 0.75
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCombatStandard
+  #- type: ToggleableClothing
+  #  clothingPrototypes: #goobstation change
+  #    head: ClothingHeadHelmetHardsuitCombatStandard
   - type: AllowSuitStorage
+  - type: StaminaDamageResistance # Goobstation
+    coefficient: 0.6
+  - type: ModifyDelayedKnockdown # Goobstation
+    delayDelta: 3
+    knockdownTimeDelta: -3
 
 - type: entity
   parent: ClothingOuterHardsuitCombatStandard

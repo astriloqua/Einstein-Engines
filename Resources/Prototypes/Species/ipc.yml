@@ -74,7 +74,6 @@
       points: 4
       required: true
       defaultMarkings: [ MobIPCLArmDefault, MobIPCLHandDefault, MobIPCRArmDefault, MobIPCRHandDefault ]
-      required: false
     RightLeg:
       points: 6
       required: false

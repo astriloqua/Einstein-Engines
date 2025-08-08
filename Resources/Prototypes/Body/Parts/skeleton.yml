@@ -80,21 +80,6 @@
       state: "groin_m"
 
 - type: entity
-  parent: [ PartSkeletonBase, BaseHead ]
-  id: HeadSkeleton
-  name: skull
-  description: Alas poor Yorick...
-  components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "torso_m"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "torso_m"
-    - type: BodyPart
-      partType: Torso
-
-- type: entity
   id: HeadSkeleton
   name: "skull"
   description: Alas poor Yorick...

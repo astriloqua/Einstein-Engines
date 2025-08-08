@@ -116,8 +116,8 @@
       highPressureMultiplier: 0.02
       lowPressureMultiplier: 1000
     - type: TemperatureProtection
-        heatingCoefficient: 0.001
-        coolingCoefficient: 0.05
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.05
     - type: FireProtection
       reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
     - type: Armor
@@ -145,15 +145,15 @@
         - FullBodyOuter
         - WhitelistChameleon
         - HidesHarpyWings
-  - type: FireProtection
-    reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
-  - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: GroupExamine
-  - type: ProtectedFromStepTriggers
-    slots: WITHOUT_POCKET
+    - type: FireProtection
+      reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
+    - type: ClothingSpeedModifier
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: HeldSpeedModifier
+    - type: GroupExamine
+    - type: ProtectedFromStepTriggers
+      slots: WITHOUT_POCKET
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]

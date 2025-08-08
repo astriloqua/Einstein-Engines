@@ -83,7 +83,7 @@
         sprite: Mobs/Effects/burn_damage.rsi
 
 - type: entity
-  parent: [ PartVoxBase, BaseChest ]
+  parent: [ PartVox, BaseChest ]
   id: ChestVox
   name: "vox chest"
   components:
@@ -102,7 +102,7 @@
           Quantity: 10
 
 - type: entity
-  parent: [ PartVoxBase, BaseGroin ]
+  parent: [ PartVox, BaseGroin ]
   id: GroinVox
   name: "vox groin"
   components:

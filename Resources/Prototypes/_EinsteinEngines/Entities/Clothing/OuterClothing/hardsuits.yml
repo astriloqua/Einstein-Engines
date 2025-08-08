@@ -6,50 +6,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Standard Combat Hardsuits
 - type: entity
-  parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitCombatStandard
-  name: combat hardsuit
-  description: A purpose-built combat suit designed to protect its user against all manner of enemy combatants in low pressure environments.
-  components:
-  - type: Sprite
-    sprite: _DV/Clothing/OuterClothing/Hardsuits/Combat/standard.rsi
-  - type: Clothing
-    sprite: _DV/Clothing/OuterClothing/Hardsuits/Combat/standard.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.50
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.50
-  - type: Armor # Good armour resistance across the board, comparable to the standard security hardsuit.
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    modifiers:
-      coefficients:
-        Blunt: 0.60
-        Slash: 0.60
-        Piercing: 0.60
-        Radiation: 0.75
-        Caustic: 0.75
-        Heat: 0.75
-  - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: ToggleableClothing
-    clothingPrototypes: #goobstation change
-      head: ClothingHeadHelmetHardsuitCombatStandard
-  - type: AllowSuitStorage
-  - type: StaminaDamageResistance # Goobstation
-    coefficient: 0.6
-  - type: ModifyDelayedKnockdown # Goobstation
-    delayDelta: 3
-    knockdownTimeDelta: -3
-
-- type: entity
   parent: [ClothingOuterHardsuitCombatStandard,BaseCommandContraband]
   id: ClothingOuterHardsuitCombatOfficer
   name: security combat hardsuit
