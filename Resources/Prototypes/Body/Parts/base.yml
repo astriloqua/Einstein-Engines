@@ -5,7 +5,8 @@
   abstract: true
   components:
   - type: Damageable
-    damageContainer: OrganicPart # Shitmed Change
+    damageContainer: Biological # Shitmed Change
+  - type: Nerve
   - type: BodyPart
   - type: Gibbable
   - type: ContainerContainer
@@ -19,9 +20,17 @@
   - type: Appearance
   - type: StaticPrice
     price: 100
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
   - type: Tag
     tags:
       - Trash
+      - Meat # Goobstation
   # Shitmed Change Start
   - type: SurgeryTool
     startSound:

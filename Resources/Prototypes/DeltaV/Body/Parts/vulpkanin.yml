@@ -110,7 +110,7 @@
 - type: entity
   id: HeadVulpkanin
   name: "vulpkanin head"
-  parent: PartVulpkanin
+  parent: [ PartVulpkanin, BaseHead ]
   components:
   - type: Sprite
     netsync: false

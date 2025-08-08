@@ -93,6 +93,8 @@
     damageModifierSet: Vulpkanin
   - type: TemperatureProtection
     coefficient: 0.1
+  #- type: Temperature
+  #  atmosTemperatureTransferEfficiency: 0.01  # Goobstation - fix vulps - end
   - type: Vocal
     sounds:
       Male: MaleVulpkanin

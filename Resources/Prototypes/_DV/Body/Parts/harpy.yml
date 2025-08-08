@@ -52,11 +52,6 @@
     state: "groin_m"
 
 - type: entity
-  parent: [ PartHarpyBase, BaseHead ]
-  id: HeadHarpy
-  name: "harpy head"
-
-- type: entity
   parent: [ PartHarpyBase, BaseLeftArm ]
   id: LeftArmHarpy
   name: "left harpy arm"

@@ -7,25 +7,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # body part with regular organic destruction
-- type: entity
-  abstract: true
-  parent: BasePartInorganic
-  id: BasePart
-  components:
-  - type: Damageable
-    damageContainer: Biological # Shitmed Change
-  - type: Nerve
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: Blood
-        Quantity: 10
-  - type: Tag # Goobstation
-    tags:
-    - Trash
-    - Meat
 
 # organic torsos have higher health
 # this doesn't affect gibbing bodies as there is code to prevent torso gibbing while part of a body

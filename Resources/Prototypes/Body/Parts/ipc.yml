@@ -90,7 +90,7 @@
 - type: entity
   id: HeadIPC
   name: "ipc head"
-  parent: PartIPC
+  parent: [ PartIPC, BaseHead ]
   components:
   - type: Sprite
     netsync: false

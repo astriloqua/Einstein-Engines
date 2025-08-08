@@ -161,6 +161,7 @@
     tags:
     - Trash
     - BorgTorso
+    - BorgGenericTorso
   - type: Item
     heldPrefix: borg-chest
   - type: BodyPart

@@ -46,11 +46,6 @@
     state: "groin_m"
 
 - type: entity
-  parent: [ PartVulpkaninBase, BaseHead ]
-  id: HeadVulpkanin
-  name: "vulpkanin head"
-
-- type: entity
   parent: [ PartVulpkaninBase, BaseLeftArm ]
   id: LeftArmVulpkanin
   name: "left vulpkanin arm"

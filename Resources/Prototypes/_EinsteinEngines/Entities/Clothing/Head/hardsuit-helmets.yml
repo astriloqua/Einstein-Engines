@@ -5,36 +5,6 @@
 # Standard Combat Hardsuits
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
-  id: ClothingHeadHelmetHardsuitCombatStandard
-  name: combat hardsuit helmet
-  description: An armoured helmet with a yellow visor and dual head-mounted lights.
-  components:
-  - type: Sprite
-    sprite: _DV/Clothing/Head/Hardsuits/Combat/standard.rsi
-  - type: Clothing
-    sprite: _DV/Clothing/Head/Hardsuits/Combat/standard.rsi
-  - type: PointLight
-    color: "#ffeead"
-  - type: PressureProtection
-    highPressureMultiplier: 0.50
-    lowPressureMultiplier: 1000
-  - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.70
-        Heat: 0.70
-
-- type: entity
-  parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitCombatOfficer
   name: security combat hardsuit helmet
   components:

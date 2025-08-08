@@ -108,7 +108,7 @@
 - type: entity
   id: HeadHarpy
   name: "harpy head"
-  parent: PartHarpy
+  parent: [ PartHarpy, BaseHead ]
   components:
   - type: Sprite
     netsync: false

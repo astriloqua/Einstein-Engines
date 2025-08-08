@@ -69,19 +69,6 @@
       - BorgHead
       - BorgGenericHead
 
-  - type: entity
-    id: TorsoBorg
-    parent: [ PartSiliconBase, BaseChestInorganic ]
-    components:
-    - type: Sprite
-      state: borg_chest
-    - type: Icon
-      state: borg_chest
-    - type: Tag
-      tags:
-      - Trash
-      - BorgGenericTorso
-
   # engineer parts
   - type: entity
     id: LeftArmBorgEngineer
