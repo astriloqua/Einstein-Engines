@@ -29,13 +29,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Shared.Atmos.Components;
-using Content.Goobstation.Shared.Body.Components;
-using Content.Goobstation.Common.Changeling;
-using Content.Goobstation.Server.Changeling.Objectives.Components;
-using Content.Goobstation.Shared.Changeling.Actions;
-using Content.Goobstation.Shared.Changeling.Components;
-using Content.Goobstation.Shared.Temperature.Components;
 using Content.Server.Light.Components;
 using Content.Server.Nutrition.Components;
 using Content.Server.Objectives.Components;
@@ -179,6 +172,9 @@ public sealed partial class ChangelingSystem
     ///     should give the same number of chemicals as before (7 points).
     /// </summary>
     private const float SuccChemicalsRatio = 7f;
+
+    public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
+
     private void OnAbsorbDoAfter(EntityUid uid, ChangelingComponent comp, ref AbsorbDNADoAfterEvent args)
     {
         if (args.Args.Target is null
@@ -719,10 +715,10 @@ public sealed partial class ChangelingSystem
         if (!TryComp<StoreComponent>(uid, out var storeComp))
             return;
 
-        var dmg = new DamageSpecifier(damageProto, deadThreshold!.Value.Int());
+        /*var dmg = new DamageSpecifier(damageProto, deadThreshold!.Value.Int());
         var dmgTotal = _damage.TryChangeDamage(target, dmg, false, damageable: damageable, origin: uid);
         if (dmgTotal is null || !dmgTotal.AnyPositive())
-            return;
+            return;*/
 
         comp.IsInLastResort = false;
         comp.IsInLesserForm = true;
