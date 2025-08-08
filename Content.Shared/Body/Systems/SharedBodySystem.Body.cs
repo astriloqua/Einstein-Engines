@@ -485,7 +485,9 @@ public partial class SharedBodySystem
 
         if (part.Body is { } bodyEnt)
         {
-            if (IsPartRoot(bodyEnt, partId, part: part))
+            /* TODO: Figure out a way to actually port this over to woundmed
+
+             if (IsPartRoot(bodyEnt, partId, part: part))
                 return false;
 
             DropSlotContents((partId, part));
@@ -501,6 +503,12 @@ public partial class SharedBodySystem
                 foreach (var item in _inventory.GetHandOrInventoryEntities(partId))
                     SharedTransform.AttachToGridOrMap(item);
 
+            QueueDel(partId);
+            return true;*/
+            if (IsPartRoot(bodyEnt, partId, part: part))
+                return false;
+
+            DropSlotContents((partId, part));
             QueueDel(partId);
             return true;
         }

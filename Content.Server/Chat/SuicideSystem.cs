@@ -90,7 +90,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Chat;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared._EinsteinEngines.Silicon.Components;
+using Content.Shared.Silicon.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Consciousness.Components; // Shitmed Change
 
 namespace Content.Server.Chat;
@@ -124,6 +124,11 @@ public sealed class SuicideSystem : EntitySystem
         // Can't suicide if we're already dead
         if (!TryComp<MobStateComponent>(victim, out var mobState) || _mobState.IsDead(victim, mobState) || _tagSystem.HasTag(victim, "CannotSuicideAny")) // Goobstation edit
             return false;
+
+        ICommonSession? session = null;
+
+        if (TryComp<ActorComponent>(victim, out var actor))
+            session = actor.PlayerSession;
 
         var suicideGhostEvent = new SuicideGhostEvent(victim);
         RaiseLocalEvent(victim, suicideGhostEvent);

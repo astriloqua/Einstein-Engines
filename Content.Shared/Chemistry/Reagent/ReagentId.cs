@@ -20,18 +20,21 @@ public partial struct ReagentId : IEquatable<ReagentId>
     /// Any additional data that is unique to this reagent type. E.g., for blood this could be DNA data.
     /// </summary>
     [DataField("data")]
-    public ReagentData? Data { get; private set; }
+    public List<ReagentData>? Data { get; private set; } = new();
 
-    public ReagentId(string prototype, ReagentData? data)
+    public ReagentId(string prototype, List<ReagentData>? data)
     {
         Prototype = prototype;
-        Data = data;
+        Data = data ?? new();
     }
 
     public ReagentId()
     {
         Prototype = default!;
     }
+
+    public List<ReagentData> EnsureReagentData() => (Data != null) ? [Data,] : [];
+
 
     public bool Equals(ReagentId other)
     {

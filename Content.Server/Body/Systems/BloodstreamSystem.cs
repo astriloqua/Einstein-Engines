@@ -160,6 +160,8 @@ using Content.Shared._Shitmed.Medical.Surgery.Wounds;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared._Shitmed.CCVar;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Forensics;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Body.Systems;
@@ -778,5 +780,37 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
         // Convert severity change to bleed amount (using similar logic as in SharedBloodstreamSystem)
         var bleedChange = deltaBleed * _cfg.GetCVar(SurgeryCVars.BleedingSeverityTrade);
         TryModifyBleedAmount(ent, bleedChange.Float(), ent);
+    }
+
+    /// <summary>
+    /// Get the reagent data for blood that a specific entity should have.
+    /// </summary>
+    public List<ReagentData> GetEntityBloodData(EntityUid uid)
+    {
+        var bloodData = new List<ReagentData>();
+        var dnaData = new DnaData();
+
+        if (TryComp<DnaComponent>(uid, out var donorComp) && donorComp.DNA != null)
+            dnaData.DNA = donorComp.DNA;
+        else
+            dnaData.DNA = Loc.GetString("forensics-dna-unknown");
+
+        bloodData.Add(dnaData);
+
+        return bloodData;
+    }
+    private void OnDnaGenerated(Entity<BloodstreamComponent> entity, ref GenerateDnaEvent args)
+    {
+        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
+        {
+            foreach (var reagent in bloodSolution.Contents)
+            {
+                List<ReagentData> reagentData = reagent.Reagent.EnsureReagentData();
+                reagentData.RemoveAll(x => x is DnaData);
+                reagentData.AddRange(GetEntityBloodData(entity.Owner));
+            }
+        }
+        else
+            Log.Error("Unable to set bloodstream DNA, solution entity could not be resolved");
     }
 }

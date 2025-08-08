@@ -147,7 +147,7 @@ public abstract class SharedStunSystem : EntitySystem
 
     private void OnKnockInit(EntityUid uid, KnockedDownComponent component, ComponentInit args)
     {
-        RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
+        RaiseNetworkEvent(new CheckAutoGetUpEvent());
         _layingDown.TryLieDown(uid, null, null, component.DropHeldItemsBehavior);
     }
 

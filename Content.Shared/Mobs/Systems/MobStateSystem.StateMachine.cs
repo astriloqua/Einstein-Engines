@@ -20,7 +20,8 @@ using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Body.Organ;
-using Content.Shared._Shitmed.Body.Organ; // Shitmed Change
+using Content.Shared._Shitmed.Body.Organ;
+using Robust.Shared.Player; // Shitmed Change
 namespace Content.Shared.Mobs.Systems;
 
 public partial class MobStateSystem

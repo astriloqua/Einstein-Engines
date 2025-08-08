@@ -16,7 +16,7 @@ using Content.Shared.Power;
 using Robust.Shared.Timing;
 using Content.Shared.Silicon.Components; // I shouldn't have to modify this.
 using Robust.Shared.Utility;
-using Content.Shared._EinsteinEngines.Silicon.Components;
+using Content.Shared.Silicon.Components;
 using Content.Shared._Shitmed.Targeting; // Shitmed Change
 
 namespace Content.Server.Bed

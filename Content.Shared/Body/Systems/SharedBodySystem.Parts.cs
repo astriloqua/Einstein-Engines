@@ -101,6 +101,8 @@ using Content.Shared._Shitmed.Body.Components;
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared._Shitmed.BodyEffects;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Robust.Shared.Random;
@@ -352,7 +354,7 @@ public partial class SharedBodySystem
             return;
 
         if (!_timing.ApplyingState
-            && partEnt.Comp.IsVital
+            //&& partEnt.Comp.IsVital // TODO: Figure out how to determine if part is vital
             && !GetBodyChildrenOfType(bodyEnt, partEnt.Comp.PartType, bodyEnt.Comp).Any()
         )
         {

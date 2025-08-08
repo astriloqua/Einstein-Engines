@@ -14,6 +14,13 @@ using Content.Shared.Humanoid;
 using Content.Shared.Body.Part;
 
 namespace Content.Shared._Shitmed.Body.Events;
+
+
+// Kind of a clone of BodyPartRemovedEvent for any instances where we call DropPart(), reasoning being that RemovedEvent fires off
+// a lot more often than what I'd like due to PVS.
+[ByRefEvent]
+public readonly record struct BodyPartDroppedEvent(Entity<BodyPartComponent> Part);
+
 [ByRefEvent]
 public readonly record struct BodyPartEnableChangedEvent(bool Enabled);
 

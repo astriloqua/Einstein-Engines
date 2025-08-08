@@ -141,6 +141,8 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
     {
         return _reagentSources.GetValueOrDefault(id) ?? new List<ReagentSourceData>();
     }
+
+    public override void ReloadAllReagentPrototypes() { }
 }
 
 /// <summary>

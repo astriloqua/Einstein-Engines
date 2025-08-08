@@ -1,12 +1,15 @@
 using System.Numerics;
 using Content.Shared._Goobstation.Religion;
+using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Actions;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Coordinates.Helpers;
+using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -55,6 +58,7 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!; // Goobstation
 
     public override void Initialize()
     {
@@ -523,8 +527,13 @@ public abstract class SharedMagicSystem : EntitySystem
         // Goob edit start
         var speech = string.Empty;
 
-        if (args is ISpeakSpell speak && !string.IsNullOrWhiteSpace(speak.Speech))
-            speech = speak.Speech;
+        if (args is not ISpeakSpell speak || string.IsNullOrWhiteSpace(speak.Speech))
+            return;
+
+        /*if (args is ISpeakSpell speak && !string.IsNullOrWhiteSpace(speak.Speech))
+        {
+            speech = speak?.Speech;
+        }
 
         if (TryComp(args.Action, out MagicComponent? magic))
         {
@@ -540,7 +549,7 @@ public abstract class SharedMagicSystem : EntitySystem
                     false,
                     targetPart: TargetBodyPart.All); // Shitmed Change
             }
-        }
+        } // EE: We dont have wiz/heretic/whatever yet */
 
         if (string.IsNullOrEmpty(speech))
             return;
