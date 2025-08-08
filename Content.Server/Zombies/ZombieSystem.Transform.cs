@@ -39,7 +39,6 @@ using Content.Shared.Prying.Components;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Traits.Assorted.Components;
 using Content.Server.Abilities.Psionics;
-using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Content.Server.Animals.Components;
