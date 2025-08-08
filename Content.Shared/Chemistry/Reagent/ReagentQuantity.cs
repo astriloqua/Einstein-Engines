@@ -37,7 +37,7 @@ public partial struct ReagentQuantity : IEquatable<ReagentQuantity>
         return Reagent.ToString(Quantity);
     }
 
-    public void Deconstruct(out string prototype, out FixedPoint2 quantity, out ReagentData? data)
+    public void Deconstruct(out string prototype, out FixedPoint2 quantity, out List<ReagentData>? data)
     {
         prototype = Reagent.Prototype;
         quantity = Quantity;

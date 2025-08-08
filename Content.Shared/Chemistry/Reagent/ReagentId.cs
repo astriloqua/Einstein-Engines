@@ -33,8 +33,10 @@ public partial struct ReagentId : IEquatable<ReagentId>
         Prototype = default!;
     }
 
-    public List<ReagentData> EnsureReagentData() => (Data != null) ? [Data,] : [];
-
+    public List<ReagentData> EnsureReagentData()
+    {
+        return (Data != null) ? Data : new List<ReagentData>();
+    }
 
     public bool Equals(ReagentId other)
     {
@@ -76,12 +78,12 @@ public partial struct ReagentId : IEquatable<ReagentId>
 
     public string ToString(FixedPoint2 quantity)
     {
-        return Data?.ToString(Prototype, quantity) ?? $"{Prototype}:{quantity}";
+        return $"{Prototype}:{quantity}";
     }
 
     public override string ToString()
     {
-        return Data?.ToString(Prototype) ?? Prototype;
+        return $"{Prototype}";
     }
 
     public static bool operator ==(ReagentId left, ReagentId right)
