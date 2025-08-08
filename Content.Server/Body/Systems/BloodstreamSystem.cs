@@ -120,7 +120,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Common.Bloodstream;
+//using Content.Goobstation.Common.Bloodstream;
 using Content.Server._Goobstation.Wizard.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Events;
