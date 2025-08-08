@@ -66,7 +66,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly SpellbladeSystem _spellblade = default!; // Goobstation
+        //[Dependency] private readonly SpellbladeSystem _spellblade = default!; // Goobstation // EE: Disabled, we don't have wiz yet
         [Dependency] private readonly WoundSystem _wound = default!; // Shitmed Change
         private const float UpdateTimer = 1f;
 
