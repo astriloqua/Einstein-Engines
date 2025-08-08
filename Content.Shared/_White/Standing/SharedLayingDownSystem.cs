@@ -88,7 +88,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
 
         UpdateSpriteRotation(uid);
-        RaiseLocalEvent(uid, new CheckAutoGetUpEvent());
+        RaiseLocalEvent(uid, new CheckAutoGetUpEvent(GetNetEntity(uid)));
 
         if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
             return;
