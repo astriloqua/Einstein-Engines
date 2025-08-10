@@ -52,17 +52,17 @@
   - type: StaminaDamageResistance
     coefficient: 0
 
-- type: entity
-  parent: ClothingOuterHardsuitChronolegioneer
-  id: ClothingOuterHardsuitChronolegioneerUnremoveable
-  suffix: Unremoveable
-  components:
-  - type: Unremoveable
+#- type: entity # What the fuck is this thing?
+#  parent: ClothingOuterHardsuitChronolegioneer
+#  id: ClothingOuterHardsuitChronolegioneerUnremoveable
+#  suffix: Unremoveable
+#  components:
+#  - type: Unremoveable
 
 # Blueshield Hardsuit
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCentcommContraband]
+  parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBlueshieldLight
   name: "'praetorian' escort voidsuit"
   description: A voidsuit designed for an elite bodyguard. This particular one is made of a lighter metal, allowing for more maneuverability.
@@ -99,7 +99,7 @@
     coefficient: 0.6
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCentcommContraband]
+  parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBlueshieldHeavy
   name: "'praetorian' defender voidsuit"
   description: A voidsuit designed for an elite bodyguard. This particular one has addition plating outside, at the cost of maneuverability.

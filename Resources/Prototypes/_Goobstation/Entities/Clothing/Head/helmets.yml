@@ -65,7 +65,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMajorContraband ]
+  parent: [ ClothingHeadBase ]
   id: ReverseBearTrap
   name: reverse bear trap
   description: A horrifying set of shut metal jaws, rigged to a kitchen timer and secured by padlock to a head-mounted clamp. To apply, hit someone with it
@@ -88,7 +88,7 @@
         Blunt: 5
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseSyndicateContraband ]
+  parent: ClothingHeadBase
   id: ClothingHeadHatHoodCloakSith
   name: dark lord hood
   description: What began as a simple cosplay hood was illegally reinforced with armored plates, transforming it into a functional piece of armor. Looks like it's even capable of protecting the user from the lack of pressure in space.

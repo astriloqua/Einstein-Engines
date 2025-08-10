@@ -3,6 +3,19 @@
 # they are unextractable and can't be spawned (no surgery on Animals!?).
 
 - type: entity
+  abstract: true
+  parent: BasePart
+  id: PartAnimalBase
+  components:
+  # yes these sprites dont make sense i dont care its better than them being invisible
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+  - type: Icon
+    sprite: Mobs/Species/Reptilian/parts.rsi
+  - type: StaticPrice
+    price: 50
+
+- type: entity
   id: PartAnimal
   parent: BaseItem
   name: "animal body part"

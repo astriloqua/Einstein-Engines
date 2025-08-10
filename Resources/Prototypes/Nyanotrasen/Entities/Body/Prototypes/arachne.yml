@@ -6,22 +6,27 @@
     head:
       part: HeadHuman
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoHuman
+    chest:
+      part: ChestHuman
       connections:
-      - left arm
+      - groin
       - right arm
-      - thorax
-      - head
+      - left arm
+      - head # Shitmed
       organs:
         heart: OrganHumanHeart
         lungs: OrganHumanLungs
+    groin:
+      part: GroinHuman
+      connections:
+      - thorax
+      organs:
         stomach: OrganVampiricHumanoidStomach
-        liver:  OrganHumanLiver
+        liver: OrganHumanLiver
         kidneys: OrganHumanKidneys
     right arm:
       part: RightArmHuman

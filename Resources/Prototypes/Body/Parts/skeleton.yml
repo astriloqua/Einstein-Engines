@@ -56,6 +56,11 @@
         sprite: Mobs/Effects/burn_damage.rsi
 
 - type: entity
+  parent: BasePartInorganic
+  id: PartSkeletonBase
+  name: skeleton body part
+
+- type: entity
   parent: [ PartSkeletonBase, BaseChestInorganic ]
   id: ChestSkeleton
   name: skeleton chest

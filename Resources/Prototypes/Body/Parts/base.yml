@@ -1,4 +1,44 @@
 - type: entity
+  abstract: true
+  parent: BaseItem
+  id: BasePartInorganic
+  name: "body part"
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    enableOverrideDir: true
+    overrideDir: North
+  - type: ThrowingAngle # We add this so that throwing things doesn't make them freak the fuck out by automatically deciding directions.
+    angle: 90
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+  - type: Damageable
+    damageContainer: Inorganic # Shitmed Change
+  - type: BodyPart
+    partComposition: Inorganic
+  - type: SurgeryTool # Shitmed Change
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
+  - type: Gibbable
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+      Wounds: !type:Container # Shitmed Change
+        ents: []
+      Bone: !type:Container # Shitmed Change
+        ents: []
+  - type: Appearance
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - Trash
+
+
+- type: entity
   id: BasePart
   parent: BaseItem
   name: "body part"

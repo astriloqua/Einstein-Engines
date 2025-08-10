@@ -23,10 +23,15 @@
     sprite: _Goobstation/Clothing/Head/Hardsuits/blueshield.rsi
   - type: PointLight
     color: "#57b9ff"
+    rotation: 30
+    energy: 10
+    radius: 5
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -58,6 +63,8 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -67,6 +74,8 @@
   - type: ClothingGrantComponent
     component:
     - type: Stealth
+      enabledOnDeath: false
+      enabledOnCrit: false
   - type: FlashImmunity
   - type: FlashSoundSuppression
 
