@@ -9,13 +9,13 @@
   - type: BodyPart # Shitmed Change
     species: Thaven
 
-- type: entity
-  id: TorsoThaven
-  name: "thaven torso"
-  parent: [PartThaven, BaseTorso]
-  components:
-  - type: Sprite
-    state: "torso_m"
+# - type: entity
+#   id: TorsoThaven
+#   name: "thaven torso"
+#   parent: [PartThaven, BaseTorso]
+#   components:
+#   - type: Sprite
+#     state: "torso_m"
 
 - type: entity
   id: HeadThaven
@@ -24,6 +24,22 @@
   components:
   - type: Sprite
     state: "head"
+
+- type: entity
+  id: ChestThaven
+  name: "thaven chest"
+  parent: [PartThaven, BaseChest]
+  components:
+  - type: Sprite
+    state: "chest_m"
+
+- type: entity
+  id: GroinThaven
+  name: "thaven groin"
+  parent: [PartThaven, BaseGroin]
+  components:
+  - type: Sprite
+    state: "groin_m"
 
 - type: entity
   id: LeftArmThaven

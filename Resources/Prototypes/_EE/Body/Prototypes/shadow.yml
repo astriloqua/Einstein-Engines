@@ -1,7 +1,7 @@
 - type: body
   id: Shadow
   name: Shadow
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadShadow
@@ -10,17 +10,22 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoShadow
+    chest:
+      part: ChestShadow
       connections:
+      - groin
       - right arm
       - left arm
-      - right leg
-      - left leg
       - head # Shitmed Change
       organs:
         heart: OrganHumanHeart
         lungs: OrganHumanLungs
+    groin:
+      part: GroinShadow
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganHumanStomach
         liver:  OrganHumanLiver
         kidneys: OrganHumanKidneys

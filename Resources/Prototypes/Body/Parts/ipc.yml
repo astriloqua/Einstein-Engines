@@ -34,58 +34,59 @@
   - type: StaticPrice
     price: 100
 
-- type: entity
-  id: TorsoIPC
-  name: "ipc torso"
-  parent: PartIPC
-  components:
-  - type: Sprite
-    netsync: false
-    sprite: Mobs/Species/IPC/parts.rsi
-    state: "torso_m"
-  - type: Icon
-    sprite: Mobs/Species/IPC/parts.rsi
-    state: "torso_m"
-  - type: BodyPart
-    partType: Torso
-    children: # I hate this so much I want to kill it AAAAAAAAAAAAAAAAAAAAAAAA
-      head:
-        id: "head"
-        type: Head
-      left arm:
-        id: "left arm"
-        type: Arm
-      right arm:
-        id: "right arm"
-        type: Arm
-      left leg:
-        id: "left leg"
-        type: Leg
-      right leg:
-        id: "right leg"
-        type: Leg
-    organs:
-      posbrain:
-        id: "posbrain"
-      pump:
-        id: "pump"
-  - type: ContainerContainer
-    containers:
-      torso_slot: !type:ContainerSlot {}
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 400
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Slash
-        damage: 400
-      behaviors:
-      - !type:GibPartBehavior { }
+    # Woundmed: All torso's are now chest+groin
+# - type: entity
+#   id: TorsoIPC
+#   name: "ipc torso"
+#   parent: PartIPC
+#   components:
+#   - type: Sprite
+#     netsync: false
+#     sprite: Mobs/Species/IPC/parts.rsi
+#     state: "torso_m"
+#   - type: Icon
+#     sprite: Mobs/Species/IPC/parts.rsi
+#     state: "torso_m"
+#   - type: BodyPart
+#     partType: Torso
+#     children: # I hate this so much I want to kill it AAAAAAAAAAAAAAAAAAAAAAAA
+#       head:
+#         id: "head"
+#         type: Head
+#       left arm:
+#         id: "left arm"
+#         type: Arm
+#       right arm:
+#         id: "right arm"
+#         type: Arm
+#       left leg:
+#         id: "left leg"
+#         type: Leg
+#       right leg:
+#         id: "right leg"
+#         type: Leg
+#     organs:
+#       posbrain:
+#         id: "posbrain"
+#       pump:
+#         id: "pump"
+#   - type: ContainerContainer
+#     containers:
+#       torso_slot: !type:ContainerSlot {}
+#   - type: Destructible
+#     thresholds:
+#     - trigger:
+#         !type:DamageTypeTrigger
+#         damageType: Blunt
+#         damage: 400
+#       behaviors:
+#       - !type:GibPartBehavior { }
+#     - trigger:
+#         !type:DamageTypeTrigger
+#         damageType: Slash
+#         damage: 400
+#       behaviors:
+#       - !type:GibPartBehavior { }
 
 - type: entity
   id: HeadIPC

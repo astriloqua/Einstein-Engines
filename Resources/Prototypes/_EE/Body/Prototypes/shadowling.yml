@@ -6,24 +6,29 @@
     head:
       part: HeadShadowling
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoShadowling
+    chest:
+      part: ChestShadowling
       connections:
       - right arm
       - left arm
-      - right leg
-      - left leg
-      - head # Shitmed Change
+      - groin
+      - head
       organs:
         heart: OrganHumanHeart
         lungs: OrganHumanLungs
+    groin:
+      part: GroinShadowling
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganHumanStomach
-        liver:  OrganHumanLiver
-        kidneys: OrganHumanKidneys
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKdineys
     right arm:
       part: RightArmShadowling
       connections:

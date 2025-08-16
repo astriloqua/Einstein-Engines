@@ -89,26 +89,27 @@
     partType: Foot
     slotId: feet # Shitmed
 
-- type: entity
-  id: TorsoAnimal
-  name: animal torso
-  parent: PartAnimal
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: torso_m
-  - type: BodyPart
-    partType: Torso
-  - type: Damageable
-    damageContainer: Biological
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 10
-      - ReagentId: Blood
-        Quantity: 20
+# EE: Only borgs retrain torsos, rest are chest and groin
+# - type: entity
+#   id: TorsoAnimal
+#   name: animal torso
+#   parent: PartAnimal
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: torso_m
+#   - type: BodyPart
+#     partType: Torso
+#   - type: Damageable
+#     damageContainer: Biological
+#   - type: Extractable
+#     juiceSolution:
+#       reagents:
+#       - ReagentId: Fat
+#         Quantity: 10
+#       - ReagentId: Blood
+#         Quantity: 20
 
 - type: entity
   parent: [ PartAnimalBase, BaseChest ]

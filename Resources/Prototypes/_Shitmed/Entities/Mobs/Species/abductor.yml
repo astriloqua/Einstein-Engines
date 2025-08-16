@@ -34,9 +34,9 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
-    - AbductorMind
-    - type: CollectiveMind
-      defaultChannel: Abductormind
+    #- AbductorMind # EE: We just have funky languages
+    #- type: CollectiveMind
+    #  defaultChannel: Abductormind
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

@@ -54,55 +54,56 @@
           collection: MeatLaserImpact
   # Shitmed Change End
 
-- type: entity
-  id: TorsoHarpy
-  name: "harpy torso"
-  parent: PartHarpy
-  components:
-  - type: Sprite
-    netsync: false
-    sprite: Mobs/Species/Harpy/parts.rsi
-    state: "torso_m"
-  - type: Icon
-    sprite: Mobs/Species/Harpy/parts.rsi
-    state: "torso_m"
-  - type: BodyPart
-    partType: Torso
-  # Shitmed Change Start
-    toolName: "a torso"
-    containerName: "torso_slot"
-  - type: ContainerContainer
-    containers:
-      torso_slot: !type:ContainerSlot {}
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 400
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Slash
-        damage: 400
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 400
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
+# EE: Torso's replaced with chests and groins
+# - type: entity
+#   id: TorsoHarpy
+#   name: "harpy torso"
+#   parent: PartHarpy
+#   components:
+#   - type: Sprite
+#     netsync: false
+#     sprite: Mobs/Species/Harpy/parts.rsi
+#     state: "torso_m"
+#   - type: Icon
+#     sprite: Mobs/Species/Harpy/parts.rsi
+#     state: "torso_m"
+#   - type: BodyPart
+#     partType: Torso
+#   # Shitmed Change Start
+#     toolName: "a torso"
+#     containerName: "torso_slot"
+#   - type: ContainerContainer
+#     containers:
+#       torso_slot: !type:ContainerSlot {}
+#   - type: Destructible
+#     thresholds:
+#     - trigger:
+#         !type:DamageTypeTrigger
+#         damageType: Blunt
+#         damage: 400
+#       behaviors:
+#       - !type:GibPartBehavior { }
+#     - trigger:
+#         !type:DamageTypeTrigger
+#         damageType: Slash
+#         damage: 400
+#       behaviors:
+#       - !type:GibPartBehavior { }
+#     - trigger:
+#         !type:DamageTypeTrigger
+#         damageType: Heat
+#         damage: 400
+#       behaviors:
+#       - !type:SpawnEntitiesBehavior
+#         spawnInContainer: true
+#         spawn:
+#           Ash:
+#             min: 1
+#             max: 1
+#       - !type:BurnBodyBehavior { }
+#       - !type:PlaySoundBehavior
+#         sound:
+#           collection: MeatLaserImpact
   # Shitmed Change End
 
 - type: entity

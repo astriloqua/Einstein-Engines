@@ -16,13 +16,29 @@
       - ReagentId: Blood
         Quantity: 10
 
+# - type: entity
+#   id: TorsoChitinid
+#   name: "chitinid torso"
+#   parent: [PartChitinidBase, BaseTorso]
+#   components:
+#   - type: Sprite
+#     state: "torso_m"
+#   - type: Extractable
+#     juiceSolution:
+#       reagents:
+#       - ReagentId: Fat
+#         Quantity: 10
+#       - ReagentId: Blood
+#         Quantity: 20
+
+
 - type: entity
-  id: TorsoChitinid
-  name: "chitinid torso"
-  parent: [PartChitinidBase, BaseTorso]
+  id: ChestChitinid
+  name: "chitinid chest"
+  parent: [PartChitinidBase, BaseChest]
   components:
   - type: Sprite
-    state: "torso_m"
+    state: "chest_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -30,6 +46,21 @@
         Quantity: 10
       - ReagentId: Blood
         Quantity: 20
+
+- type: entity
+  id: GroinChitinid
+  name: "chitinid groin"
+  parent: [PartChitinidBase, BaseGroin]
+  components:
+  - type: Sprite
+    state: "groin_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
 
 
 - type: entity

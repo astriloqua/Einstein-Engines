@@ -6,24 +6,29 @@
     head:
       part: HeadShadowkin
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganShadowkinBrain
         eyes: OrganShadowkinEyes
-    torso:
-      part: TorsoShadowkin
+    chest:
+      part: ChestShadowkin
       connections:
+      - groin
       - right arm
       - left arm
-      - right leg
-      - left leg
-      - head # Shitmed
+      - head
       organs:
         heart: OrganShadowkinHeart
-        stomach: OrganShadowkinStomach
-        liver:  OrganShadowkinLiver
-        kidneys: OrganShadowkinKidneys
         lungs: OrganShadowkinCore
+    groin:
+      part: GroinShadowkin
+      connections:
+      - right leg
+      - left leg
+      organs:
+        stomach: OrganShadowkinStomach
+        liver: OrganShadowkinLiver
+        kidneys: OrganShadowkinKidneys
     right arm:
       part: RightArmShadowkin
       connections:

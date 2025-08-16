@@ -1,11 +1,27 @@
+# - type: entity
+#   id: TorsoShadowling
+#   name: "Shadowling torso"
+#   parent: BaseTorso
+#   components:
+#   - type: Sprite
+#     sprite: _EE/Mobs/Species/Shadowling/parts.rsi
+#     state: "torso_m"
+#   - type: Extractable
+#     juiceSolution:
+#       reagents:
+#       - ReagentId: Nutriment
+#         Quantity: 10
+#       - ReagentId: FluorosulfuricAcid
+#         Quantity: 20
+
 - type: entity
-  id: TorsoShadowling
-  name: "Shadowling torso"
-  parent: BaseTorso
+  id: ChestShadowling
+  name: "Shadowling chest"
+  parent: BaseChest
   components:
   - type: Sprite
     sprite: _EE/Mobs/Species/Shadowling/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -13,6 +29,22 @@
         Quantity: 10
       - ReagentId: FluorosulfuricAcid
         Quantity: 20
+
+- type: entity
+  id: GroinShadowling
+  name: "Shadowling groin"
+  parent: BaseGroin
+  components:
+  - type: Sprite
+    sprite: _EE/Mobs/Species/Shadowling/parts.rsi
+    state: "groin_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 10
 
 - type: entity
   id: HeadShadowling

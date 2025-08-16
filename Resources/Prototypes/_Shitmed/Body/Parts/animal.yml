@@ -27,4 +27,4 @@
     layers:
     - state: torso
   - type: BodyPart
-    partType: Torso
+    partType: Chest
