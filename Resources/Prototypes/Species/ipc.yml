@@ -66,6 +66,7 @@
       defaultMarkings: [ MobIPCChestDefault ]
     HeadSide:
       points: 6
+      required: false
     Legs:
       points: 4
       required: true

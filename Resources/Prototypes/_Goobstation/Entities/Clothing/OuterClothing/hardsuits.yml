@@ -42,8 +42,8 @@
     walkModifier: 0.70
     sprintModifier: 0.70
   - type: HeldSpeedModifier
-  - type: StasisProtection
-  - type: StasisBlinkProvider
+  #- type: StasisProtection # EE: Sounds wizardy
+  #- type: StasisBlinkProvider
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
       head: ClothingHeadHelmetHardsuitChronolegioneer

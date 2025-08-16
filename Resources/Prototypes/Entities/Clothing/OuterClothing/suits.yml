@@ -145,15 +145,9 @@
         - FullBodyOuter
         - WhitelistChameleon
         - HidesHarpyWings
-    - type: FireProtection
-      reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
-    - type: ClothingSpeedModifier
-      walkModifier: 0.8
-      sprintModifier: 0.8
-    - type: HeldSpeedModifier
-    - type: GroupExamine
-    - type: ProtectedFromStepTriggers
-      slots: WITHOUT_POCKET
+    # - type: HeldSpeedModifier # EE: No clue what this does
+    # - type: ProtectedFromStepTriggers # EE: Doesn't this do the same with ClothingRequiredStepTriggerImmune
+    #   slots: WITHOUT_POCKET
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -186,7 +180,7 @@
       toggleable-clothing: !type:Container {}
   - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
-  - type: ProtectedFromStepTriggers
+  #- type: ProtectedFromStepTriggers
   - type: Tag
     tags:
       - FullBodyOuter

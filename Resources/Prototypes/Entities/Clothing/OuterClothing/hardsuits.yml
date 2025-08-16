@@ -1286,13 +1286,13 @@
   - type: FireProtection
     reduction: 0.8
   - type: StaminaDamageResistance # Goobstation - Start
-    coefficient: 0
+    coefficient: 0.05
   - type: ClothingSlowOnDamageModifier
     modifier: 0.1
   - type: ClothingModifyStunTime
     modifier: 0.1
-  - type: ModifyStandingUpTime
-    multiplier: 0.1
+  #- type: ModifyStandingUpTime # EE: We don't have proper goob modules
+  #  multiplier: 0.1
   - type: Armor
     coverage:
     - Chest
@@ -1315,8 +1315,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
-  - type: StaminaDamageResistance
-    coefficient: 0.1 # 90%
 
 #CBURN Hardsuit
 - type: entity
