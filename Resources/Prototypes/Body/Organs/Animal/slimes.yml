@@ -16,8 +16,6 @@
         Destroyed: 0
       slotId: core
     - type: Stomach
-    - type: Organ
-      slotId: core
     - type: Metabolizer
       maxPoisonsProcessable: 3
       metabolizerTypes: [ Slime ]
@@ -53,10 +51,9 @@
         Normal: 28
         Damaged: 16
         Destroyed: 0
+      slotId: lungs
     - type: Lung
       alert: LowNitrogen
-    - type: Organ
-      slotId: lungs
     - type: Metabolizer
       removeEmpty: true
       solutionOnBody: false

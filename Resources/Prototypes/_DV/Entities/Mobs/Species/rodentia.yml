@@ -54,7 +54,7 @@
     speechVerb: Rodentia
     speechSounds: Squeak
     allowedEmotes: ['Squeak']
-  - type: CheeseAccent
+  # - type: CheeseAccent # EE: What the fuck is this?
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -67,8 +67,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: ScaleData # Goobstation
-    scale: 0.8, 0.8
   - type: Sprite
     scale: 0.8, 0.8
     layers:
@@ -135,7 +133,7 @@
       Male: MaleRodentia
       Female: FemaleRodentia
       Unsexed: MaleRodentia
-  - type: Rummager
+  # - type: Rummager # EE: What is this?
   - type: AlwaysTriggerMousetrap
   - type: PseudoItem
     storedOffset: -10,0
