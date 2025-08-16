@@ -1,4 +1,31 @@
 - type: entity
+  abstract: true
+  parent: BasePartInorganic
+  id: PartSiliconBase
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+  - type: Icon
+    sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+  - type: StaticPrice
+    price: 15 #Goobstation - Increased price
+  - type: BodyPart # Shitmed Change
+    species: Cyborg
+  - type: Tag
+    tags:
+    - Trash
+  - type: PhysicalComposition #Goobstation - Recycle update
+    materialComposition:
+      Steel: 62
+      Glass: 25
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+    - Robotics
+  - type: Damageable # Shitmed
+    damageModifierSet: Silicon
+
+- type: entity
   id: PartSilicon
   parent: BaseItem
   abstract: true

@@ -256,14 +256,12 @@
   - type: MovedByPressure
     cutoffTime: 1.0
   - type: LayingDown # WD EDIT
-  - type: Targeting # Shitmed Change
-  - type: CanEscapeInventory # GoobStation - Escape being picked up by players
   - type: Consciousness
     cap: 190
     threshold: 95
-  - type: Penetratable # Goobstation - Better snipers
-    penetrateDamage: 50
-    damagePenalty: 0.2
+  #- type: Penetratable # Goobstation - Better snipers # EE: We don't have it
+  #  penetrateDamage: 50
+  #  damagePenalty: 0.2
   - type: ExaminableCharacter # WWDP
 
 - type: entity

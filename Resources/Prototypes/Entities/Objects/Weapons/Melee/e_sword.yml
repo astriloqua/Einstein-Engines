@@ -362,14 +362,6 @@
       right:
       - state: inhand-right-blade
         shader: unshaded
-  - type: MeleeWeapon
-    heavyStaminaCost: 1 # goob edit
-    wideAnimationRotation: 145
-    attackRate: 1
-    hidden: true
-    damage:
-      types:
-        Blunt: 1
   - type: Tag
     tags:
     - Write

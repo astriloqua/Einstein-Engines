@@ -144,10 +144,10 @@
     - type: LanguageKnowledge
       speaks: [RobotTalk]
       understands: [RobotTalk]
-    - type: ChangeVoiceInContainer
-      whitelist:
-        components:
-        - SecretStash
+    #- type: ChangeVoiceInContainer # EE: Whatever this is, we dont have it
+    #  whitelist:
+    #    components:
+    #    - SecretStash
     - type: NerveSystem # backmen: wounding
     - type: ConsciousnessRequired
       identifier: "nerveSystem"

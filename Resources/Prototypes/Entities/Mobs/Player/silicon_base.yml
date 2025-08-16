@@ -156,7 +156,6 @@
           sprite: "Effects/creampie.rsi"
           state: "creampie_human"
           visible: false
-
     #- type: Bloodstream This is left commented out because it's not necessary for a robot, but you may want it.
     #  damageBleedModifiers: BloodlossIPC
     #  bloodReagent: Oil
@@ -335,9 +334,9 @@
     - type: Consciousness
       cap: 190
       threshold: 95
-    - type: Penetratable # Goobstation - Better snipers
-      penetrateDamage: 50
-      damagePenalty: 0.2
+    #- type: Penetratable # Goobstation - Better snipers # EE: We don't have it yet
+    #  penetrateDamage: 50
+    #  damagePenalty: 0.2
     - type: CombatMode
       canDisarm: true
     - type: ExaminableCharacter # WWDP
