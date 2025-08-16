@@ -139,7 +139,7 @@
     reduction: 0.75 # almost perfectly sealed, atmos firesuit is better
   - type: IgniteFromGasImmunity
     parts:
-    - Torso
+    - Chest
     - Groin
     - LeftArm
     - LeftHand
@@ -163,7 +163,7 @@
     - Hand
     - Leg
     - Foot
-    traumaDeductions: # having a suit on saves your limbs  
+    traumaDeductions: # having a suit on saves your limbs
       Dismemberment: 0.2
       OrganDamage: 0.2
       BoneDamage: 0.2
@@ -332,7 +332,7 @@
     coefficient: 0.01 # Not complete protection from fire
   - type: IgniteFromGasImmunity
     parts:
-    - Torso
+    - Chest
     - Groin
     - LeftArm
     - LeftHand

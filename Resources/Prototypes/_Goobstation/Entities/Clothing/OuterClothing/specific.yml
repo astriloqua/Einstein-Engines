@@ -51,11 +51,6 @@
   - type: ClothingGrantComponent
     component: # same as CE suit
       - type: SupermatterImmune
-      - type: EventHorizonIgnore
-        horizonWhitelist:
-          tags:
-          - Tesla
-      - type: ContainmentFieldIgnore
   - type: Tag
     tags:
       - HEVSuit

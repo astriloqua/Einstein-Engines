@@ -545,7 +545,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
 
 - type: entity
   parent: SurgeryInsertBrainTorso

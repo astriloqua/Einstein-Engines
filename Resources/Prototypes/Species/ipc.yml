@@ -67,14 +67,6 @@
     HeadSide:
       points: 6
       required: false
-    Legs:
-      points: 4
-      required: true
-      defaultMarkings: [ MobIPCLLegDefault, MobIPCLFootDefault, MobIPCRLegDefault, MobIPCRFootDefault ]
-    Arms:
-      points: 4
-      required: true
-      defaultMarkings: [ MobIPCLArmDefault, MobIPCLHandDefault, MobIPCRArmDefault, MobIPCRHandDefault ]
     RightLeg:
       points: 6
       required: false

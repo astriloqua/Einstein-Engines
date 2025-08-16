@@ -188,7 +188,7 @@
         time: 5
       - !type:ChemAddMoodlet
         moodPrototype: StrongStimulant
-      - !type:RemoveComponentEffect # goob edit
+      - !type:RemoveComponentEffect # goob edit # EE: Dont even know at this point
         component: DelayedKnockdown
         locale: reagent-effect-guidebook-remove-delayed-knockdown
       - !type:TakeStaminaDamage # goob edit
