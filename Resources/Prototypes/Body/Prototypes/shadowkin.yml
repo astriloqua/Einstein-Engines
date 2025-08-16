@@ -1,7 +1,7 @@
 - type: body
   id: Shadowkin
   name: "Shadowkin"
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadShadowkin

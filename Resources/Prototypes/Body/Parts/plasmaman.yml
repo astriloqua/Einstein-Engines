@@ -17,13 +17,43 @@
   - type: IgniteFromGasPart
     gas: Oxygen
 
+# - type: entity
+#   id: TorsoPlasmaman
+#   name: plasmaman torso
+#   parent: [PartPlasmaman, BaseTorso]
+#   components:
+#   - type: Sprite
+#     state: torso_m
+#   - type: Butcherable
+#     butcherDelay: 6.0
+#     spawned:
+#     - id: SheetPlasma1
+#       amount: 3
+#   - type: IgniteFromGasPart
+#     fireStacks: 0.06
+
 - type: entity
-  id: TorsoPlasmaman
-  name: plasmaman torso
-  parent: [PartPlasmaman, BaseTorso]
+  id: ChestPlasmaman
+  name: plasmaman chest
+  parent: [PartPlasmaman, BaseChest]
   components:
   - type: Sprite
-    state: torso_m
+    state: chest_m
+  - type: Butcherable
+    butcherDelay: 6.0
+    spawned:
+    - id: SheetPlasma1
+      amount: 3
+  - type: IgniteFromGasPart
+    fireStacks: 0.06
+
+- type: entity
+  id: GroinPlasmaman
+  name: plasmaman groin
+  parent: [PartPlasmaman, BaseGroin]
+  components:
+  - type: Sprite
+    state: groin_m
   - type: Butcherable
     butcherDelay: 6.0
     spawned:

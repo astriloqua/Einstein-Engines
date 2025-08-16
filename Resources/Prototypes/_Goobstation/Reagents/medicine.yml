@@ -732,9 +732,6 @@
         conditions:
         - !type:ReagentThreshold
           min: 20
-        - !type:OrganType
-          type: Yowie
-          shouldHave: false
       - !type:ChemAddMoodlet
         moodPrototype: MildPainkiller
       - !type:AdjustConsciousness
