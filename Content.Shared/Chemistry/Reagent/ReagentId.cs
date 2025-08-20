@@ -40,11 +40,6 @@ public partial struct ReagentId : IEquatable<ReagentId>
         return (Data != null) ? Data : new List<ReagentData>();
     }
 
-    public List<ReagentData> EnsureReagentData()
-    {
-        return (Data != null) ? Data : new List<ReagentData>();
-    }
-
     public bool Equals(ReagentId other)
     {
         if (Prototype != other.Prototype)

@@ -55,7 +55,7 @@ public partial class InventorySystem : EntitySystem
             }
         }
 
-        target = EntityUid.Invalid;
+        targetUid = EntityUid.Invalid;
         return false;
     }
 

@@ -106,59 +106,6 @@ public partial class SharedBodySystem
     }
 
     /// <summary>
-    /// Returns a list of Entity<<see cref="T"/>, <see cref="OrganComponent"/>>
-    /// for each organ of the body
-    /// </summary>
-    /// <typeparam name="T">The component that we want to return</typeparam>
-    /// <param name="entity">The body to check the organs of</param>
-    public List<Entity<T, OrganComponent>> GetBodyOrganEntityComps<T>(
-        Entity<BodyComponent?> entity)
-        where T : IComponent
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return new List<Entity<T, OrganComponent>>();
-
-        var query = GetEntityQuery<T>();
-        var list = new List<Entity<T, OrganComponent>>(3);
-        foreach (var organ in GetBodyOrgans(entity.Owner, entity.Comp))
-        {
-            if (query.TryGetComponent(organ.Id, out var comp))
-                list.Add((organ.Id, comp, organ.Component));
-        }
-
-        return list;
-    }
-
-    /// <summary>
-    ///     Tries to get a list of ValueTuples of <see cref="T"/> and OrganComponent on each organs
-    ///     in the given body.
-    /// </summary>
-    /// <param name="uid">The body entity id to check on.</param>
-    /// <param name="comps">The list of components.</param>
-    /// <param name="body">The body to check for organs on.</param>
-    /// <typeparam name="T">The component to check for.</typeparam>
-    /// <returns>Whether any were found.</returns>
-    public bool TryGetBodyOrganEntityComps<T>(
-        Entity<BodyComponent?> entity,
-        [NotNullWhen(true)] out List<Entity<T, OrganComponent>>? comps)
-        where T : IComponent
-    {
-        if (!Resolve(entity.Owner, ref entity.Comp))
-        {
-            comps = null;
-            return false;
-        }
-
-        comps = GetBodyOrganEntityComps<T>(entity);
-
-        if (comps.Count != 0)
-            return true;
-
-        comps = null;
-        return false;
-    }
-
-    /// <summary>
     /// Creates the specified organ slot on the parent entity.
     /// </summary>
     private OrganSlot? CreateOrganSlot(Entity<BodyPartComponent?> parentEnt, string slotId)

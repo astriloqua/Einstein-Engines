@@ -156,7 +156,6 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly WoundSystem _woundSystem = default!; // Shitmed Change
     [Dependency] private readonly TraumaSystem _trauma = default!; // Shitmed Change
     public override void Initialize()
