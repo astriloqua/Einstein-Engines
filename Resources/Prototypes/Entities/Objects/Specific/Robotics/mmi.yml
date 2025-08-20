@@ -47,7 +47,8 @@
   - type: Appearance
   - type: GuideHelp
     guides:
-      - Cyborgs
+    - Cyborgs
+    - Robotics
   - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks: [TauCetiBasic, RobotTalk]
@@ -69,7 +70,7 @@
         startingItem: OrganHumanBrain
         whitelist:
           tags: # IPCMMI - changed component requirement to a tag bc you'd be able to infinitely stack regular + reverse MMIs otherwise
-            - Brain
+          - Brain
 
 - type: entity
   parent: BaseItem

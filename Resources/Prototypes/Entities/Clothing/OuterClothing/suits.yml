@@ -34,7 +34,7 @@
     - WhitelistChameleon
     - FullBodyOuter
     - HidesHarpyWings
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 
 - type: entity
@@ -73,7 +73,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.04
   - type: TemperatureProtection
-    coefficient: 0.005
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.05
   - type: FireProtection
     reduction: 0.65 # doesnt have a full seal so not as good
   - type: Armor
@@ -95,12 +96,12 @@
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: GroupExamine
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - WhitelistChameleon
-      - HidesHarpyWings
+    - WhitelistChameleon
+    - HidesHarpyWings
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -145,9 +146,9 @@
         - FullBodyOuter
         - WhitelistChameleon
         - HidesHarpyWings
-    # - type: HeldSpeedModifier # EE: No clue what this does
-    # - type: ProtectedFromStepTriggers # EE: Doesn't this do the same with ClothingRequiredStepTriggerImmune
-    #   slots: WITHOUT_POCKET
+    - type: HeldSpeedModifier # EE: No clue what this does
+    - type: ProtectedFromStepTriggers # EE: Doesn't this do the same with ClothingRequiredStepTriggerImmune
+      slots: WITHOUT_POCKET
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -178,17 +179,17 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container {}
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   #- type: ProtectedFromStepTriggers
   - type: Tag
     tags:
-      - FullBodyOuter
-      - WhitelistChameleon
-      - HidesHarpyWings
+    - FullBodyOuter
+    - WhitelistChameleon
+    - HidesHarpyWings
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -202,7 +203,8 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: Armor
     coverage:
     - Chest
@@ -264,11 +266,11 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - FullBodyOuter
+    - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -294,11 +296,11 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container {}
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - FullBodyOuter
+    - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -320,7 +322,7 @@
   - type: Construction
     graph: ClothingOuterSuitIan
     node: suit
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 
 - type: entity
@@ -352,9 +354,9 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
-  - type: ToggleableClothing # Goobstation - Modsuits change
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitCarp
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitCarp
+      #head: ClothingHeadHelmetHardsuitCarp # EE: Rel. Goobstation - Modsuits
 
 - type: entity # From Upstream
   parent: ClothingOuterBase

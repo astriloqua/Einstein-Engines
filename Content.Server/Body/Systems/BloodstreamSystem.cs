@@ -124,7 +124,6 @@
 using Content.Server._Goobstation.Wizard.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Events;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
@@ -133,10 +132,12 @@ using Content.Shared.Alert;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Drunk;
 using Content.Shared.FixedPoint;
+using Content.Shared.Forensics;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
@@ -178,7 +179,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedDrunkSystem _drunkSystem = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
@@ -386,16 +387,40 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
 
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)
     {
-        var chemicalSolution = _solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.ChemicalSolutionName);
-        var bloodSolution = _solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.BloodSolutionName);
-        var tempSolution = _solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.BloodTemporarySolutionName);
+        if (!_solutionContainerSystem.EnsureSolution(entity.Owner,
+                entity.Comp.ChemicalSolutionName,
+                out var chemicalSolution) ||
+            !_solutionContainerSystem.EnsureSolution(entity.Owner,
+                entity.Comp.BloodSolutionName,
+                out var bloodSolution) ||
+            !_solutionContainerSystem.EnsureSolution(entity.Owner,
+                entity.Comp.BloodTemporarySolutionName,
+                out var tempSolution))
+            return;
 
         chemicalSolution.MaxVolume = entity.Comp.ChemicalMaxVolume;
         bloodSolution.MaxVolume = entity.Comp.BloodMaxVolume;
         tempSolution.MaxVolume = entity.Comp.BleedPuddleThreshold * 4; // give some leeway, for chemstream as well
 
+        // Ensure blood that should have DNA has it; must be run here, in case DnaComponent has not yet been initialized
+
+        if (TryComp<DnaComponent>(entity.Owner, out var donorComp) && donorComp.DNA == String.Empty)
+        {
+            donorComp.DNA = _forensicsSystem.GenerateDNA();
+
+            var ev = new GenerateDnaEvent { Owner = entity.Owner, DNA = donorComp.DNA };
+            RaiseLocalEvent(entity.Owner, ref ev);
+        }
+
+        // Make sure the blood solution is actually clean first.
+        var reagentsToRemove = new List<ReagentQuantity>();
+        foreach (var reagent in bloodSolution.Contents)
+            reagentsToRemove.Add(reagent);
+        foreach (var reagent in reagentsToRemove)
+            bloodSolution.RemoveReagent(reagent);
+
         // Fill blood solution with BLOOD
-        bloodSolution.AddReagent(entity.Comp.BloodReagent, entity.Comp.BloodMaxVolume - bloodSolution.Volume);
+        bloodSolution.AddReagent(new ReagentId(entity.Comp.BloodReagent, GetEntityBloodData(entity.Owner)), entity.Comp.BloodMaxVolume - bloodSolution.Volume);
     }
 
     private void OnDamageChanged(Entity<BloodstreamComponent> ent, ref DamageChangedEvent args)
@@ -453,18 +478,18 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
         {
             args.Message.PushNewline();
             if (!args.IsSelfAware)
-                args.Message.AddMarkup(Loc.GetString("bloodstream-component-profusely-bleeding", ("target", ent.Owner)));
+                args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-profusely-bleeding", ("target", ent.Owner)));
             else
-                args.Message.AddMarkup(Loc.GetString("bloodstream-component-selfaware-profusely-bleeding"));
+                args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-selfaware-profusely-bleeding"));
         }
         // Shows bleeding message when bleeding, but less than profusely.
         else if (ent.Comp.BleedAmount > 0)
         {
             args.Message.PushNewline();
             if (!args.IsSelfAware)
-                args.Message.AddMarkup(Loc.GetString("bloodstream-component-bleeding", ("target", ent.Owner)));
+                args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-bleeding", ("target", ent.Owner)));
             else
-                args.Message.AddMarkup(Loc.GetString("bloodstream-component-selfaware-bleeding"));
+                args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-selfaware-bleeding"));
         }
 
         // If the mob's blood level is below the damage threshhold, the pale message is added.
@@ -472,9 +497,9 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
         {
             args.Message.PushNewline();
             if (!args.IsSelfAware)
-                args.Message.AddMarkup(Loc.GetString("bloodstream-component-looks-pale", ("target", ent.Owner)));
+                args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-looks-pale", ("target", ent.Owner)));
             else
-                args.Message.AddMarkup(Loc.GetString("bloodstream-component-selfaware-looks-pale"));
+                args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-selfaware-looks-pale"));
         }
     }
 
@@ -602,10 +627,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
                 tempSolution.AddSolution(temp, _prototypeManager);
             }
 
-            if (_puddleSystem.TrySpillAt(uid, tempSolution, out var puddleUid, sound: false))
-            {
-                _forensicsSystem.TransferDna(puddleUid, uid, canDnaBeCleaned: false);
-            }
+            _puddleSystem.TrySpillAt(uid, tempSolution, out var puddleUid, sound: false);
 
             tempSolution.RemoveAllSolution();
         }
@@ -691,10 +713,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
             _solutionContainerSystem.RemoveAllSolution(component.TemporarySolution.Value);
         }
 
-        if (_puddleSystem.TrySpillAt(uid, tempSol, out var puddleUid))
-        {
-            _forensicsSystem.TransferDna(puddleUid, uid, canDnaBeCleaned: false);
-        }
+        _puddleSystem.TrySpillAt(uid, tempSol, out var puddleUid);
     }
 
     /// <summary>
@@ -719,7 +738,41 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
         component.BloodReagent = reagent;
 
         if (currentVolume > 0)
-            _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, currentVolume, out _);
+            _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, currentVolume, null, GetEntityBloodData(uid));
+    }
+
+    private void OnDnaGenerated(Entity<BloodstreamComponent> entity, ref GenerateDnaEvent args)
+    {
+        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
+        {
+            foreach (var reagent in bloodSolution.Contents)
+            {
+                List<ReagentData> reagentData = reagent.Reagent.EnsureReagentData();
+                reagentData.RemoveAll(x => x is DnaData);
+                reagentData.AddRange(GetEntityBloodData(entity.Owner));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Get the reagent data for blood that a specific entity should have.
+    /// </summary>
+    public List<ReagentData> GetEntityBloodData(EntityUid uid)
+    {
+        var bloodData = new List<ReagentData>();
+        var dnaData = new DnaData();
+
+        if (TryComp<DnaComponent>(uid, out var donorComp))
+        {
+            dnaData.DNA = donorComp.DNA;
+        } else
+        {
+            dnaData.DNA = Loc.GetString("forensics-dna-unknown");
+        }
+
+        bloodData.Add(dnaData);
+
+        return bloodData;
     }
 
     /// <summary>
@@ -751,7 +804,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shitmed Chang
         // First, check if the entity has enough hunger/thirst
         var hungerComp = CompOrNull<HungerComponent>(ent);
         var thirstComp = CompOrNull<ThirstComponent>(ent);
-        if (usedHunger > 0 && hungerComp is not null && (hungerComp.CurrentHunger < usedHunger || hungerComp.CurrentThreshold <= HungerThreshold.Starving)
+        if (usedHunger > 0 && hungerComp is not null && (_hunger.GetHunger(hungerComp) < usedHunger || hungerComp.CurrentThreshold <= HungerThreshold.Starving)
             ||  usedThirst > 0 && thirstComp is not null && (thirstComp.CurrentThirst < usedThirst || thirstComp.CurrentThirstThreshold <= ThirstThreshold.Parched))
             return false;
 

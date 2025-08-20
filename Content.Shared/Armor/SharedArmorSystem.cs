@@ -122,8 +122,7 @@ public abstract class SharedArmorSystem : EntitySystem
     private FormattedMessage GetArmorExamine(ArmorComponent component)
     {
         var msg = new FormattedMessage();
-
-        msg.AddMarkup(Loc.GetString("armor-examine"));
+        msg.AddMarkupOrThrow(Loc.GetString("armor-examine"));
 
         var coverage = component.ArmorCoverage;
         var armorModifiers = component.Modifiers;

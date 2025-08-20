@@ -45,13 +45,14 @@
     price: 5
   - type: Tag
     tags:
-      - Trash
+    - Trash
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
   - type: GuideHelp
     guides:
-      - Cyborgs
+    - Cyborgs
+    - Robotics
   # Shitmed Change Start
   - type: SurgeryTool
     startSound:
@@ -62,7 +63,7 @@
   # Shitmed Change End
 
 - type: entity
-  id: BaseBorgLeftArm
+  id: LeftArmBorg
   parent: PartSilicon
   name: cyborg left arm
   components:
@@ -85,7 +86,7 @@
     - BorgLArm
 
 - type: entity
-  id: BaseBorgRightArm
+  id: RightArmBorg
   parent: PartSilicon
   name: cyborg right arm
   components:
@@ -108,7 +109,7 @@
     - BorgRArm
 
 - type: entity
-  id: BaseBorgLegLeft
+  id: LeftLegBorg
   parent: PartSilicon
   name: cyborg left leg
   components:
@@ -132,7 +133,7 @@
   - type: MovementBodyPart
 
 - type: entity
-  id: BaseBorgLegRight
+  id: RightLegBorg
   parent: PartSilicon
   name: cyborg right leg
   components:
@@ -156,7 +157,7 @@
   - type: MovementBodyPart
 
 - type: entity
-  id: BaseLightHeadBorg
+  id: LightHeadBorg
   parent: PartSilicon
   name: cyborg head
   components:
@@ -173,8 +174,8 @@
     - BorgHead
 
 - type: entity
-  parent: [ PartSiliconBase, BaseChestInorganic ]
   id: TorsoBorg
+  parent: [ PartSiliconBase, BaseChestInorganic ]
   name: cyborg torso
   components:
   - type: Sprite

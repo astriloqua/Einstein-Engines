@@ -16577,3 +16577,171 @@ Entries:
   id: 7296
   time: '2025-07-04T21:03:29.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/2494
+- author: Mike32oz
+  changes:
+    - type: Fix
+      message: Ghostbar fixed. Now you can move again.
+  id: 7297
+  time: '2025-07-08T09:44:25.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2497
+- author: VMSolidus
+  changes:
+    - type: Add
+      message: Added code support for Antag-Specific Traits & Loadouts.
+    - type: Add
+      message: Nuclear Operatives now spawn with Traits & Loadouts.
+    - type: Add
+      message: >-
+        Added support for Nationality, Employer, and Lifepath to all directly
+        add bonus traits.
+    - type: Add
+      message: >-
+        Paradox Anomalies now also spawn with the victim's full list of Traits &
+        Loadouts. Thus a paradox anomaly duplicating the Head of Security will
+        also spawn with the head of security's selection of "HoS Gun", and is
+        therefore also a valid objective target.
+    - type: Tweak
+      message: >-
+        Markings now apply AFTER traits and loadouts, meaning that they can now
+        go on top of cybernetic limbs.
+  id: 7298
+  time: '2025-07-08T17:26:55.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2498
+- author: Lumminal
+  changes:
+    - type: Add
+      message: >-
+        Tape recorders and cassettes can now be crafted in autolathes for
+        recording crew speech.
+    - type: Add
+      message: Reporters, detectives have tape recorder in their loadouts.
+  id: 7299
+  time: '2025-07-08T19:36:44.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2455
+- author: Spatison
+  changes:
+    - type: Add
+      message: A large amount of content has been migrated from Wizden
+  id: 7300
+  time: '2025-07-09T15:46:20.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2449
+- author: Ghost581
+  changes:
+    - type: Tweak
+      message: Jetpacks can go on suit storage slot
+  id: 7301
+  time: '2025-07-10T16:00:26.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2501
+- author: Will-Oliver-Br
+  changes:
+    - type: Tweak
+      message: Now you can see if there's a beaker in the chemmaster.
+  id: 7302
+  time: '2025-07-10T16:03:00.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2492
+- author: VMSolidus
+  changes:
+    - type: Add
+      message: Added a PDA slot for storing your character's passport.
+  id: 7303
+  time: '2025-07-10T17:18:37.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2499
+- author: VMSolidus
+  changes:
+    - type: Fix
+      message: >-
+        Fixed a bug with Traits Anticheat incorrectly triggering if the player
+        had selected enough 0 slot traits.
+  id: 7304
+  time: '2025-07-11T18:47:44.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2502
+- author: VMSolidus
+  changes:
+    - type: Fix
+      message: >-
+        Finally completed Space Wind V5's airflow math. It no longer produces
+        extremely inconsistent airflow values in and around airlocks and walls.
+  id: 7305
+  time: '2025-07-17T20:31:30.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2506
+- author: Spatison
+  changes:
+    - type: Fix
+      message: Shuttle docking emergency announcement has been fixed
+    - type: Fix
+      message: The miners shuttle can now arrive at the station
+    - type: Fix
+      message: Ghost toggle light now works
+  id: 7306
+  time: '2025-07-23T05:15:55.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2512
+- author: VMSolidus
+  changes:
+    - type: Add
+      message: >-
+        Added a new trait, Species Swap: Shell. This trait turns a human
+        character into an IPC made to look like a human, complete with all of
+        the mechanical features of an IPC. Hazel enthusiasts rejoice.
+  id: 7307
+  time: '2025-07-30T02:28:05.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2518
+- author: VMSolidus
+  changes:
+    - type: Tweak
+      message: >-
+        Most traits that were previously IPC exclusive can now also be taken by
+        Shells. 
+    - type: Fix
+      message: Fixed Shells not having any emote sounds.
+  id: 7308
+  time: '2025-07-30T04:50:25.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2519
+- author: RedFoxIV
+  changes:
+    - type: Fix
+      message: >-
+        Chargers and energy turrets no longer make the lights flash rapidly if
+        their power draw is too high
+    - type: Add
+      message: Lights dim if the powernet they're connected to is overloaded
+  id: 7309
+  time: '2025-07-31T16:21:22.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2505
+- author: VMSolidus
+  changes:
+    - type: Fix
+      message: >-
+        Fixed the Species Swap: Shell trait wiping your character's marking
+        selections.
+    - type: Remove
+      message: >-
+        Shells no longer have an icon to turn on internals since they don't have
+        lungs to begin with.
+    - type: Add
+      message: >-
+        TraitModifyComponent and its variations can now force modified
+        components to redo their Initialization logic.
+  id: 7310
+  time: '2025-08-02T15:47:19.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2520
+- author: Spatison
+  changes:
+    - type: Fix
+      message: Lavaland shuttle can no longer arrive at Central Command Station
+  id: 7311
+  time: '2025-08-10T20:31:22.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2522
+- author: ODJ
+  changes:
+    - type: Tweak
+      message: Arrivals adjusted
+  id: 7312
+  time: '2025-08-10T20:32:03.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2529
+- author: ODJ
+  changes:
+    - type: Fix
+      message: Fixed Pebble.
+  id: 7313
+  time: '2025-08-10T20:32:11.0000000+00:00'
+  url: https://github.com/Simple-Station/Einstein-Engines/pull/2528

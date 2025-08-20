@@ -490,7 +490,7 @@ namespace Content.Shared.Chemistry.Components
             {
                 var (reagent, curQuantity) = Contents[i];
 
-                if(reagent != toRemove.Reagent)
+                if(reagent.Prototype != toRemove.Reagent.Prototype)
                     continue;
 
                 var newQuantity = curQuantity - toRemove.Quantity;

@@ -1,6 +1,7 @@
-﻿using Content.Shared.FixedPoint;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using System.Linq;
 
 namespace Content.Shared.Chemistry.Reagent;
 
@@ -31,6 +32,12 @@ public partial struct ReagentId : IEquatable<ReagentId>
     public ReagentId()
     {
         Prototype = default!;
+        Data = new();
+    }
+
+    public List<ReagentData> EnsureReagentData()
+    {
+        return (Data != null) ? Data : new List<ReagentData>();
     }
 
     public List<ReagentData> EnsureReagentData()
@@ -49,13 +56,13 @@ public partial struct ReagentId : IEquatable<ReagentId>
         if (other.Data == null)
             return false;
 
-        if (Data.GetType() != other.Data.GetType())
+        if (Data.Except(other.Data).Any() || other.Data.Except(Data).Any() || Data.Count != other.Data.Count)
             return false;
 
-        return Data.Equals(other.Data);
+        return true;
     }
 
-    public bool Equals(string prototype, ReagentData? otherData = null)
+    public bool Equals(string prototype, List<ReagentData>? otherData = null)
     {
         if (Prototype != prototype)
             return false;
