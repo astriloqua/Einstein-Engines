@@ -503,40 +503,6 @@
     energy: 3
 
 #ANTAG HARDSUITS
-#Blood-red Hardsuit
-- type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
-  id: ClothingHeadHelmetHardsuitSyndie
-  name: blood-red hardsuit helmet
-  description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
-  components:
-  - type: Sprite
-    sprite: _Impstation/Clothing/Head/Hardsuits/syndicate.rsi
-  - type: Clothing
-    sprite: _Impstation/Clothing/Head/Hardsuits/syndicate.rsi
-    clothingVisuals:
-      head:
-      - state: off-equipped-HELMET
-      - state: off-equipped-HELMET-glow
-        shader: unshaded
-  - type: PointLight
-    color: green
-  - type: PressureProtection
-    highPressureMultiplier: 0.08
-    lowPressureMultiplier: 1000
-  - type: HideLayerClothing
-    slots:
-    - Snout
-    - Hair
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-  - type: FlashImmunity # Goobstation
-  - type: FlashSoundSuppression # Goobstation
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitSyndie
@@ -655,46 +621,6 @@
   - type: FlashImmunity # Goobstation
   - type: FlashSoundSuppression # Goobstation
 
-#Syndicate Elite Hardsuit
-- type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
-  id: ClothingHeadHelmetHardsuitSyndieElite
-  name: syndicate elite helmet
-  description: An elite version of the blood-red hardsuit's helmet, with improved armor and fireproofing. Property of Gorlex Marauders.
-  components:
-  - type: Sprite
-    sprite: _Impstation/Clothing/Head/Hardsuits/syndicate_elite.rsi
-  - type: Clothing
-    sprite: _Impstation/Clothing/Head/Hardsuits/syndicate_elite.rsi
-    clothingVisuals:
-      head:
-      - state: off-equipped-HELMET
-      - state: off-equipped-HELMET-glow
-        shader: unshaded
-  - type: PointLight
-    color: red
-  - type: PressureProtection
-    highPressureMultiplier: 0.08
-    lowPressureMultiplier: 1000
-  - type: HideLayerClothing
-    slots:
-    - Snout
-    - Hair
-  - type: TemperatureProtection
-    heatingCoefficient: 0.005
-    coolingCoefficient: 0.005
-  - type: FireProtection
-    reduction: 0.2
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-  - type: FlashImmunity # Goobstation
-  - type: FlashSoundSuppression # Goobstation
-
 - type: entity
   parent: ClothingHeadHelmetHardsuitSyndieElite
   id: ClothingHeadHelmetHardsuitShiweiUnpainted
@@ -750,7 +676,8 @@
     - Snout
     - Hair
   - type: TemperatureProtection
-    coefficient: 0.005
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: FireProtection
     reduction: 0.2
   - type: Armor

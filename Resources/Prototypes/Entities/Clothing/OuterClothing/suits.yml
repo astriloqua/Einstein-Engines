@@ -139,14 +139,13 @@
       sprintModifier: 0.8
     - type: HeldSpeedModifier
     - type: GroupExamine
-    - type: ClothingRequiredStepTriggerImmune
-      slots: WITHOUT_POCKET
+    #- type: ClothingRequiredStepTriggerImmune
+    #  slots: WITHOUT_POCKET
     - type: Tag
       tags:
         - FullBodyOuter
         - WhitelistChameleon
         - HidesHarpyWings
-    - type: HeldSpeedModifier # EE: No clue what this does
     - type: ProtectedFromStepTriggers # EE: Doesn't this do the same with ClothingRequiredStepTriggerImmune
       slots: WITHOUT_POCKET
 
