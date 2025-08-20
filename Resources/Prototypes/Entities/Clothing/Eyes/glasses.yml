@@ -227,41 +227,6 @@
   - type: ShowJobIcons
 
 - type: entity
-  parent: [ClothingEyesBase, BallisticGlasses]
-  id: ClothingEyesGlassesMercenary
-  name: mercenary glasses
-  description: Glasses made for combat, to protect the eyes from bright blinding flashes.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/mercglasses.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/mercglasses.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: IdentityBlocker
-    coverage: EYES
-
-#Make a scanner category when these actually function and we get the trayson
-- type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesGlassesThermal
-  name: optical thermal scanner
-  description: Thermals in the shape of glasses.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/thermal.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/thermal.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.95
-  - type: GroupExamine
-  - type: IdentityBlocker
-    coverage: EYES
-
-- type: entity
   parent: ClothingEyesBase
   id: ClothingEyesGlassesChemical
   name: chemical analysis goggles
@@ -274,21 +239,6 @@
   - type: SolutionScanner
   - type: IdentityBlocker
     coverage: EYES
-
-- type: entity
-  parent: [ClothingEyesBase, BaseMajorContraband]
-  id: ClothingEyesVisorNinja
-  name: ninja visor
-  description: An advanced visor protecting a ninja's eyes from flashing lights.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-  - type: FlashImmunity
-  - type: NightVision
-    isEquipment: true
-  - type: Unremoveable
 
 - type: entity
   parent: ClothingEyesBase
@@ -546,18 +496,8 @@
       VeinsDamage: 0
       NerveDamage: 0
   - type: GroupExamine
-
-- type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesGlassesChemical
-  name: chemical analysis goggles
-  description: Goggles that can scan the chemical composition of a solution.
-  components:
-    - type: Sprite
-      sprite: Clothing/Eyes/Glasses/science.rsi
-    - type: Clothing
-      sprite: Clothing/Eyes/Glasses/science.rsi
-    - type: SolutionScanner
+  - type: IdentityBlocker
+    coverage: EYES
 
 - type: entity
   parent: ClothingEyesBase
