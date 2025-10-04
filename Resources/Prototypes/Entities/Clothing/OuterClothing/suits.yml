@@ -221,6 +221,7 @@
   # phase cloak
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
+    disableOnUnequip: true
   - type: ComponentToggler
     parent: true
     components:
@@ -253,6 +254,9 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
         disableEject: true
+        whitelist:
+          tags:
+          - PowerCell
   - type: Unremoveable
 
 - type: entity

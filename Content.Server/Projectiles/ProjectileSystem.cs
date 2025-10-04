@@ -35,7 +35,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     {
         // This is so entities that shouldn't get a collision are ignored.
         if (args.OurFixtureId != ProjectileFixture || !args.OtherFixture.Hard
-            || component.DamagedEntity || component is { Weapon: null, OnlyCollideWhenShot: true, })
+            || component.ProjectileSpent || component is { Weapon: null, OnlyCollideWhenShot: true, })
             return;
 
         var target = args.OtherEntity;
@@ -72,6 +72,51 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {modifiedDamage.GetTotal():damage} damage");
         }
 
+        // If penetration is to be considered, we need to do some checks to see if the projectile should stop.
+        if (modifiedDamage is not null && component.PenetrationThreshold != 0)
+        {
+            // If a damage type is required, stop the bullet if the hit entity doesn't have that type.
+            if (component.PenetrationDamageTypeRequirement != null)
+            {
+                var stopPenetration = false;
+                foreach (var requiredDamageType in component.PenetrationDamageTypeRequirement)
+                {
+                    if (!modifiedDamage.DamageDict.Keys.Contains(requiredDamageType))
+                    {
+                        stopPenetration = true;
+                        break;
+                    }
+                }
+                if (stopPenetration)
+                    component.ProjectileSpent = true;
+            }
+
+            // If the object won't be destroyed, it "tanks" the penetration hit.
+            if (modifiedDamage.GetTotal() < damageRequired)
+            {
+                component.ProjectileSpent = true;
+            }
+
+            if (!component.ProjectileSpent)
+            {
+                component.PenetrationAmount += damageRequired;
+                // The projectile has dealt enough damage to be spent.
+                if (component.PenetrationAmount >= component.PenetrationThreshold)
+                {
+                    component.ProjectileSpent = true;
+                }
+            }
+        }
+        else
+        {
+            // Goobstation start
+            if (component.Penetrate)
+                component.IgnoredEntities.Add(target);
+            else
+                component.ProjectileSpent = true;
+            // Goobstation end
+        }
+
         if (!deleted)
         {
             _guns.PlayImpactSound(target, modifiedDamage, component.SoundHit, component.ForceSound);
@@ -80,14 +125,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 _sharedCameraRecoil.KickCamera(target, args.OurBody.LinearVelocity.Normalized());
         }
 
-        // Goobstation start
-        if (component.Penetrate)
-            component.IgnoredEntities.Add(target);
-        else
-            component.DamagedEntity = true;
-        // Goobstation end
-
-        if (component.DeleteOnCollide || (component.NoPenetrateMask & args.OtherFixture.CollisionLayer) != 0) // Goobstation - Make x-ray arrows not penetrate blob
+        if (component.DeleteOnCollide && component.ProjectileSpent || (component.NoPenetrateMask & args.OtherFixture.CollisionLayer) != 0) // Goobstation - Make x-ray arrows not penetrate blob
             QueueDel(uid);
 
         if (component.ImpactEffect != null && TryComp(uid, out TransformComponent? xform))

@@ -16,6 +16,7 @@
   - type: Armor
     coverage:
     - Chest
+    - Groin
     traumaDeductions:
       Dismemberment: 0.2
       OrganDamage: 0.2
@@ -35,35 +36,6 @@
     knockdownTimeDelta: -2
   - type: StaminaResistance # Goobstation
     damageCoefficient: 0.7
-
-- type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseRestrictedContraband]
-  id: ClothingOuterArmorBasic
-  name: armor vest
-  description: A standard Type I armored vest that provides decent protection against most types of damage.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/security.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/security.rsi
-  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
-    coverage:
-    - Chest
-    - Groin
-    traumaDeductions:
-      Dismemberment: 0.2
-      OrganDamage: 0.2
-      BoneDamage: 0.2
-      VeinsDamage: 0
-      NerveDamage: 0
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
-        Heat: 0.80
-  - type: ExplosionResistance
-    damageCoefficient: 0.90
   - type: Fixtures
     fixtures:
       fix1:
@@ -75,6 +47,11 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+
+#Standard armor vest, allowed for security and bartenders
+- type: entity
+  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  id: ClothingOuterArmorBasic
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -155,7 +132,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: ClothingOuterArmorBase
   id: ClothingOuterArmorBulletproof
   name: bulletproof vest
   description: A Type III heavy bulletproof vest that provides superb protection against bullets, but is lackluster against anything else.
@@ -283,21 +260,21 @@
     netsync: false
   - type: LightBehaviour
     behaviours:
-      - !type:FadeBehaviour
-        id: radiating
-        interpolate: Linear
-        maxDuration: 2.0
-        startValue: 3.0
-        endValue: 2.0
-        isLooped: true
-        reverseWhenFinished: true
-      - !type:PulseBehaviour
-        id: blinking
-        interpolate: Nearest
-        maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
-        isLooped: true
+    - !type:FadeBehaviour
+      id: radiating
+      interpolate: Linear
+      maxDuration: 2.0
+      startValue: 3.0
+      endValue: 2.0
+      isLooped: true
+      reverseWhenFinished: true
+    - !type:PulseBehaviour
+      id: blinking
+      interpolate: Nearest
+      maxDuration: 1.0
+      minValue: 0.1
+      maxValue: 2.0
+      isLooped: true
   - type: Battery
     maxCharge: 600
     startingCharge: 600
@@ -376,7 +353,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - FullBodyOuter
+    - FullBodyOuter
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -401,7 +378,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - FullBodyOuter
+    - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterArmorHeavy
@@ -551,7 +528,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - FullBodyOuter
+    - FullBodyOuter
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]

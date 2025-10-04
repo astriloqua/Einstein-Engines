@@ -139,7 +139,7 @@ using System.Linq;
 
 namespace Content.Server.Explosion.EntitySystems;
 
-public sealed partial class ExplosionSystem : SharedExplosionSystem
+public sealed partial class ExplosionSystem
 {
     [Dependency] private readonly FlammableSystem _flammableSystem = default!;
 
@@ -333,7 +333,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         // get the entities on a tile. Note that we cannot process them directly, or we get
         // enumerator-changed-while-enumerating errors.
         List<(EntityUid, TransformComponent)> list = new();
-        var state = (list, processed, _transformQuery);
+        var state = (list, processed, EntityManager.TransformQuery);
 
         // get entities:
         lookup.DynamicTree.QueryAabb(ref state, GridQueryCallback, gridBox, true);
@@ -432,7 +432,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var gridBox = Box2.FromDimensions(tile * DefaultTileSize, new Vector2(DefaultTileSize, DefaultTileSize));
         var worldBox = spaceMatrix.TransformBox(gridBox);
         var list = new List<(EntityUid, TransformComponent)>();
-        var state = (list, processed, invSpaceMatrix, lookup.Owner, _transformQuery, gridBox, _transformSystem);
+        var state = (list, processed, invSpaceMatrix, lookup.Owner, EntityManager.TransformQuery, gridBox, _transformSystem);
 
         // get entities:
         lookup.DynamicTree.QueryAabb(ref state, SpaceQueryCallback, worldBox, true);
@@ -819,6 +819,7 @@ sealed class Explosion
 
     private readonly IEntityManager _entMan;
     private readonly ExplosionSystem _system;
+    private readonly SharedMapSystem _mapSystem;
 
     public readonly EntityUid VisualEnt;
 
@@ -841,11 +842,13 @@ sealed class Explosion
         IEntityManager entMan,
         IMapManager mapMan,
         EntityUid visualEnt,
-        EntityUid? cause)
+        EntityUid? cause,
+        SharedMapSystem mapSystem)
     {
         VisualEnt = visualEnt;
         Cause = cause;
         _system = system;
+        _mapSystem = mapSystem;
         ExplosionType = explosionType;
         _tileSetIntensity = tileSetIntensity;
         Epicenter = epicenter;
@@ -1052,7 +1055,7 @@ sealed class Explosion
         {
             if (list.Count > 0 && _entMan.EntityExists(grid.Owner))
             {
-                grid.SetTiles(list);
+                _mapSystem.SetTiles(grid.Owner, grid, list);
             }
         }
         _tileUpdateDict.Clear();

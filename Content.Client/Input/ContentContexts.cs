@@ -147,6 +147,9 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.ToggleStanding);
             human.AddFunction(ContentKeyFunctions.ToggleCrawlingUnder);
             human.AddFunction(ContentKeyFunctions.MouseMiddle);
+            human.AddFunction(ContentKeyFunctions.RotateObjectClockwise);
+            human.AddFunction(ContentKeyFunctions.RotateObjectCounterclockwise);
+            human.AddFunction(ContentKeyFunctions.FlipObject);
             human.AddFunction(ContentKeyFunctions.ArcadeUp);
             human.AddFunction(ContentKeyFunctions.ArcadeDown);
             human.AddFunction(ContentKeyFunctions.ArcadeLeft);
@@ -154,7 +157,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
-            human.AddFunction(ContentKeyFunctions.LookUp);
+            human.AddFunction(ContentKeyFunctions.LookUp); // WD EDIT
             // Shitmed Change Start - TODO: Add groin targeting.
             human.AddFunction(ContentKeyFunctions.TargetHead);
             human.AddFunction(ContentKeyFunctions.TargetChest);
